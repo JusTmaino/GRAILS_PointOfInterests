@@ -7,6 +7,7 @@ grails.plugin.springsecurity.authority.className = 'grails_pointofinterests.Role
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
+	[pattern: '/dbconsole/**',   access: ['permitAll']],
 	[pattern: '/user/**',        access: ['ROLE_ADMIN']],
     [pattern: '/role/**',        access: ['permitAll']],
     [pattern: '/userRole/**',    access: ['permitAll']],

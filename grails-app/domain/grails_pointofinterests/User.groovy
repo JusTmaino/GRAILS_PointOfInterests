@@ -21,6 +21,7 @@ class User implements Serializable {
     User(String username, String password) {
         this.username = username
         this.password = password
+
     }
 
     Set<Role> getAuthorities() {

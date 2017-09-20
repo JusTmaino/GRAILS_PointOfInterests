@@ -16,12 +16,12 @@ class UserController {
         respond User.list(params), model:[userCount: User.count()]
     }
 
-    //@Secured('ROLE_ADMIN')
+    @Secured('ROLE_ADMIN')
     def show(User user) {
         respond user
     }
 
-    //@Secured('ROLE_ADMIN')
+    @Secured('ROLE_ADMIN')
     def create() {
         respond new User(params)
     }
@@ -51,7 +51,7 @@ class UserController {
         }
     }
 
-    //@Secured('ROLE_ADMIN')
+    @Secured('ROLE_ADMIN')
     def edit(User user) {
         respond user
     }

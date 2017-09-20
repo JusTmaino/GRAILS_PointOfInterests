@@ -12,6 +12,7 @@ class Role implements Serializable {
 	private static final long serialVersionUID = 1
 
 	String authority
+	static beLongsTo = [User];
 
 	Role(String authority) {
 		this.authority = authority
