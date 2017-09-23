@@ -5,9 +5,9 @@ class BootStrap {
     def init = { servletContext ->
 
         // Role
-        def administrateurRole = new Role('ROLE_ADMIN').save();
-        def moderateurRole = new Role('ROLE_MOD').save();
-        def utilisateurRole = new Role('ROLE_USER').save();
+        def administrateurRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role('ROLE_ADMIN').save();
+        def moderateurRole = Role.findByAuthority('ROLE_MOD') ?: new Role('ROLE_MOD').save();
+        def utilisateurRole = Role.findByAuthority('ROLE_USER') ?: new Role('ROLE_USER').save();
 
         // User
         def administrateurUser = new User('admin', 'admin').save();

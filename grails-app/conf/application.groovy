@@ -5,11 +5,15 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'grails_pointofint
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'grails_pointofinterests.UserRole'
 grails.plugin.springsecurity.authority.className = 'grails_pointofinterests.Role'
 grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/'
+grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
+//grails.plugin.springsecurity.auth.loginFormUrl = '/login'
+//grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/login'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/dbconsole/**',   access: ['permitAll']],
-	[pattern: '/user/**',        access: ['ROLE_ADMIN']],
-    [pattern: '/role/**',        access: ['permitAll']],
+	[pattern: '/user/**',        access: ['ROLE_ADMIN','IS_AUTHENTICATED_FULLY']],
+    [pattern: '/role/**',        access: ['ROLE_ADMIN']],
     [pattern: '/userRole/**',    access: ['permitAll']],
 	[pattern: '/groupe/**',      access: ['permitAll']],
 	[pattern: '/groupepoi/**',   access: ['permitAll']],

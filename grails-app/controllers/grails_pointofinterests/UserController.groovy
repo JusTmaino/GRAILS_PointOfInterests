@@ -13,7 +13,9 @@ class UserController {
     @Secured('ROLE_ADMIN')
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond User.list(params), model:[userCount: User.count()]
+        List<User> usersList = User.findAll()
+        [customUserList:usersList]
+        //respond User.list(params), model:[userCount: User.count()]
     }
 
     @Secured('ROLE_ADMIN')

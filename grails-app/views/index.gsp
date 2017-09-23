@@ -46,7 +46,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">DECONNEXION</a>
+                                        <a href="#" class="btn btn-default btn-flat">Sign Out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -63,7 +63,7 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <asset:image src="avatar5.png" class="img-circle" alt="User Image"/>
                     </div>
                     <div class="pull-left info">
                         <p> <sec:loggedInUserInfo field="username" /> </p>
@@ -164,19 +164,7 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <p class="text-center">
-                                            <strong>blabla</strong>
-                                        </p>
-                                        <p class="text-center">
-                                            <strong>blabla</strong>
-                                        </p>
-                                        <p class="text-center">
-                                            <strong>blabla</strong>
-                                        </p>
-                                        <p class="text-center">
-                                            <strong>blabla</strong>
-                                        </p>
-                                        <p class="text-center">
-                                            <strong>blabla</strong>
+                                            <strong>To Be Continued</strong>
                                         </p>
 
                                     </div>
@@ -202,7 +190,7 @@
         <asset:javascript src="jquery.sparkline.min.js"/>
         <asset:javascript src="jquery.slimscroll.min.js"/>
         <asset:javascript src="Chart.js"/>
-        <asset:javascript src="dashboard2.js"/>
+        <!--asset:javascript src="dashboard2.js"/-->
     </g:if>
 
 </body>

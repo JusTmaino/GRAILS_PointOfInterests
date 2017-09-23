@@ -45,7 +45,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <input type="submit" id="submit" name="login" class="btn btn-primary btn-block btn-flat" value="Sign In"/>
+                    <g:submitButton name="login" class="btn btn-primary btn-block btn-flat" value="Sign In"></g:submitButton>
                 </div>
                 <!-- /.col -->
             </div>
