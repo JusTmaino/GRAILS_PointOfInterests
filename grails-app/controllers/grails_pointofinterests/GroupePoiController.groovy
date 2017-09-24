@@ -10,7 +10,9 @@ class GroupePoiController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond GroupePoi.list(params), model:[groupePoiCount: GroupePoi.count()]
+        List<GroupePoi> GroupePoisList = GroupePoi.findAll()
+        [customGroupePoisList:GroupePoisList]
+        //respond GroupePoi.list(params), model:[groupePoiCount: GroupePoi.count()]
     }
 
     def show(GroupePoi groupePoi) {

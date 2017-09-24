@@ -10,7 +10,9 @@ class LocationController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Location.list(params), model:[locationCount: Location.count()]
+        List<Location> LocationsList = Location.findAll()
+        [customLocationsList:LocationsList]
+        //respond Location.list(params), model:[locationCount: Location.count()]
     }
 
     def show(Location location) {
