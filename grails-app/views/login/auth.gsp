@@ -26,6 +26,9 @@
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
+    <g:if test='${flash.message}'>
+        <div class="login_message">${flash.message}</div>
+    </g:if>
         <form action="${postUrl ?: '/login/authenticate'}" id="loginForm" method="post">
             <div class="form-group has-feedback">
                 <input type="text" name="${usernameParameter ?: 'username'}" id="username" class="form-control" placeholder="Username">

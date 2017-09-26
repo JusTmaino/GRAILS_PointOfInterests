@@ -5,9 +5,9 @@ class BootStrap {
     def init = { servletContext ->
 
         // Role
-        def administrateurRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role('ROLE_ADMIN').save();
-        def moderateurRole = Role.findByAuthority('ROLE_MOD') ?: new Role('ROLE_MOD').save();
-        def utilisateurRole = Role.findByAuthority('ROLE_USER') ?: new Role('ROLE_USER').save();
+        def administrateurRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role('ROLE_ADMIN').save(flush: true, failOnError: true);
+        def moderateurRole = Role.findByAuthority('ROLE_MOD') ?: new Role('ROLE_MOD').save(flush: true, failOnError: true);
+        def utilisateurRole = Role.findByAuthority('ROLE_USER') ?: new Role('ROLE_USER').save(flush: true, failOnError: true);
 
         // User
         def administrateurUser = new User('admin', 'admin').save();
@@ -25,7 +25,7 @@ class BootStrap {
 
                 (1..5).each {
                     int j ->
-                        def point = new Point(name: "POI " + j, description: 'description ' + j).save(flush: true, failOnError: true)
+                        def point = new Point(name: "POI " +i+""+j, description: 'description ' +i+""+j).save(flush: true, failOnError: true)
                         def groupepoi = new GroupePoi(groupe: groupe, point:point ).save(flush: true, failOnError: true)
                 }
         }

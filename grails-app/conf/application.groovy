@@ -12,9 +12,9 @@ grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/dbconsole/**',   access: ['permitAll']],
-	[pattern: '/user/**',        access: ['ROLE_ADMIN','IS_AUTHENTICATED_FULLY']],
-    [pattern: '/role/**',        access: ['ROLE_ADMIN']],
-    [pattern: '/userRole/**',    access: ['permitAll']],
+	[pattern: '/user/**',        access: ['ROLE_ADMIN','ROLE_MOD']],
+    [pattern: '/role/**',        access: ['ROLE_ADMIN','ROLE_MOD']],
+    [pattern: '/userRole/**',    access: ['ROLE_ADMIN','ROLE_MOD']],
 	[pattern: '/groupe/**',      access: ['permitAll']],
 	[pattern: '/groupepoi/**',   access: ['permitAll']],
 	[pattern: '/image/**',       access: ['permitAll']],

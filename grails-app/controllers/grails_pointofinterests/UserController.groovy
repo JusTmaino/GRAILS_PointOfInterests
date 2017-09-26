@@ -10,7 +10,7 @@ class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured('ROLE_ADMIN')
+    @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         List<User> usersList = User.findAll()
@@ -18,12 +18,12 @@ class UserController {
         //respond User.list(params), model:[userCount: User.count()]
     }
 
-    @Secured('ROLE_ADMIN')
+    @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def show(User user) {
         respond user
     }
 
-    @Secured('ROLE_ADMIN')
+    @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def create() {
         respond new User(params)
     }
@@ -53,7 +53,7 @@ class UserController {
         }
     }
 
-    @Secured('ROLE_ADMIN')
+    @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def edit(User user) {
         respond user
     }

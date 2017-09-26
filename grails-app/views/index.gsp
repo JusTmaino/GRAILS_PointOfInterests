@@ -44,9 +44,19 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears"></i></a>
                             <ul class="dropdown-menu">
                                 <!-- Menu Footer-->
+                                <li class="user-header">
+                                <asset:image src="avatar5.png" class="img-circle" alt="User Image"/>
+                                    <p>
+                                        <sec:loggedInUserInfo field="username" />
+                                        <small>Member since Nov. 2012</small>
+                                    </p>
+                                </li>
                                 <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign Out</a>
+                                        <a href="/logout" class="btn btn-default btn-flat">Sign Out</a>
                                     </div>
                                 </li>
                             </ul>

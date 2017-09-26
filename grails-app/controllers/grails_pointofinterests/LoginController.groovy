@@ -1,13 +1,14 @@
 package grails_pointofinterests
 
 import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.SpringSecurityUtils
 
-class LoginController extends grails.plugin.springsecurity.LoginController {
+class LoginController {
 
     def SpringSecurityService
     def index() {
         if (springSecurityService.isLoggedIn()) {
-            redirect uri: conf.successHandler.defaultTargetUrl
+            redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
         }
         else {
             redirect action: 'auth', params: params
