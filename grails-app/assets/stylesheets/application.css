@@ -13,3 +13,27 @@
 *= require mobile
 *= require_self
 */
+
+.user_menu {
+    margin-top: 15px;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+#map {
+    height: 300px;
+    width:100%;
+}
+
+.row ul.achievements>li {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+#modal1.modal {
+    width: 70%;
+}
+
+.content {
+    overflow-x: scroll;
+}

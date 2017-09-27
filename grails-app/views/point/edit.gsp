@@ -14,6 +14,66 @@
                 <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
+    <label>Localisation</label>
+    <div id="map"></div>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
+
+
+    <script type="text/javascript">
+        function initMap() {
+
+            var localisation = {
+                info: '<strong>${this.point.name}</strong><br>\
+					<g:each in="${this.point.images}" var="image">\n' +
+                '                    <g:img dir="images" file="${image.path}" width="40" height="40"/></li>\n' +
+                '                </g:each>',
+                lat: 17,
+                long: 47
+            };
+
+            var locations = [
+                [localisation.info, "${this.point.location[0].latitude}", "${this.point.location[0].longitude}"],
+            ];
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: new google.maps.LatLng("${this.point.location[0].latitude}", "${this.point.location[0].longitude}"),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow({});
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map,
+                    draggable:true
+                });
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                document.getElementById("lat").value = event.latLng.lat();
+                document.getElementById("long").value = event.latLng.lng();
+            });
+        }
+        google.maps.event.addDomListener(window, "load", initialize());
+
+        function edit_pos() {
+            document.getElementById("lat").value = document.getElementById("lat").value.replace(".", ",");
+            document.getElementById("long").value = document.getElementById("lat").value.replace(".", ",");
+        }
+    </script>
+    <div><input id="lat" value="${this.point.location[0].latitude}" type="text" name="latitude"></div>
+    <div><input id="long" value="${this.point.location[0].longitude}" type="text" name="longitude"></div>
         <div id="edit-point" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -34,6 +94,9 @@
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>
+                <a class="waves-effect waves-light btn right">
+                    <input onClick="edit_pos()" class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                </a>
             </g:form>
         </div>
     </body>
