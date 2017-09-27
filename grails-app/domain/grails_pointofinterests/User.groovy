@@ -18,6 +18,8 @@ class User implements Serializable {
     boolean accountLocked
     boolean passwordExpired
 
+    //static hasOne = [image:Image]
+
     User(String username, String password) {
         this.username = username
         this.password = password

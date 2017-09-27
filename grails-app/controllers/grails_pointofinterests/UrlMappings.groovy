@@ -7,6 +7,8 @@ class UrlMappings {
     def getLoggedUser() {
         def principal = springSecurityService.principal
         String username = principal.username
+        String user = springSecurityService.getCurrentUser();
+        [user:user]
     }
 
     static mappings = {

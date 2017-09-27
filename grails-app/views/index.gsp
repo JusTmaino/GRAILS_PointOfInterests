@@ -52,12 +52,19 @@
                                     </p>
                                 </li>
                                 <li class="user-footer">
+                                <g:if test="${user!=null}">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="/user/profile" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="/logout" class="btn btn-default btn-flat">Sign Out</a>
                                     </div>
+                                </g:if>
+                                    <g:if test="${user==null}">
+                                    <div class="pull-right">
+                                        <a href="/login" class="btn btn-default btn-flat">Sign IN</a>
+                                    </div>
+                                </g:if>
                                 </li>
                             </ul>
                         </li>

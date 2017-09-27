@@ -4,6 +4,7 @@ class Image {
 
     String filename;
     Date date_created;
+    //static belongsTo = [user:User]
 
     static constraints = {
         filename blank:false

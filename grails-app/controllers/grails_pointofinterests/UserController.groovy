@@ -9,6 +9,7 @@ import grails.transaction.Transactional
 class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    def springSecurityService
 
     @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def index(Integer max) {
@@ -101,6 +102,12 @@ class UserController {
             }
             '*'{ render status: NO_CONTENT }
         }
+    }
+
+    @Secured(['ROLE_ADMIN','ROLE_MOD','ROLE_USER'])
+    def profile(){
+        User user = springSecurityService.getCurrentUser()
+        [customUser:user]
     }
 
     protected void notFound() {
