@@ -16,6 +16,7 @@ class PointController {
     }
 
     def show(Point point) {
+        //Point
         respond point
     }
 
