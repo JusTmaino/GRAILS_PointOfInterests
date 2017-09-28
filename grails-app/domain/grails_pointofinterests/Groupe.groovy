@@ -5,7 +5,7 @@ class Groupe {
     String name;
     String description;
 
-    static hasMany = [images:Image]
+    static hasMany = [images:Image,points:Point]
 
     static constraints = {
         name blank:false

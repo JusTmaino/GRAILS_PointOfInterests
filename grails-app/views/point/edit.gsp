@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
     <head>
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'point.label', default: 'Point')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#edit-point" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
+    <a href="#edit-point" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+    <div class="nav" role="navigation">
+        <ul>
+            <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+            <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+            <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+        </ul>
+    </div>
     <label>Localisation</label>
     <div id="map"></div>
     <script async defer
@@ -25,7 +25,7 @@
 
             var localisation = {
                 info: '<strong>${this.point.name}</strong><br>\
-					<g:each in="${this.point.images}" var="image">\n' +
+                        <g:each in="${this.point.images}" var="image">\n' +
                 '                    <g:img dir="images" file="${image.path}" width="40" height="40"/></li>\n' +
                 '                </g:each>',
                 lat: 17,
@@ -37,7 +37,7 @@
             ];
 
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 13,
+                zoom: 4,
                 center: new google.maps.LatLng("${this.point.location[0].latitude}", "${this.point.location[0].longitude}"),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
@@ -60,44 +60,33 @@
                     }
                 })(marker, i));
             }
-            google.maps.event.addListener(marker, 'dragend', function (event) {
-                document.getElementById("lat").value = event.latLng.lat();
-                document.getElementById("long").value = event.latLng.lng();
-            });
         }
         google.maps.event.addDomListener(window, "load", initialize());
 
-        function edit_pos() {
-            document.getElementById("lat").value = document.getElementById("lat").value.replace(".", ",");
-            document.getElementById("long").value = document.getElementById("lat").value.replace(".", ",");
-        }
     </script>
     <div><input id="lat" value="${this.point.location[0].latitude}" type="text" name="latitude"></div>
     <div><input id="long" value="${this.point.location[0].longitude}" type="text" name="longitude"></div>
-        <div id="edit-point" class="content scaffold-edit" role="main">
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
+    <div id="edit-point" class="content scaffold-edit" role="main">
+        <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+        <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.point}">
+        </g:if>
+        <g:hasErrors bean="${this.point}">
             <ul class="errors" role="alert">
                 <g:eachError bean="${this.point}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                    <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
                 </g:eachError>
             </ul>
-            </g:hasErrors>
-            <g:form resource="${this.point}" method="PUT">
-                <g:hiddenField name="version" value="${this.point?.version}" />
-                <fieldset class="form">
-                    <f:all bean="point"/>
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                </fieldset>
-                <a class="waves-effect waves-light btn right">
-                    <input onClick="edit_pos()" class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                </a>
-            </g:form>
-        </div>
+        </g:hasErrors>
+        <g:form resource="${this.point}" method="PUT">
+            <g:hiddenField name="version" value="${this.point?.version}" />
+            <fieldset class="form">
+                <f:all bean="point"/>
+            </fieldset>
+            <fieldset class="buttons">
+                <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+            </fieldset>
+        </g:form>
+    </div>
     </body>
-</html>
+    </html>

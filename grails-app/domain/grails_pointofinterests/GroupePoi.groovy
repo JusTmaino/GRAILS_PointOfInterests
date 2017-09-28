@@ -4,7 +4,7 @@ class GroupePoi {
 
     Point point
     Groupe groupe
-
-    static constraints = {
+    static constraints =
+            {
     }
 }

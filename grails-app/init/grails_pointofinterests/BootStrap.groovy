@@ -26,7 +26,8 @@ class BootStrap {
                 (1..5).each {
                     int j ->
                         def point = new Point(name: "POI " +i+""+j, description: 'description ' +i+""+j).save(flush: true, failOnError: true)
-                        point.addToLocation(new Location(name:"test",latitude:17,longitude:47,altitude:12));
+                        point.addToLocation(new Location(name:"test",latitude:20 + (j*3 + 10) ,longitude:45 + (j*2 + 20),altitude:12));
+                        groupe.addToPoints(point).save()
                         def groupepoi = new GroupePoi(groupe: groupe, point:point ).save(flush: true, failOnError: true)
                 }
         }
