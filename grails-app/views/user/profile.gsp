@@ -125,20 +125,38 @@
                         <h3 class="box-title">PROFILE DETAILS</h3>
                     </div>
                     <!-- /.box-header -->
-                    <!-- form start -->
-                    <form role="form">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" name="${usernameParameter ?: 'username'}" value=${customUser.username} class="form-control" id="username" placeholder="Username">
+                    <form action="/user/update/1" method="post" ><input type="hidden" name="_method" value="PUT" id="_method" />
+                        <input type="hidden" name="version" value="0" id="version" />
+                        <fieldset class="box-body">
+
+                            <div class='form-group'>
+                                <label for="username">Username * </label>
+                                <input type="text" class="form-control" name="username" placeholder="Username" value="${customUser.username}" required="" id="username" />
                             </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="${usernameParameter ?: 'password'}" class="form-control" id="password" placeholder="Password">
+
+                            <div class='form-group'>
+                                <label for="username">Password * </label>
+                                <input type="text" class="form-control" name="password" placeholder="Retape your Password" value="${customUser.password}" required="" id="password" />
                             </div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmPassword" placeholder="Retape your Password">
+
+                            <div class='form-group'>
+                                <input type="hidden" class="form-control" name="_passwordExpired" /><input type="checkbox" name="passwordExpired" id="passwordExpired"  />
+                                <label for='passwordExpired'>Password Expired</label>
+                            </div>
+
+                            <div class='form-group'>
+                                <input type="hidden" name="_accountLocked" /><input type="checkbox" name="accountLocked" id="accountLocked"  />
+                                <label for='accountLocked'>Account Locked</label>
+                            </div>
+
+                            <div class='form-group'>
+                                <input type="hidden" class="form-control" name="_accountExpired" /><input type="checkbox" name="accountExpired" id="accountExpired"  />
+                                <label for='accountExpired'>Account Expired</label>
+                            </div>
+
+                            <div class='form-group'>
+                                <input type="hidden" class="form-control" name="_enabled" /><input type="checkbox" name="enabled" checked="checked" id="enabled"  />
+                                <label for='enabled'>Enabled</label>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Image</label>
@@ -146,33 +164,31 @@
 
                                 <p class="help-block">Upload your image here.</p>
                             </div>
-                        </div>
-                        <!-- /.box-body -->
-
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary" style="">Update</button>
-                        </div>
+                        </fieldset>
+                        <fieldset class="box-footer">
+                            <input class="btn btn-primary" type="submit" value="Update" />
+                        </fieldset>
                     </form>
                 </div>
-                </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
-        </section>
-
+            <!-- /.col -->
     </div>
+    <!-- /.row -->
+</section>
+
+</div>
 
 
-    <g:if env="development">
-        <asset:javascript src="jquery.min.js"/>
-        <asset:javascript src="bootstrap.min.js"/>
-        <asset:javascript src="fastclick.js"/>
-        <asset:javascript src="adminlte.min.js"/>
-        <asset:javascript src="jquery.sparkline.min.js"/>
-        <asset:javascript src="jquery.slimscroll.min.js"/>
-        <asset:javascript src="Chart.js"/>
-        <!--asset:javascript src="dashboard2.js"/-->
-    </g:if>
+<g:if env="development">
+    <asset:javascript src="jquery.min.js"/>
+    <asset:javascript src="bootstrap.min.js"/>
+    <asset:javascript src="fastclick.js"/>
+    <asset:javascript src="adminlte.min.js"/>
+    <asset:javascript src="jquery.sparkline.min.js"/>
+    <asset:javascript src="jquery.slimscroll.min.js"/>
+    <asset:javascript src="Chart.js"/>
+    <!--asset:javascript src="dashboard2.js"/-->
+</g:if>
 
 </body>
 </html>

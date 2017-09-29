@@ -8,7 +8,8 @@ class UrlMappings {
         def principal = springSecurityService.principal
         String username = principal.username
         String user = springSecurityService.getCurrentUser();
-        [user:user]
+        //[user:user]
+        //respond user
     }
 
     static mappings = {
@@ -23,6 +24,6 @@ class UrlMappings {
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
-        "403"(view:'/error')
+        "405"(view:'/error')
     }
 }

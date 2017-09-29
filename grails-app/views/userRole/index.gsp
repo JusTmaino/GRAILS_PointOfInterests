@@ -185,8 +185,8 @@
                                 <tbody>
                                 <g:each in="${customUserRolesList}" var="userRole">
                                     <tr>
-                                        <td><a href="/user/show/${userRole.user.id}">${userRole.user}</a></td>
-                                        <td><a href="/role/show/${userRole.role.id}">${userRole.role}</a></td>
+                                        <td><a href="/user/show/${userRole.user.id}">${userRole.user.username}</a></td>
+                                        <td><a href="/role/show/${userRole.role.id}">${userRole.role.authority}</a></td>
                                     </tr>
                                 </g:each>
                                 </tbody>

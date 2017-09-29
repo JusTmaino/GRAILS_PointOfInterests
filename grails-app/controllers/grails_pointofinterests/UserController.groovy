@@ -108,6 +108,7 @@ class UserController {
     def profile(){
         User user = springSecurityService.getCurrentUser()
         [customUser:user]
+        //respond user
     }
 
     protected void notFound() {

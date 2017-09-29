@@ -117,6 +117,42 @@
                         </g:each>
                     </ul>
                 </li>
+                <li>
+                    <a href="/groupe">
+                        <i class="fa fa-users"></i>
+                        <span>Groupes</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right">5</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/groupe">
+                        <i class="fa fa-users"></i>
+                        <span>Points</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right">15</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/location">
+                        <i class="fa fa-location-arrow"></i>
+                        <span>Locations</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right">15</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user">
+                        <i class="fa fa-user-circle"></i>
+                        <span>Users</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right">3</span>
+                        </span>
+                    </a>
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->
