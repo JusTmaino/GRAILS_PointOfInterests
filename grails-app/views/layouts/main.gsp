@@ -74,14 +74,14 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/poi">
+                            <a href="/point">
                                 <i class="fa fa-arrow-right"></i>
                                 <span>Points d'intérêts</span>
                             </a>
                         </li>
 
                     </ul>
-                <li><a href="widgets.html"><em class="fa fa-users">&nbsp;</em> User Manager</a></li>
+                <li><a href="/user"><em class="fa fa-users">&nbsp;</em> User Manager</a></li>
             </li>
         </ul>
     </div>
