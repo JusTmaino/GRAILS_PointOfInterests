@@ -14,6 +14,12 @@ class UserController {
     @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
+        /*Role role = User.getAuthorities();
+        System.out.println("role : "+role)
+        if (role.toString().equals("ROLE_MOD"))
+        {
+            System.out.println("if OK")
+        }*/
         List<User> usersList = User.findAll()
         [customUserList:usersList]
         //respond User.list(params), model:[userCount: User.count()]

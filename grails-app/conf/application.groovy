@@ -5,6 +5,7 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'grails_pointofint
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'grails_pointofinterests.UserRole'
 grails.plugin.springsecurity.authority.className = 'grails_pointofinterests.Role'
 grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.logout.afterLogoutUrl = '/login'
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/'
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 //grails.plugin.springsecurity.auth.loginFormUrl = '/login'
