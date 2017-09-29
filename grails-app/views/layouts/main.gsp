@@ -56,11 +56,6 @@
             <div class="clear"></div>
         </div>
         <div class="divider"></div>
-        <form role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-        </form>
         <ul class="nav menu">
             <li><a href="/user/profile"><em class="fa fa-id-card">&nbsp;</em> Profile</a></li>
             <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
@@ -87,8 +82,10 @@
     </div>
 <!--/.sidebar-->
 
-
-    <g:layoutBody/>
+    <!-- /.CONTENT-->
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <g:layoutBody/>
+    </div>
 
     <g:if env="development">
         <asset:javascript src="application.js"/>

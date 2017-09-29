@@ -5,12 +5,11 @@
     <title>Login Form</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <g:if env="development">
-        <asset:stylesheet src="bootstrap.min.css"/>
-        <asset:stylesheet src="font-awesome.min.css"/>
-        <asset:stylesheet src="ionicons.min.css"/>
-        <asset:stylesheet src="jquery-jvectormap.css"/>
-        <asset:stylesheet src="AdminLTE.min.css"/>
-        <asset:stylesheet src="_all-skins.min.css"/>
+        <asset:stylesheet src="admin_login/bootstrap.min.css"/>
+        <asset:stylesheet src="admin_login/font-awesome.min.css"/>
+        <asset:stylesheet src="admin_login/ionicons.min.css"/>
+        <asset:stylesheet src="admin_login/AdminLTE.min.css"/>
+        <asset:stylesheet src="admin_login/blue.css"/>
     </g:if>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -26,6 +25,9 @@
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
+        <g:if test='${flash.message}'>
+            <div class="login_message">${flash.message}</div>
+        </g:if>
         <form action="${postUrl ?: '/login/authenticate'}" id="loginForm" method="post">
             <div class="form-group has-feedback">
                 <input type="text" name="${usernameParameter ?: 'username'}" id="username" class="form-control" placeholder="Username">
@@ -45,7 +47,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <input type="submit" id="submit" name="login" class="btn btn-primary btn-block btn-flat" value="Sign In"/>
+                    <g:submitButton name="login" class="btn btn-primary btn-block btn-flat" value="Sign In"></g:submitButton>
                 </div>
                 <!-- /.col -->
             </div>

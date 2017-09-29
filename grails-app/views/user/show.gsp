@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
-        <title><g:message code="default.show.label" args="[entityName]" /></title>
-    </head>
-    <body>
-    <!-- /.CONTENT-->
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-
+<head>
+    <meta name="layout" content="main" />
+    <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
+    <title><g:message code="default.show.label" args="[entityName]" /></title>
+</head>
+<body>
         <!--/.title-->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">My profile</h1>
+                <h1 class="page-header">USERS</h1>
             </div>
         </div>
         <!--/.title-->
@@ -49,7 +46,5 @@
             </div>
         </div>
         <!-- /.form-->
-    </div>
-
-    </body>
+</body>
 </html>

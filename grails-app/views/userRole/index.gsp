@@ -8,12 +8,11 @@
 <body >
 <div >
     <!-- /.CONTENT-->
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 
         <!--/.title-->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">My profile</h1>
+                <h1 class="page-header">USER ROLE</h1>
             </div>
         </div>
         <!--/.title-->
@@ -22,7 +21,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Details</div>
+                    <div class="panel-heading">List</div>
                     <div class="panel-body">
                         <div class="box">
                             <div class="box-header">
@@ -55,7 +54,6 @@
             </div>
         </div>
         <!-- /.form-->
-    </div>
 
 
     <script>

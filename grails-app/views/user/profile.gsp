@@ -5,8 +5,6 @@
     <title>Points Of Interests - Profile</title>
 </head>
 <body>
-    <!-- /.CONTENT-->
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 
         <!--/.title-->
         <div class="row">
@@ -22,7 +20,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Details</div>
                     <div class="panel-body">
-                        <form action="/user/update/1" method="post" ><input type="hidden" name="_method" value="PUT" id="_method" />
+                        <form action="/user/update/${customUser.id}" method="post" ><input type="hidden" name="_method" value="PUT" id="_method" />
 
                             <input type="hidden" name="version" value="0" id="version" />
 
@@ -74,7 +72,6 @@
             </div>
         </div>
         <!-- /.form-->
-    </div>
 
 </body>
 </html>
