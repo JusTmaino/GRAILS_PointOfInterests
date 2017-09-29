@@ -30,8 +30,12 @@
                             <tr>
                                 <td><a href="/point/show/${point.id}">${point.name}</a></td>
                                 <td>${point.description}</td>
-                                <td>${point.location}</td>
-                                <td>${point.images}</td>
+                                <td>${point.location.name}</td>
+                                <td>
+                                    <g:each in="${point.images}" var="img">
+                                        <asset:image src="${img.filename}" height="70px" width="70px"/>
+                                    </g:each>
+                                </td>
                             </tr>
                         </g:each>
                         </tbody>

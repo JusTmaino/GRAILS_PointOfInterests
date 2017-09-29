@@ -18,7 +18,7 @@
             var localisation = {
                 info: '<strong>${this.groupe.points.name}</strong><br>\
                         <g:each in="${this.groupe.points.images}" var="image">\n' +
-                '                    <g:img dir="images" file="${image.path}" width="10" height="10"/></li>\n' +
+                '                    <g:img dir="images" file="${image.filename}" width="10" height="10"/></li>\n' +
                 '                </g:each>',
             };
 
