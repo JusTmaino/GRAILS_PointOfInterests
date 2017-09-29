@@ -6,7 +6,6 @@
     <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-
     <!--/.title-->
     <div class="row">
         <div class="col-lg-12">
@@ -21,30 +20,47 @@
             <div class="panel panel-default">
                 <div class="panel-heading">List</div>
                 <div class="panel-body">
-                    <a href="#list-groupe" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-                    <div class="nav" role="navigation">
-                        <ul>
-                            <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                            <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-                        </ul>
-                    </div>
-                    <div id="list-groupe" class="content scaffold-list" role="main">
-                        <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-                        <g:if test="${flash.message}">
-                            <div class="message" role="status">${flash.message}</div>
-                        </g:if>
-                        <f:table collection="${groupeList}" />
-
-                        <div class="pagination">
-                            <g:paginate total="${groupeCount ?: 0}" />
+                    <div class="box">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+                    <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="points" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Points</th>
+                                    <th>Images</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <g:each in="${groupeList}" var="groupe">
+                                    <tr>
+                                        <td><a href="/groupe/show/${groupe.id}">${groupe.name}</a></td>
+                                        <td>${groupe.description}</td>
+                                        <td>
+                                            <g:each in="${groupe.points}" var="point">
+                                               - ${point.name} -
+                                            </g:each>
+                                        </td>
+                                        <td>
+                                            <g:each in="${groupe.images}" var="img">
+                                                <asset:image src="${img.filename}" height="70px" width="70px"/>
+                                            </g:each>
+                                        </td>
+                                    </tr>
+                                </g:each>
+                                </tbody>
+                            </table>
                         </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <div class="pagination">
+                        <g:paginate total="${groupeCount ?: 0}" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /.form-->
-</div>
-
-    </body>
+</body>
 </html>

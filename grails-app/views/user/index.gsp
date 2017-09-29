@@ -23,9 +23,6 @@
                 <div class="panel-heading">List</div>
                 <div class="panel-body">
                     <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title"><g:message code="default.list.label" args="[entityName]" /></h3>
-                        </div>
                         <i class="fa fa-user-plus" aria-hidden="true"></i><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
                     <!-- /.box-header -->
                         <div class="box-body">
