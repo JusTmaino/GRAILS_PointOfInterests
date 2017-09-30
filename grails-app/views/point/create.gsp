@@ -35,7 +35,6 @@
                             </ul>
                         </g:hasErrors>
                         <g:uploadForm resource="${this.point}" method="POST">
-                            ${this.point.location} = "${grails_pointofinterests.Location.all.getAt(0)}";
                             <div class="col s12 m12 l12">
     <label>Géolocalisation</label>
     <div id="map"></div>
@@ -126,6 +125,7 @@
                                               optionKey="id"
                                               multiple="true"/>
                                 </div>
+                                ${this.point.location} = "${grails_pointofinterests.Location.all.getAt(0)}";
                             </fieldset>
                             <a class="waves-effect waves-light btn right"><input type="submit" name="create" class="save" value="Create" id="create"></a>
                         </g:uploadForm>
