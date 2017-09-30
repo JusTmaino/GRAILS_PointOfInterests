@@ -45,14 +45,14 @@
                     <script type="text/javascript">
                                 function initMap() {
                                     var localisation = {
-                                        info: '<strong>${this.point.name}</strong><br>\
+                                        info: '<strong style="color:black">${this.point.name}</strong><br>\
                                             <g:each in="${this.point.images}" var="image">\n' +
-                                        '   <g:img dir="images" file="${image.filename}" width="10" height="10"/></li>\n' +
+                                        '   <g:img dir="images" file="${image.filename}" width="20" height="20"/></li>\n' +
                                         '   </g:each>',
                                     };
 
                                     var locations = [
-                                        [localisation.info, "${this.point.location.latitude}" , "${this.point.location.longitude}"],
+                                        [localisation.info, "${this.point.location[0].latitude}" , "${this.point.location[0].longitude}"],
                                     ];
 
                                     var map = new google.maps.Map(document.getElementById('map'), {
