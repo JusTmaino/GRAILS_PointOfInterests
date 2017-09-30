@@ -4,6 +4,7 @@
     <meta name="layout" content="main" />
     <g:set var="entityName" value="${message(code: 'groupe.label', default: 'Groupe')}" />
     <title><g:message code="default.list.label" args="[entityName]" /></title>
+
 </head>
 <body>
     <div class="row">
@@ -15,20 +16,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><a href="/groupe/show/${groupe.id}">${groupe.name}</a></div>
                     <div class="panel-body">
-                        <table id="point" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Points</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <g:each in="${groupe.points}" var="point">
-                                    <tr>
-                                        <td><a href="/point/show/${point.id}">${point.name}</a></td>
-                                    </tr>
-                                </g:each>
-                            </tbody>
-                        </table>
+                        <div class="dropper">
+                            <g:each in="${groupe.points}" var="point">
+                                <div class="draggable">
+                                    <a href="/point/show/${point.id}">${point.name}</a>
+                                </div>
+                            </g:each>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,5 +77,58 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        (function() {
+            var dndHandler = {
+                draggedElement: null,
+
+                applyDragEvents: function(element) {
+                    element.draggable = true;
+                    var dndHandler = this;
+                    element.addEventListener('dragstart', function(e) {
+                        dndHandler.draggedElement = e.target;
+                        e.dataTransfer.setData('text/plain', '');// firefox
+                    });
+                },
+
+                applyDropEvents: function(dropper) {
+                    dropper.addEventListener('dragover', function(e) {
+                        e.preventDefault();
+                        this.className = 'dropper drop_hover';
+                    });
+
+                    dropper.addEventListener('dragleave', function() {
+                        this.className = 'dropper';
+                    });
+
+                    var dndHandler = this;
+
+                    dropper.addEventListener('drop', function(e) {
+
+                        var target = e.target;
+                        var draggedElement = dndHandler.draggedElement;
+                        var clonedElement = draggedElement.cloneNode(true);
+
+                        while (target.className.indexOf('dropper') == -1) { target = target.parentNode;}
+
+                        target.className = 'dropper';
+
+                        clonedElement = target.appendChild(clonedElement);
+                        dndHandler.applyDragEvents(clonedElement);
+                        draggedElement.parentNode.removeChild(draggedElement);
+                    });
+                }
+            };
+
+            var elements = document.querySelectorAll('.draggable');
+            var elementsLen = elements.length;
+
+            for (var i = 0; i < elementsLen; i++) { dndHandler.applyDragEvents(elements[i]); }
+            var droppers = document.querySelectorAll('.dropper');
+            var droppersLen = droppers.length;
+            for (var i = 0; i < droppersLen; i++) { dndHandler.applyDropEvents(droppers[i]); }
+        })();
+    </script>
 </body>
 </html>
