@@ -5,6 +5,27 @@
     <g:set var="entityName" value="${message(code: 'groupe.label', default: 'Groupe')}" />
     <title><g:message code="default.list.label" args="[entityName]" /></title>
 
+    <style>
+        .draggable {
+            display: inline-block;
+            margin: 10px;
+            padding: 5px;
+            color: #3D110F;
+            background-color: rgba(225, 65, 55, 0.1);
+            border: 4px solid rgba(57, 143, 255, 0.47);
+            text-align: center;
+            font-size: 1em;
+            cursor: move;
+            transition: all 200ms linear;
+            user-select: none;
+        }
+        .dropper {
+            width: 350px;
+            height: 350px;
+            transition: all 200ms linear;
+        }
+    </style>
+
 </head>
 <body>
     <div class="row">
@@ -18,8 +39,8 @@
                     <div class="panel-body">
                         <div class="dropper">
                             <g:each in="${groupe.points}" var="point">
-                                <div class="draggable">
-                                    <a href="/point/show/${point.id}">${point.name}</a>
+                                <div>
+                                    <a class="draggable" href="/point/show/${point.id}">${point.name}</a>
                                 </div>
                             </g:each>
                         </div>
