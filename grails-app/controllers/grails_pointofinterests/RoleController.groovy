@@ -10,9 +10,9 @@ class RoleController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        List<Role> rolesList = Role.findAll()
-        [customRolesList:rolesList]
-        //respond Role.list(params), model:[roleCount: Role.count()]
+        //List<Role> rolesList = Role.findAll()
+        //[customRolesList:rolesList]
+        respond Role.list(params), model:[roleCount: Role.count()]
     }
 
     def show(Role role) {

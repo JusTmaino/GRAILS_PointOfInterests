@@ -57,12 +57,12 @@
                     </div>
                     <div class="panel-footer">
                         <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
-                            <g:form resource="${this.user}" method="DELETE">
-                                <fieldset class="buttons">
-                                    <input class="delete btn btn-danger" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                                    <g:link class="edit btn btn-primary"  action="edit" resource="${this.user}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                            <form action="/user/delete/${this.user.id}" method="post" ><input type="hidden" name="_method" value="DELETE" id="_method" />
+                                <fieldset class="box-footer">
+                                    <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Are you sure to delete this user?');" />
+                                    <input class="btn btn-primary" type="button" onclick="window.location='/user/edit/${this.user.id}';" value="Edit">
                                 </fieldset>
-                            </g:form>
+                            </form>
                         </sec:ifAnyGranted>
                     </div>
                 </div>

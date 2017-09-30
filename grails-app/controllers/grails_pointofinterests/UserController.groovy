@@ -14,12 +14,7 @@ class UserController {
     @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        /*Role role = User.getAuthorities();
-        System.out.println("role : "+role)
-        if (role.toString().equals("ROLE_MOD"))
-        {
-            System.out.println("if OK")
-        }*/
+
         List<User> usersList = User.findAll()
         [customUserList:usersList]
         //respond User.list(params), model:[userCount: User.count()]
@@ -32,7 +27,10 @@ class UserController {
 
     @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def create() {
-        respond new User(params)
+        //System.out.println(params.role);
+        List<Role> roleList = Role.findAll()
+        [customRoleList:roleList]
+        //respond new User(params)
     }
 
     @Transactional
@@ -50,6 +48,11 @@ class UserController {
         }
 
         user.save flush:true
+        //System.out.println(params.roleID)
+        //System.out.println(Role.findById(params.roleID))
+        //System.out.println(user)
+        Role role=Role.findById(params.roleID);
+        UserRole.create (user, role, true)
 
         request.withFormat {
             form multipartForm {
@@ -58,12 +61,13 @@ class UserController {
             }
             '*' { respond user, [status: CREATED] }
         }
+
     }
 
     @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def edit(User user) {
-        User cuser = springSecurityService.getCurrentUser()
-        [customUser:cuser]
+        List<Role> roleList = Role.findAll()
+        [customUser:user,customRoleList:roleList]
         //respond user
     }
 
@@ -84,6 +88,12 @@ class UserController {
 
         user.save flush:true
 
+
+        Role removedRole=Role.findById(UserRole.findByUser(user).role.id);
+        UserRole.remove (user, removedRole)
+        Role newRole=Role.findById(params.roleID);
+        UserRole.create (user, newRole, true)
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), user.id])
@@ -102,6 +112,8 @@ class UserController {
             return
         }
 
+        Role removedRole=Role.findById(UserRole.findByUser(user).role.id);
+        UserRole.remove (user, removedRole)
         user.delete flush:true
 
         request.withFormat {

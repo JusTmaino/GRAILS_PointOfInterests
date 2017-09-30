@@ -44,6 +44,11 @@
                                 </div>
 
                                 <div class='form-group'>
+                                    <label for='role'>Role * </label>
+                                    <g:select name="roleID" class="form-control" required="" id="role" optionKey="id" from="${customRoleList}"  ></g:select>
+                                </div>
+
+                                <div class='form-group'>
                                     <input type="hidden" class="form-control" name="_passwordExpired" /><input type="checkbox" name="passwordExpired" id="passwordExpired"  />
                                     <label for='passwordExpired'>Password Expired</label>
                                 </div>
