@@ -11,7 +11,7 @@
     <!--/.title-->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">USERS</h1>
+            <h3 class="page-header">USERS</h3>
         </div>
     </div>
     <!--/.title-->
@@ -20,10 +20,10 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">List</div>
+                <div class="panel-heading">List Details</div>
                 <div class="panel-body">
                     <div class="box">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+                        <g:link class="create" action="create"><i class="fa fa-user-plus fa-2x" style="padding: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
                     <!-- /.box-header -->
                         <div class="box-body">
                             <table id="users" class="table table-bordered table-striped">

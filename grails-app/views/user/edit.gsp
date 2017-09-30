@@ -11,7 +11,7 @@
         <!--/.title-->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">USERS</h1>
+                <h3 class="page-header">USERS</h3>
             </div>
         </div>
         <!--/.title-->
@@ -19,36 +19,64 @@
         <!-- /.form -->
         <div class="row">
             <div class="col-lg-12">
+
+                <div>
+                    <g:link class="list" action="index"><i class="fa fa-list-alt fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+                    <g:link class="create" action="create"><i class="fa fa-user-plus fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+                </div>
+
                 <div class="panel panel-default">
-                    <div class="panel-heading">Edit : ${this.user.username}</div>
+                    <div class="panel-heading">Edit : ${customUser.username}</div>
                     <div class="panel-body">
-                        <div id="edit-user" class="content scaffold-edit" role="main">
-                            <g:if test="${flash.message}">
-                                <div class="message" role="status">${flash.message}</div>
-                            </g:if>
-                            <g:hasErrors bean="${this.user}">
-                                <ul class="errors" role="alert">
-                                    <g:eachError bean="${this.user}" var="error">
-                                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                                    </g:eachError>
-                                </ul>
-                            </g:hasErrors>
-                            <g:form resource="${this.user}" method="PUT">
-                                <g:hiddenField name="version" value="${this.user?.version}" />
-                                <fieldset class="form">
-                                    <f:all bean="user"/>
-                                </fieldset>
-                                <fieldset class="buttons">
-                                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                                </fieldset>
-                            </g:form>
-                        </div>
+                        <form action="/user/update/${customUser.id}" method="post" ><input type="hidden" name="_method" value="PUT" id="_method" />
+
+                            <input type="hidden" name="version" value="0" id="version" />
+
+                            <fieldset class="box-body">
+                                <div class='form-group'>
+                                    <label for="username">Username * </label>
+                                    <input type="text" class="form-control" name="username" placeholder="Username" value="${customUser.username}" required="" id="username" />
+                                </div>
+
+                                <div class='form-group'>
+                                    <label for="username">Password * </label>
+                                    <input type="text" class="form-control" name="password" placeholder="Retape your Password" value="${customUser.password}" required="" id="password" />
+                                </div>
+
+                                <div class='form-group'>
+                                    <input type="hidden" class="form-control" name="_passwordExpired" /><input type="checkbox" name="passwordExpired" id="passwordExpired"  />
+                                    <label for='passwordExpired'>Password Expired</label>
+                                </div>
+
+                                <div class='form-group'>
+                                    <input type="hidden" name="_accountLocked" /><input type="checkbox" name="accountLocked" id="accountLocked"  />
+                                    <label for='accountLocked'>Account Locked</label>
+                                </div>
+
+                                <div class='form-group'>
+                                    <input type="hidden" class="form-control" name="_accountExpired" /><input type="checkbox" name="accountExpired" id="accountExpired"  />
+                                    <label for='accountExpired'>Account Expired</label>
+                                </div>
+
+                                <div class='form-group'>
+                                    <input type="hidden" class="form-control" name="_enabled" /><input type="checkbox" name="enabled" checked="checked" id="enabled"  />
+                                    <label for='enabled'>Enabled</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Image</label>
+                                    <input type="file" id="exampleInputFile">
+
+                                    <p class="help-block">Upload your image here.</p>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="box-footer">
+                                <input class="btn btn-primary" type="submit" value="Update" />
+                            </fieldset>
+
+                        </form>
                     </div>
                 </div>
-                <ul>
-                    <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                    <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-                </ul>
             </div>
         </div>
         <!-- /.form-->

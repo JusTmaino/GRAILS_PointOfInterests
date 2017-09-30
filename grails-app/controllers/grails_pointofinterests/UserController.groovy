@@ -62,9 +62,12 @@ class UserController {
 
     @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def edit(User user) {
-        respond user
+        User cuser = springSecurityService.getCurrentUser()
+        [customUser:cuser]
+        //respond user
     }
 
+    @Secured(['ROLE_ADMIN','ROLE_MOD','ROLE_USER'])
     @Transactional
     def update(User user) {
         if (user == null) {

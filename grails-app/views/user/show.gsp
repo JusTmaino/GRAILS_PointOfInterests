@@ -9,7 +9,7 @@
         <!--/.title-->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">USERS</h1>
+                <h3 class="page-header">USERS</h3>
             </div>
         </div>
         <!--/.title-->
@@ -17,27 +17,52 @@
         <!-- /.form -->
         <div class="row">
             <div class="col-lg-12">
+
+                <div>
+                    <g:link class="list" action="index"><i class="fa fa-list-alt fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+                    <g:link class="create" action="create"><i class="fa fa-user-plus fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+                </div>
+
                 <div class="panel panel-default">
                     <div class="panel-heading">${this.user.username} details</div>
                     <div class="panel-body">
-                         <div id="show-user" class="content scaffold-show" role="main">
-                            <g:if test="${flash.message}">
-                                <div class="message" role="status">${flash.message}</div>
-                            </g:if>
-                            <f:display bean="user" />
-                            <g:form resource="${this.user}" method="DELETE">
-                                <fieldset class="buttons">
-                                    <g:link class="edit" action="edit" resource="${this.user}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+
+                            <ol class="property-list user">
+
+                                <div class='form-group'>
+                                    <label>Username </label> : <span> ${this.user.username}</span>
+                                </div>
+
+                                <div class='form-group'>
+                                    <label>Password </label> : <span> ${this.user.password}</span>
+                                </div>
+
+                                <div class='form-group'>
+                                    <label >Password Expired </label> : <span> ${this.user.passwordExpired}</span>
+                                </div>
+
+                                <div class='form-group'>
+                                    <label >Account Locked </label> : <span> ${this.user.accountLocked}</span>
+                                </div>
+
+                                <div class='form-group'>
+                                    <label >Account Expired </label> : <span> ${this.user.accountExpired}</span>
+                                </div>
+
+                                <div class='form-group'>
+                                    <label >Enabled </label> : <span> ${this.user.enabled}</span>
+                                </div>
+
+                            </ol>
+                            <form action="/user/delete/1" method="post" ><input type="hidden" name="_method" value="DELETE" id="_method" />
+                                <fieldset class="box-footer">
+                                    <input class="btn btn-success" type="button" onclick="window.location='/user/edit/${this.user.id}';" value="Edit">
+                                    <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');" />
                                 </fieldset>
-                            </g:form>
-                        </div>
+                            </form>
+
                     </div>
                 </div>
-                <ul>
-                    <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                    <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-                </ul>
             </div>
         </div>
         <!-- /.form-->

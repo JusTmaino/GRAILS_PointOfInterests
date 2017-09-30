@@ -9,7 +9,7 @@
         <!--/.title-->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">My profile</h1>
+                <h3 class="page-header">My profile</h3>
             </div>
         </div>
         <!--/.title-->
@@ -35,25 +35,6 @@
                                     <input type="text" class="form-control" name="password" placeholder="Retape your Password" value="${customUser.password}" required="" id="password" />
                                 </div>
 
-                                <div class='form-group'>
-                                    <input type="hidden" class="form-control" name="_passwordExpired" /><input type="checkbox" name="passwordExpired" id="passwordExpired"  />
-                                    <label for='passwordExpired'>Password Expired</label>
-                                </div>
-
-                                <div class='form-group'>
-                                    <input type="hidden" name="_accountLocked" /><input type="checkbox" name="accountLocked" id="accountLocked"  />
-                                    <label for='accountLocked'>Account Locked</label>
-                                </div>
-
-                                <div class='form-group'>
-                                    <input type="hidden" class="form-control" name="_accountExpired" /><input type="checkbox" name="accountExpired" id="accountExpired"  />
-                                    <label for='accountExpired'>Account Expired</label>
-                                </div>
-
-                                <div class='form-group'>
-                                    <input type="hidden" class="form-control" name="_enabled" /><input type="checkbox" name="enabled" checked="checked" id="enabled"  />
-                                    <label for='enabled'>Enabled</label>
-                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Image</label>
                                     <input type="file" id="exampleInputFile">
@@ -69,10 +50,6 @@
                         </form>
                     </div>
                 </div>
-                <ul>
-                    <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                    <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-                </ul>
             </div>
         </div>
         <!-- /.form-->
