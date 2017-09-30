@@ -37,7 +37,7 @@
                                 </g:eachError>
                             </ul>
                         </g:hasErrors>
-                        <g:form resource="${this.groupe}" method="PUT">
+                        <g:uploadForm resource="${this.POIGroupImage}" method="PUT">
                             <g:hiddenField name="version" value="${this.groupe?.version}" />
                             <fieldset class="form">
                                 <f:all bean="groupe"/>
@@ -45,7 +45,7 @@
                             <fieldset class="buttons">
                                 <input class="save btn btn-primary" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                             </fieldset>
-                        </g:form>
+                        </g:uploadForm>
                     </div>
                 </div>
             </div>

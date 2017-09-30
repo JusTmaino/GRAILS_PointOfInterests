@@ -34,17 +34,17 @@
                                 </g:eachError>
                             </ul>
                         </g:hasErrors>
-                        <g:uploadForm resource="${this.point}" method="POST">
-                            <div class="col s12 m12 l12">
-    <label>Géolocalisation</label>
-    <div id="map"></div>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
-    <script type="text/javascript">
-        function initMap() {
+                        <g:uploadForm resource="${this.point}" method="POST" enctype="multipart/form-data">
+         <div class="col s12 m12 l12">
+        <label>Géolocalisation</label>
+        <div id="map"></div>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
+        <script type="text/javascript">
+            function initMap() {
 
-            var broadway = {
-                info: '<strong>${this.point.name}</strong><br>\
+                var broadway = {
+                    info: '<strong>${this.point.name}</strong><br>\
 					                 ',
                                             lat: 39.0,
                                             long: 30.0

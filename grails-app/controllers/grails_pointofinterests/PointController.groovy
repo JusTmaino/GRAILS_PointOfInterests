@@ -2,6 +2,10 @@ package grails_pointofinterests
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import org.springframework.web.multipart.MultipartHttpServletRequest
+import org.springframework.web.multipart.commons.CommonsMultipartFile
+import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest
+
 
 @Transactional(readOnly = true)
 class PointController {
@@ -37,6 +41,10 @@ class PointController {
             respond point.errors, view:'create'
             return
         }
+        def image = new Image(path: params.image)
+        Point.addToImages(image)
+
+        params.fileupload.transferTo(new java.io.File("/Applications/MAMP/htdocs/images/"+params.image))
 
         point.save flush:true
 
@@ -47,7 +55,9 @@ class PointController {
             }
             '*' { respond point, [status: CREATED] }
         }
+
     }
+
 
     def edit(Point point) {
         respond point

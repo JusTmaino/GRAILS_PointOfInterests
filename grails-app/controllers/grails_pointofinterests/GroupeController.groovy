@@ -34,6 +34,10 @@ class GroupeController {
             respond groupe.errors, view:'create'
             return
         }
+        def image = new Image(path: params.image)
+        Groupe.addToImages(image)
+
+        params.fileupload.transferTo(new java.io.File("/Applications/MAMP/htdocs/images/"+params.image))
 
         groupe.save flush:true
 
@@ -63,6 +67,12 @@ class GroupeController {
             respond groupe.errors, view:'edit'
             return
         }
+        def image = new Image(path: params.image)
+        groupe.addToImages(image)
+
+        params.fileupload.transferTo(new java.io.File("/Applications/MAMP/htdocs/images/"+params.image))
+
+        groupe.save flush:true
 
         groupe.save flush:true
 

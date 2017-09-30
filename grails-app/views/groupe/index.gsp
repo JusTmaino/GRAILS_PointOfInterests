@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/interface.js"></script>
     <meta name="layout" content="main" />
     <g:set var="entityName" value="${message(code: 'groupe.label', default: 'Groupe')}" />
     <title><g:message code="default.list.label" args="[entityName]" /></title>
@@ -40,8 +42,8 @@
                     <div class="panel-body">
                         <ul id="sortable1" class="connectedSortable">
                             <g:each in="${groupe.points}" var="point">
-                                <li class="ui-state-default">
-                                    <a class="draggable" href="/point/show/${point.id}">${point.name}</a>
+                                <li class="ui-state-default" >
+                                    <a class="draggable" /point/show/${point.id}" >${point.name}</a>
                                 </li>
                             </g:each>
                         </ul>
@@ -109,5 +111,21 @@
             }).disableSelection();
         } );
     </script>
+<script type="text/javascript">
+
+    $(document).ready (
+        function() {
+            $( "#sortlist" ).Sortable( {
+                accept : 'sortable_item',
+                axis : 'vertically',
+                opacity : 0.6,
+                onchange : function ( sorted ) {
+                    serial = $.SortSerialize( 'sortlist' );
+                }
+            });
+        });
+
+</script>
+
 </body>
 </html>

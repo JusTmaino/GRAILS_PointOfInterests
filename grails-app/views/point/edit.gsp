@@ -43,7 +43,7 @@
                             </g:eachError>
                         </ul>
                     </g:hasErrors>
-                    <g:form resource="${this.point}" method="PUT">
+                    <g:uploadForm resource="${this.point}" method="PUT">
                         <g:hiddenField name="version" value="${this.point?.version}" />
                         <script language="JavaScript" type="text/javascript">
                             function HandleBrowseClick()
@@ -74,7 +74,7 @@
                         <fieldset class="buttons">
                             <input class="save btn btn-primary" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                         </fieldset>
-                    </g:form>
+                    </g:uploadForm>
                 </div>
             </div>
         </div>

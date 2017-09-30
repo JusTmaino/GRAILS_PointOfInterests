@@ -59,12 +59,13 @@
                                 var localisation = {
                                     info: '<strong style="color:black">${this.point.name}</strong><br>\
                                             <g:each in="${this.point.images}" var="image">\n' +
-                                    '   <g:img dir="images" file="${image.filename}" width="20" height="20"/></li>\n' +
+                                    '  <img src="${grailsApplication.config.urlImage}/${image.filename}" width="20" height="20"/></li>\n' +
                                     '   </g:each>',
                                 };
                                     var locations = [
                                         [localisation.info, "${this.point.location[0].latitude}" , "${this.point.location[0].longitude}"],
                                     ];
+
                                     var map = new google.maps.Map(document.getElementById('map'), {
                                         zoom: 4,
                                         center: new google.maps.LatLng(${this.point.location[0].latitude},${this.point.location[0].longitude}),
