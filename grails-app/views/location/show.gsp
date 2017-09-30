@@ -17,7 +17,7 @@
         <!-- /.form -->
         <div class="row">
             <div class="col-lg-12">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">${this.location.name} details</div>
                     <div class="panel-body">
                         <div id="show-location" class="content scaffold-show" role="main">

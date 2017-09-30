@@ -6,18 +6,39 @@
     <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-    <!--/.title-->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">GROUPS</h1>
+            <h2>GROUPS</h2>
         </div>
-    </div>
-    <!--/.title-->
+        <g:each in="${groupeList}" var="groupe">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><a href="/groupe/show/${groupe.id}">${groupe.name}</a></div>
+                    <div class="panel-body">
+                        <table id="point" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <g:each in="${groupe.points}" var="point">
+                                    <tr>
+                                        <td><a href="/point/show/${point.id}">${point.name}</a></td>
+                                    </tr>
+                                </g:each>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </g:each>
+    </div><!-- /.row -->
 
     <!-- /.form -->
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">List</div>
                 <div class="panel-body">
                     <div class="box">

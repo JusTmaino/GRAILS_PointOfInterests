@@ -17,7 +17,7 @@
     <!-- /.form -->
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading"><g:message code="default.create.label" args="[entityName]" /></div>
                 <div class="panel-body">
                     <div id="create-location" class="content scaffold-create" role="main">

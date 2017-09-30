@@ -17,7 +17,7 @@
     <!-- /.form -->
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Create an image</div>
                 <div class="panel-body">
                     <div id="create-image" class="content scaffold-create" role="main">
