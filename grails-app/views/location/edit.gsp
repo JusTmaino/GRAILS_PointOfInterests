@@ -26,28 +26,91 @@
                             <g:if test="${flash.message}">
                                 <div class="message" role="status">${flash.message}</div>
                             </g:if>
+                            <div class="col s12 m12 l12">
+                                <label>Géolocalisation</label>
+                                <div id="map"></div>
+                                <script async defer
+                                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
+                                <script type="text/javascript">
+                                    function initMap() {
+
+                                        var broadway = {
+                                            info: '<strong>${this.location.name}</strong><br>\
+					                 ',
+                                            lat: ${this.location.latitude},
+                                            long: ${this.location.longitude}
+                                        };
+
+                                        var locations = [
+                                            [broadway.info, broadway.lat, broadway.long, 0],
+                                        ];
+
+                                        var map = new google.maps.Map(document.getElementById('map'), {
+                                            zoom: 4,
+                                            center: new google.maps.LatLng(${this.location.latitude}, ${this.location.longitude}),
+                                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                                        });
+
+                                        var infowindow = new google.maps.InfoWindow({});
+
+                                        var marker, i;
+
+                                        for (i = 0; i < locations.length; i++) {
+                                            marker = new google.maps.Marker({
+                                                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                map: map,
+                                                draggable:true
+                                            });
+
+                                            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                                                return function () {
+                                                    infowindow.setContent(locations[i][0]);
+                                                    infowindow.open(map, marker);
+                                                }
+                                            })(marker, i));
+                                        }
+                                        google.maps.event.addListener(marker, 'dragend', function (event) {
+                                            document.getElementById("lat").value = event.latLng.lat();
+                                            document.getElementById("long").value = event.latLng.lng();
+                                        });
+                                    }
+                                    google.maps.event.addDomListener(window, "load", initialize());
+
+                                    function bugfix() {
+                                        document.getElementById("lat").value = document.getElementById("lat").value.replace(".", ",");
+                                        document.getElementById("long").value = document.getElementById("lat").value.replace(".", ",");
+                                    }
+                                </script>
+                            </div>
                             <g:hasErrors bean="${this.location}">
-                                <ul class="errors" role="alert">
-                                    <g:eachError bean="${this.location}" var="error">
-                                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                                    </g:eachError>
-                                </ul>
                             </g:hasErrors>
+                            <div class="col s12 m12 l12">
+                                <label>Name</label>
+                                <input value="${this.location.name}" type="text" name="name" value="" required="" id="nom" >
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <label>Latitude</label>
+                                <input value="${this.location.longitude}" type="text" name="Latitude" value="" required="" id="lat" >
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <label>Longitude</label>
+                                <input value="${this.location.longitude}" type="text" name="Longitude" value="" required="" id="long" >
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <label>Altitude</label>
+                                <input value="${this.location.altitude}" type="text" name="Altitude" value="" required="" id="altitude" >
+                            </div>
                             <g:form resource="${this.location}" method="PUT">
                                 <g:hiddenField name="version" value="${this.location?.version}" />
-                                <fieldset class="form">
-                                    <f:all bean="location"/>
-                                </fieldset>
+
                                 <fieldset class="buttons">
-                                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                                    <input onClick="bugfix()" class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                                 </fieldset>
                             </g:form>
                         </div>
                     </div>
                 </div>
                 <ul>
-                    <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                    <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
                 </ul>
             </div>
         </div>

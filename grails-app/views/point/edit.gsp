@@ -34,7 +34,7 @@
                                 var localisation = {
                                     info: '<strong>${this.point.name}</strong><br>\
                         <g:each in="${this.point.images}" var="image">\n' +
-                                    '                    <g:img dir="images" file="${image.path}" width="40" height="40"/></li>\n' +
+                                    '                    <g:img dir="images" file="${image.filename}" width="40" height="40"/></li>\n' +
                                     '                </g:each>',
                                     lat: 17,
                                     long: 47
@@ -67,13 +67,14 @@
                                             infowindow.open(map, marker);
                                         }
                                     })(marker, i));
+                                    google.maps.event.addListener(marker, 'dragend', function (event) {
+                                        document.getElementById("lat").value = event.latLng.lat();
+                                        document.getElementById("long").value = event.latLng.lng();
+                                    });
                                 }
                             }
                             google.maps.event.addDomListener(window, "load", initialize());
-
                         </script>
-                        <div><input id="lat" value="${this.point.location[0].latitude}" type="text" name="latitude"></div>
-                        <div><input id="long" value="${this.point.location[0].longitude}" type="text" name="longitude"></div>
                         <div id="edit-point" class="content scaffold-edit" role="main">
                             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
                             <g:if test="${flash.message}">
@@ -88,9 +89,23 @@
                             </g:hasErrors>
                             <g:form resource="${this.point}" method="PUT">
                                 <g:hiddenField name="version" value="${this.point?.version}" />
-                                <fieldset class="form">
-                                    <f:all bean="point"/>
-                                </fieldset>
+                                <div class="col s12 m12 l12">
+                                    <label>Name</label>
+                                    <input value="${this.point.name}" type="text" name="name" value="" required="" id="nom" >
+                                </div>
+                                <div class="col s12 m12 l12">
+                                    <div class="btn">
+                                        <label>Image</label>
+                                        <input type="file" name="fileupload" value="" required="" id="image" >
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>Localisation</label>
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>Description</label>
+                                        <input value="${this.point.description}" type="text" name="description" value="" required="" id="desc" >
+                                    </div>
+                                </div>
                                 <fieldset class="buttons">
                                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                                 </fieldset>

@@ -69,7 +69,7 @@
                                         marker = new google.maps.Marker({
                                             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                                             map: map,
-                                            draggable:true
+                                            draggable: true
                                         });
 
                                         google.maps.event.addListener(marker, 'click', (function (marker, i) {
@@ -79,13 +79,10 @@
                                             }
                                         })(marker, i));
                                         google.maps.event.addListener(marker, 'dragend', function (event) {
-                                            this.point.location[0].latitude = 22;
-                                            this.point.location[0].longitude = event.latLng.lng();
-                                            document.getElementById("lat").value = this.point.location[0].latitude;
-                                            document.getElementById("long").value = ${this.point.location[0].longitude};
+                                            document.getElementById("lat").value = event.latLng.lat();
+                                            document.getElementById("long").value = event.latLng.lng();
                                         });
-                                    }console.log("test ===>",${this.point.location[0].longitude});
-
+                                    }
                                     google.maps.event.addDomListener(window, "load", initialize());
                                 }
                     </script>
