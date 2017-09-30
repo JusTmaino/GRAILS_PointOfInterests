@@ -32,7 +32,7 @@
 
                                 <div class='form-group'>
                                     <label for="username">Password * </label>
-                                    <input type="text" class="form-control" name="password" placeholder="Retape your Password" value="${customUser.password}" required="" id="password" />
+                                    <input type="text" class="form-control" name="password" placeholder="Enter your Password" required="" id="password" />
                                 </div>
 
                                 <div class="form-group">
