@@ -16,12 +16,14 @@
 
     <!-- /.form -->
     <div class="row">
+        <div>
+            <g:link class="list" action="index"><i class="fa fa-list-alt fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+        </div>
         <div class="col-lg-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">Create</div>
+                <div class="panel-heading">Create a point</div>
                 <div class="panel-body">
                     <div id="create-point" class="content scaffold-create" role="main">
-                        <h1><g:message code="default.create.label" args="[entityName]" /></h1>
                         <g:if test="${flash.message}">
                             <div class="message" role="status">${flash.message}</div>
                         </g:if>
@@ -37,15 +39,12 @@
                                 <f:all bean="point"/>
                             </fieldset>
                             <fieldset class="buttons">
-                                <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                                <g:submitButton name="create" class="save btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                             </fieldset>
                         </g:form>
                     </div>
                 </div>
             </div>
-            <ul>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-            </ul>
         </div>
     </div>
     <!-- /.form-->

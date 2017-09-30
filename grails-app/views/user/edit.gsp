@@ -18,13 +18,13 @@
 
         <!-- /.form -->
         <div class="row">
+            <div>
+                <g:link class="list" action="index"><i class="fa fa-list-alt fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+                <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                    <g:link class="create" action="create"><i class="fa fa-plus-square-o fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+                </sec:ifAnyGranted>
+            </div>
             <div class="col-lg-12">
-
-                <div>
-                    <g:link class="list" action="index"><i class="fa fa-list-alt fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
-                    <g:link class="create" action="create"><i class="fa fa-user-plus fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
-                </div>
-
                 <div class="panel panel-default">
                     <div class="panel-heading">Edit : ${customUser.username}</div>
                     <div class="panel-body">

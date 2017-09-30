@@ -19,12 +19,16 @@
 
     <!-- /.form -->
     <div class="row">
+        <div>
+            <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                <g:link class="create" action="create"><i class="fa fa-plus-square-o fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+            </sec:ifAnyGranted>
+        </div>
         <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">PointsList</div>
                 <div class="panel-body">
                     <div class="box">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
                     <!-- /.box-header -->
                         <div class="box-body">
                             <table id="points" class="table table-bordered table-striped">

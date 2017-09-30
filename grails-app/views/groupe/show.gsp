@@ -14,14 +14,45 @@
     </div>
     <!--/.title-->
 
-    <!-- /.form -->
     <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Details</div>
+        <div>
+            <g:link class="list" action="index"><i class="fa fa-list-alt fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+            <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                <g:link class="create" action="create"><i class="fa fa-plus-square-o fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+            </sec:ifAnyGranted>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">${this.groupe.name} details</div>
                 <div class="panel-body">
-                    <a href="#show-point" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+                    <div id="show-groupe" class="content scaffold-show" role="main">
+                        <h1><g:message code="default.show.label" args="[entityName]" /></h1>
+                        <g:if test="${flash.message}">
+                            <div class="message" role="status">${flash.message}</div>
+                        </g:if>
+                        <f:display bean="groupe" />
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                        <g:form resource="${this.groupe}" method="DELETE">
+                            <fieldset class="buttons">
+                                <input class="delete btn btn-danger" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                <g:link class="edit btn btn-primary"  action="edit" resource="${this.groupe}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                            </fieldset>
+                        </g:form>
+                    </sec:ifAnyGranted>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Map location
+                </div>
+                <div class="panel-body">
                     <div id="map"></div>
+                    <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
                     <script async defer
                             src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
                     <script type="text/javascript">
@@ -73,32 +104,9 @@
 
                         }
                     </script>
-
-
-                    <div id="show-groupe" class="content scaffold-show" role="main">
-                        <h1><g:message code="default.show.label" args="[entityName]" /></h1>
-                        <g:if test="${flash.message}">
-                            <div class="message" role="status">${flash.message}</div>
-                        </g:if>
-                        <f:display bean="groupe" />
-                        <g:form resource="${this.groupe}" method="DELETE">
-                            <fieldset class="buttons">
-                                <g:link class="edit" action="edit" resource="${this.groupe}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                                <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                            </fieldset>
-                        </g:form>
-                    </div>
                 </div>
             </div>
-            <div class="nav" role="navigation">
-                <ul>
-                    <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                    <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-                </ul>
-            </div>
         </div>
-    </div>
-    <!-- /.form-->
-
+    </div><!--/.row-->
 </body>
 </html>

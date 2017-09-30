@@ -15,6 +15,12 @@
     <!--/.title-->
 
     <div class="row">
+        <div>
+            <g:link class="list" action="index"><i class="fa fa-list-alt fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+            <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                <g:link class="create" action="create"><i class="fa fa-plus-square-o fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+            </sec:ifAnyGranted>
+        </div>
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">${this.point.name} details</div>
@@ -24,20 +30,24 @@
                                 <div class="message" role="status">${flash.message}</div>
                             </g:if>
                             <f:display bean="point" />
-                            <g:form resource="${this.point}" method="DELETE">
-                                <fieldset class="buttons">
-                                    <g:link class="edit" action="edit" resource="${this.point}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                                </fieldset>
-                            </g:form>
                     </div>
+                </div>
+                <div class="panel-footer">
+                    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                        <g:form resource="${this.point}" method="DELETE">
+                            <fieldset class="buttons">
+                                <input class="delete btn btn-danger" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                <g:link class="edit btn btn-primary"  action="edit" resource="${this.point}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                            </fieldset>
+                        </g:form>
+                    </sec:ifAnyGranted>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Point Location
+                    Map location
                 </div>
                 <div class="panel-body">
                     <div id="map"></div>
@@ -90,10 +100,6 @@
                     <div><label>Longitude</label><input id="long" value="${this.point.location.longitude}" type="text" name="longitude"></div>
                 </div>
             </div>
-            <ul>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
         </div>
     </div><!--/.row-->
 </body>

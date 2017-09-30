@@ -18,10 +18,10 @@
 
         <!-- /.form -->
         <div class="row">
+            <div>
+                <g:link class="list" action="index"><i class="fa fa-list-alt fa-2x" style="padding-left: 20px;padding-bottom: 5px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+            </div>
             <div class="col-lg-12">
-                <div>
-                    <g:link class="list" action="index"><i class="fa fa-list-alt fa-2x" style="padding-left: 20px;padding-bottom: 5px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
-                    </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">Create an user</div>
                     <div class="panel-body">

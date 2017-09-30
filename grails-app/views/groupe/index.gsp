@@ -6,25 +6,26 @@
     <title><g:message code="default.list.label" args="[entityName]" /></title>
 
     <style>
-        .draggable {
-            display: inline-block;
-            margin: 10px;
-            padding: 5px;
-            color: #3D110F;
-            background-color: rgba(225, 65, 55, 0.1);
-            border: 4px solid rgba(57, 143, 255, 0.47);
-            text-align: center;
-            font-size: 1em;
-            cursor: move;
-            transition: all 200ms linear;
-            user-select: none;
-        }
-        .dropper {
-            width: 350px;
-            height: 350px;
-            transition: all 200ms linear;
-        }
+    #sortable {
+        border: 1px solid #eee;
+        width: 142px;
+        min-height: 20px;
+        list-style-type: none;
+        margin: 0;
+        padding: 5px 0 0 0;
+        float: left;
+        margin-right: 10px;
+    }
+    #sortable li {
+        margin: 0 5px 5px 5px;
+        padding: 5px;
+        font-size: 1.2em;
+        width: 120px;
+    }
     </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 </head>
 <body>
@@ -37,13 +38,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><a href="/groupe/show/${groupe.id}">${groupe.name}</a></div>
                     <div class="panel-body">
-                        <div class="dropper">
+                        <ul id="sortable1" class="connectedSortable">
                             <g:each in="${groupe.points}" var="point">
-                                <div>
+                                <li class="ui-state-default">
                                     <a class="draggable" href="/point/show/${point.id}">${point.name}</a>
-                                </div>
+                                </li>
                             </g:each>
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -57,7 +58,9 @@
                 <div class="panel-heading">List</div>
                 <div class="panel-body">
                     <div class="box">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+                        <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                            <g:link class="create" action="create"><i class="fa fa-plus-square-o fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+                        </sec:ifAnyGranted>
                     <!-- /.box-header -->
                         <div class="box-body">
                             <table id="points" class="table table-bordered table-striped">
@@ -99,57 +102,12 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        (function() {
-            var dndHandler = {
-                draggedElement: null,
-
-                applyDragEvents: function(element) {
-                    element.draggable = true;
-                    var dndHandler = this;
-                    element.addEventListener('dragstart', function(e) {
-                        dndHandler.draggedElement = e.target;
-                        e.dataTransfer.setData('text/plain', '');// firefox
-                    });
-                },
-
-                applyDropEvents: function(dropper) {
-                    dropper.addEventListener('dragover', function(e) {
-                        e.preventDefault();
-                        this.className = 'dropper drop_hover';
-                    });
-
-                    dropper.addEventListener('dragleave', function() {
-                        this.className = 'dropper';
-                    });
-
-                    var dndHandler = this;
-
-                    dropper.addEventListener('drop', function(e) {
-
-                        var target = e.target;
-                        var draggedElement = dndHandler.draggedElement;
-                        var clonedElement = draggedElement.cloneNode(true);
-
-                        while (target.className.indexOf('dropper') == -1) { target = target.parentNode;}
-
-                        target.className = 'dropper';
-
-                        clonedElement = target.appendChild(clonedElement);
-                        dndHandler.applyDragEvents(clonedElement);
-                        draggedElement.parentNode.removeChild(draggedElement);
-                    });
-                }
-            };
-
-            var elements = document.querySelectorAll('.draggable');
-            var elementsLen = elements.length;
-
-            for (var i = 0; i < elementsLen; i++) { dndHandler.applyDragEvents(elements[i]); }
-            var droppers = document.querySelectorAll('.dropper');
-            var droppersLen = droppers.length;
-            for (var i = 0; i < droppersLen; i++) { dndHandler.applyDropEvents(droppers[i]); }
-        })();
+    <script>
+        $( function() {
+            $( "#sortable, #sortable" ).sortable({
+                connectWith: ".connectedSortable"
+            }).disableSelection();
+        } );
     </script>
 </body>
 </html>

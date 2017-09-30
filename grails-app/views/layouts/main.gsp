@@ -76,7 +76,9 @@
                         </li>
 
                     </ul>
+                <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
                 <li><a href="/user"><em class="fa fa-users">&nbsp;</em> User Manager</a></li>
+                </sec:ifAnyGranted>
             </li>
         </ul>
     </div>
