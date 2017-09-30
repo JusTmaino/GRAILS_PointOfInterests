@@ -41,7 +41,6 @@
 
                                     <div class='form-group'>
                                         <label for='role'>Role * </label>
-                                        <g:link action="create" params="${[role: '1']}"><asset:image src="avatar5.png" height="20px" width="20px"></asset:image></g:link>
                                         <g:select name="roleID" class="form-control" required="" id="role" optionKey="id" from="${customRoleList}"  ></g:select>
                                     </div>
 
