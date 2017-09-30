@@ -84,25 +84,22 @@
                             </div>
                             <g:hasErrors bean="${this.location}">
                             </g:hasErrors>
-                            <div class="col s12 m12 l12">
-                                <label>Name</label>
-                                <input value="${this.location.name}" type="text" name="name" value="" required="" id="nom" >
-                            </div>
-                            <div class="col s12 m12 l12">
-                                <label>Latitude</label>
-                                <input value="${this.location.longitude}" type="text" name="Latitude" value="" required="" id="lat" >
-                            </div>
-                            <div class="col s12 m12 l12">
-                                <label>Longitude</label>
-                                <input value="${this.location.longitude}" type="text" name="Longitude" value="" required="" id="long" >
-                            </div>
-                            <div class="col s12 m12 l12">
-                                <label>Altitude</label>
-                                <input value="${this.location.altitude}" type="text" name="Altitude" value="" required="" id="altitude" >
-                            </div>
+
+
                             <g:form resource="${this.location}" method="PUT">
                                 <g:hiddenField name="version" value="${this.location?.version}" />
-
+                                <div class="col s12 m12 l12">
+                                    <label>Name</label>
+                                    <input value="${this.location.name}" type="text" name="name" value="" required="" id="nom" >
+                                </div>
+                                <div class="col s12 m12 l12">
+                                    <label>Latitude</label>
+                                    <input value="${this.location.latitude}" type="text" name="latitude" value="" required="" id="lat" >
+                                </div>
+                                <div class="col s12 m12 l12">
+                                    <label>Longitude</label>
+                                    <input value="${this.location.longitude}" type="text" name="longitude" value="" required="" id="long" >
+                                </div>
                                 <fieldset class="buttons">
                                     <input onClick="bugfix()" class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                                 </fieldset>

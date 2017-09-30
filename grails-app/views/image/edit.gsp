@@ -36,6 +36,24 @@
                             <fieldset class="form">
                                 <f:all bean="image"/>
                             </fieldset>
+
+                            <script language="JavaScript" type="text/javascript">
+                                function HandleBrowseClick()
+                                {
+                                    var fileinput = document.getElementById("browse");
+                                    fileinput.click();
+                                }
+                                function Handlechange()
+                                {
+                                    var fileinput = document.getElementById("browse");
+                                    var textinput = document.getElementById("filename");
+                                    textinput.value = fileinput.value;
+                                }
+                            </script>
+
+                            <input type="file" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"
+                                   onchange="document.my_im.src=this.value;"/>
+                            <input type="button" value="Click to select file" id="fakeBrowse" onclick="HandleBrowseClick();"/>
                             <fieldset class="buttons">
                                 <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                             </fieldset>

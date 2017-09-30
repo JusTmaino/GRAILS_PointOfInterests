@@ -52,12 +52,12 @@
                                     };
 
                                     var locations = [
-                                        [localisation.info, "${this.point.location[0].latitude}" , "${this.point.location[0].longitude}"],
+                                        [localisation.info, "${this.point.location.latitude}" , "${this.point.location.longitude}"],
                                     ];
 
                                     var map = new google.maps.Map(document.getElementById('map'), {
                                         zoom: 4,
-                                        center: new google.maps.LatLng(${this.point.location[0].latitude},${this.point.location[0].longitude}),
+                                        center: new google.maps.LatLng(${this.point.location.latitude},${this.point.location.longitude}),
                                         mapTypeId: google.maps.MapTypeId.ROADMAP
                                     });
 
@@ -86,8 +86,8 @@
                                     google.maps.event.addDomListener(window, "load", initialize());
                                 }
                     </script>
-                    <div><label>Latitude</label><input id="lat" value="${this.point.location[0].latitude}" type="text" name="latitude"></div>
-                    <div><label>Longitude</label><input id="long" value="${this.point.location[0].longitude}" type="text" name="longitude"></div>
+                    <div><label>Latitude</label><input id="lat" value="${this.point.location.latitude}" type="text" name="latitude"></div>
+                    <div><label>Longitude</label><input id="long" value="${this.point.location.longitude}" type="text" name="longitude"></div>
                 </div>
             </div>
             <ul>
