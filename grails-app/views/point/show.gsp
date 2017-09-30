@@ -52,49 +52,56 @@
                 <div class="panel-body">
                     <div id="map"></div>
                     <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
+
                     <script type="text/javascript">
-                                function initMap() {
-                                    var localisation = {
-                                        info: '<strong style="color:black">${this.point.name}</strong><br>\
+                        function initMap() {
+                        if("${this.point.location[0]}" != null) {
+                            var localisation = {
+                                info: '<strong style="color:black">${this.point.name}</strong><br>\
                                             <g:each in="${this.point.images}" var="image">\n' +
-                                        '   <g:img dir="images" file="${image.filename}" width="20" height="20"/></li>\n' +
-                                        '   </g:each>',
-                                    };
+                                '   <g:img dir="images" file="${image.filename}" width="20" height="20"/></li>\n' +
+                                '   </g:each>',
+                            };
 
-                                    var locations = [
-                                        [localisation.info, "${this.point.location[0].latitude}" , "${this.point.location[0].longitude}"],
-                                    ];
+                            var locations = [
+                                [localisation.info, "${this.point.location[0].latitude}" , "${this.point.location[0].longitude}"],
+                            ];
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 4,
+                                center: new google.maps.LatLng(${this.point.location.latitude},${this.point.location.longitude}),
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                            });
 
-                                    var map = new google.maps.Map(document.getElementById('map'), {
-                                        zoom: 4,
-                                        center: new google.maps.LatLng(${this.point.location.latitude},${this.point.location.longitude}),
-                                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                                    });
+                            var infowindow = new google.maps.InfoWindow({});
 
-                                    var infowindow = new google.maps.InfoWindow({});
+                            var marker, i;
 
-                                    var marker, i;
+                            for (i = 0; i < locations.length; i++) {
+                                marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                    map: map,
+                                    draggable: true
+                                });
 
-                                    for (i = 0; i < locations.length; i++) {
-                                        marker = new google.maps.Marker({
-                                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                            map: map,
-                                            draggable: true
-                                        });
-
-                                        google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                                            return function () {
-                                                infowindow.setContent(locations[i][0]);
-                                                infowindow.open(map, marker);
-                                            }
-                                        })(marker, i));
-                                        google.maps.event.addListener(marker, 'dragend', function (event) {
-                                            document.getElementById("lat").value = event.latLng.lat();
-                                            document.getElementById("long").value = event.latLng.lng();
-                                        });
+                                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                                    return function () {
+                                        infowindow.setContent(locations[i][0]);
+                                        infowindow.open(map, marker);
                                     }
-                                    google.maps.event.addDomListener(window, "load", initialize());
-                                }
+                                })(marker, i));
+                                google.maps.event.addListener(marker, 'dragend', function (event) {
+                                    document.getElementById("lat").value = event.latLng.lat();
+                                    document.getElementById("long").value = event.latLng.lng();
+                                });
+                            }
+                            google.maps.event.addDomListener(window, "load", initialize());
+                        }
+
+
+
+
+
+                        }
                     </script>
                     <div><label>Latitude</label><input id="lat" value="${this.point.location.latitude}" type="text" name="latitude"></div>
                     <div><label>Longitude</label><input id="long" value="${this.point.location.longitude}" type="text" name="longitude"></div>
