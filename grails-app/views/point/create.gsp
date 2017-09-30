@@ -103,29 +103,14 @@
                                 </div>
                                 <div class="col s12 m12 l12">
                                     <label>Location </label>
-                                    <div class="col s12 m12 l12" >
-                                        <span style = "margin-left: 60px">Name</span>
-                                        <input value="" type="text" name="name" value="" required="" id="nom" >
-                                    </div>
-                                    <div class="col s12 m12 l12">
-                                        <span style = "margin-left: 60px">Latitude</span>
-                                        <input value=15.0 type="text" name="latitude" value="" required="" id="lat" >
-                                    </div>
-                                    <div class="col s12 m12 l12">
-                                        <span style = "margin-left: 60px">Longitude</span>
-                                        <input value=12.0 type="text" name="longitude" value="" required="" id="long" >
-                                    </div>
+                                    <g:select name="LocationID" class="form-control" required="" id="role" optionKey="id" from="${grails_pointofinterests.Location.all}"  ></g:select>
+
                                 </div>
 
                                 <div class="col s12 m12 l12">
                                     <label>Groupe</label>
-                                    <g:select name="groups"
-                                              from="${grails_pointofinterests.Groupe.all}"
-                                              value="${grails_pointofinterests.Groupe.all.getIndices()}"
-                                              optionKey="id"
-                                              multiple="true"/>
+                                    <g:select name="groupeID" class="form-control" required="" id="role" optionKey="id" from="${grails_pointofinterests.Groupe.all}"  ></g:select>
                                 </div>
-                                ${this.point.location} = "${grails_pointofinterests.Location.all.getAt(0)}";
                             </fieldset>
                             <a class="waves-effect waves-light btn right"><input type="submit" name="create" class="save" value="Create" id="create"></a>
                         </g:uploadForm>

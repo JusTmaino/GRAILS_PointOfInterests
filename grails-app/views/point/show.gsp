@@ -56,7 +56,6 @@
                     <script type="text/javascript">
                         if("${this.point.location[0]}" != [] ) {
                             function initMap() {
-
                                 var localisation = {
                                     info: '<strong style="color:black">${this.point.name}</strong><br>\
                                             <g:each in="${this.point.images}" var="image">\n' +
@@ -66,13 +65,11 @@
                                     var locations = [
                                         [localisation.info, "${this.point.location[0].latitude}" , "${this.point.location[0].longitude}"],
                                     ];
-                                
-                                var map = new google.maps.Map(document.getElementById('map'), {
-                                    zoom: 4,
-                                    center: new google.maps.LatLng(${this.point.location[0].latitude},${this.point.location[0].longitude}),
-                                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                                });
-
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                        zoom: 4,
+                                        center: new google.maps.LatLng(${this.point.location[0].latitude},${this.point.location[0].longitude}),
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    });
                                 var infowindow = new google.maps.InfoWindow({});
 
                                 var marker, i;
@@ -96,13 +93,11 @@
                                     });
                                 }
                                 google.maps.event.addDomListener(window, "load", initialize());
-
                             }
                         }
-
                     </script>
-                    <div><label>Latitude</label><input id="lat" value="${this.point.location.latitude}" type="text" name="latitude"></div>
-                    <div><label>Longitude</label><input id="long" value="${this.point.location.longitude}" type="text" name="longitude"></div>
+                    <div><label>Latitude</label><input id="lat" value="${this.point.location[0].latitude}" type="text" name="latitude"></div>
+                    <div><label>Longitude</label><input id="long" value="${this.point.location[0].longitude}" type="text" name="longitude"></div>
                 </div>
             </div>
         </div>
