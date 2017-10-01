@@ -25,21 +25,45 @@
             <div class="panel panel-default">
                 <div class="panel-heading">${this.point.name} details</div>
                 <div class="panel-body">
-                    <div id="show-point" class="content scaffold-show" role="main">
-                            <g:if test="${flash.message}">
-                                <div class="message" role="status">${flash.message}</div>
-                            </g:if>
-                            <f:display bean="point" />
-                    </div>
+
+                    <ol class="property-list point">
+
+                        <div class='form-group'>
+                            <label>Name </label> : <span> ${this.point.name}</span>
+                        </div>
+
+                        <div class='form-group'>
+                            <label>Description </label> : <span> ${this.point.description}</span>
+                        </div>
+
+                        <div class='form-group'>
+                            <label>Location</label>
+                                <ul>
+                                    <g:each in="${this.point.location}" var="location">
+                                        <li><a href="/location/show/${location.id}">${location.name}</a></li>
+                                    </g:each>
+                                </ul>
+                        </div>
+
+                        <div class='form-group'>
+                            <label>Images</label>
+                                <ul>
+                                    <g:each in="${this.point.images}" var="img">
+                                        <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
+                                    </g:each>
+                                </ul>
+                        </div>
+
+                    </ol>
                 </div>
                 <div class="panel-footer">
                     <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
-                        <g:form resource="${this.point}" method="DELETE">
-                            <fieldset class="buttons">
-                                <input class="delete btn btn-danger" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                                <g:link class="edit btn btn-primary"  action="edit" resource="${this.point}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                        <form action="/point/delete/${this.point.id}" method="post" ><input type="hidden" name="_method" value="DELETE" id="_method" />
+                            <fieldset class="box-footer">
+                                <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Are you sure to delete this point?');" />
+                                <input class="btn btn-primary" type="button" onclick="window.location='/point/edit/${this.point.id}';" value="Edit">
                             </fieldset>
-                        </g:form>
+                        </form>
                     </sec:ifAnyGranted>
                 </div>
             </div>

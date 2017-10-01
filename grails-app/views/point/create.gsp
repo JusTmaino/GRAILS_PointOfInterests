@@ -23,7 +23,6 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Create a point</div>
                 <div class="panel-body">
-                    <div id="create-point" class="content scaffold-create" role="main">
                         <g:if test="${flash.message}">  ${this.point.location} = "${grails_pointofinterests.Location.all.getAt(0)}";
                             <div class="message" role="status">${flash.message}</div>
                         </g:if>
@@ -34,20 +33,19 @@
                                 </g:eachError>
                             </ul>
                         </g:hasErrors>
-                        <g:uploadForm resource="${this.point}" method="POST" enctype="multipart/form-data">
-         <div class="col s12 m12 l12">
-        <label>Géolocalisation</label>
-        <div id="map"></div>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
-        <script type="text/javascript">
-            function initMap() {
+                    <form action="/point/save" method="post" enctype="multipart/form-data" >
+                        <label>Géolocalisation</label>
+                        <div id="map"></div>
+                        <script async defer
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
+                        <script type="text/javascript">
+                            function initMap() {
 
-                var broadway = {
-                    info: '<strong>${this.point.name}</strong><br>\
-					                 ',
-                                            lat: 39.0,
-                                            long: 30.0
+                                var broadway = {
+                                    info: '<strong>${this.point.name}</strong><br>\
+                                                     ',
+                                                        lat: 39.0,
+                                                        long: 30.0
                             };
 
                             var locations = [
@@ -92,28 +90,42 @@
 
 
                             </script>
+
                             <fieldset class="form">
-                                <div class="col s12 m12 l12">
+
+                                <div class="form-group">
                                     <label>Nom</label>
-                                    <input type="text" name="name" value="" required="" id="name">
+                                    <input class="form-control" type="text" name="name" value="" required="" id="name">
                                 </div>
-                                <div class="col s12 m12 l12">
+
+                                <div class="form-group">
                                     <label>Description</label>
-                                    <input type="text" name="description" value="" id="description">
+                                    <input class="form-control" type="text" name="description" value="" id="description">
                                 </div>
-                                <div class="col s12 m12 l12">
+                                <div class="form-group">
                                     <label>Location </label>
-                                    <g:select name="LocationID" class="form-control" required="" id="role" optionKey="id" from="${grails_pointofinterests.Location.all}"  ></g:select>
-
+                                    <g:select name="LocationID" class="form-control" required="" id="location" optionKey="id" from="${grails_pointofinterests.Location.all}"  ></g:select>
+                                    <a href="/location/create?point.id=${this.point.id}">Add Location</a>
                                 </div>
 
-                                <div class="col s12 m12 l12">
+                                <div class="form-group">
+                                    <label>Images</label>
+                                    <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" from="${grails_pointofinterests.Image.all}"  ></g:select>
+                                    <a href="/image/create?point.id=${this.point.id}">Add Image</a>
+                                </div>
+
+                                <div class="form-group">
                                     <label>Groupe</label>
-                                    <g:select name="groupeID" class="form-control" required="" id="role" optionKey="id" from="${grails_pointofinterests.Groupe.all}"  ></g:select>
+                                    <g:select name="groupeID" class="form-control" required="" id="groupe" optionKey="id" from="${grails_pointofinterests.Groupe.all}"  ></g:select>
+                                    <a href="/groupe/create?point.id=${this.point.id}">Add Groupe</a>
                                 </div>
                             </fieldset>
-                            <a class="waves-effect waves-light btn right"><input type="submit" name="create" class="save" value="Create" id="create"></a>
-                        </g:uploadForm>
+
+                        <fieldset class="box-footer">
+                            <input class="save btn btn-primary" name="create" type="submit" value="Create" id="create" />
+                        </fieldset>
+                        
+                         </form>
                     </div>
                 </div>
             </div>

@@ -46,6 +46,8 @@ class PointController {
 
         Location location = Location.findById(params.LocationID);
         point.addToLocation(location).save(flush: true, failOnError: true)
+        Image img = Image.findById(params.imageID);
+        point.addToImages(img).save(flush: true, failOnError: true)
         Groupe groupe = Groupe.findById(params.groupeID);
         groupe.addToPoints(point).save(flush: true, failOnError: true)
 
@@ -133,6 +135,16 @@ class PointController {
                             //System.out.println("allGroupe["+j+"].points["+k+"].id : "+allGroupe[j].points[k].id)
                             allGroupe[j].removeFromPoints(point)
                         }
+                }
+        }
+
+        List<GroupePoi> allGroupePoi = GroupePoi.findAll() ;
+        int allGroupePoiSize = allGroupePoi.size();
+        (0..allGroupePoiSize-1).each {
+            int j ->
+                if (allGroupePoi[j].point == point) {
+                    //System.out.println("allGroupePoi["+j+"].groupe : "+allGroupePoi[j].groupe)
+                    allGroupePoi[j].delete()
                 }
         }
 
