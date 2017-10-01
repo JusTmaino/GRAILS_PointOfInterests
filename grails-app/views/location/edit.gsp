@@ -90,8 +90,6 @@
                             </div>
                             <g:hasErrors bean="${this.location}">
                             </g:hasErrors>
-
-
                             <g:form resource="${this.location}" method="PUT">
                                 <g:hiddenField name="version" value="${this.location?.version}" />
                                 <div class="col s12 m12 l12">

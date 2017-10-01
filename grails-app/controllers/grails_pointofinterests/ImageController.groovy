@@ -7,6 +7,7 @@ import grails.transaction.Transactional
 class ImageController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    ImagesServicesService imageServ
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -35,16 +36,30 @@ class ImageController {
             return
         }
 
-        image.save flush:true
+        String baseImageName = java.util.UUID.randomUUID().toString()
+        def downloadedFile = request.getFile( "productPic" )
+        //String fileUploaded = imageServ.uploadFile( downloadedFile, "${baseImageName}.jpg", "localhost/projects/images/" )
+        String fileUploaded = imageServ.uploadFile( downloadedFile, "${baseImageName}.jpg", "/Applications/MAMP/htdocs/images/" )
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'image.label', default: 'Image'), image.id])
-                redirect image
+        if( fileUploaded ){
+            image.filename = "${baseImageName}.jpg"
+            image.save flush:true
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.created.message', args: [message(code: 'image.label', default: 'Image'), image.id])
+                    redirect image
+                }
+                '*' { respond image, [status: CREATED] }
             }
             '*' { respond image, [status: CREATED] }
         }
+        else{
+            respond view:'create'
+            return
+        }
     }
+
 
     def edit(Image image) {
         respond image

@@ -176,7 +176,7 @@
 
     <script>
         function sendFileToServer(formData,status) {
-            var uploadURL ="http://localhost:8080/images"; //Upload URL
+            var uploadURL = "/Applications/MAMP/htdocs/images/"; //Upload URL
             var extraData ={}; //Extra Data.
             var jqXHR=$.ajax({
                 xhr: function() {
