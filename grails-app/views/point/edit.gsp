@@ -26,26 +26,14 @@
     </div>
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Edit</div>
-            <ul>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
+            <div class="panel-heading">Edit ${customPoint.name}</div>
             <div class="panel-body">
-                <div id="edit-point" class="content scaffold-edit" role="main">
-                    <g:if test="${flash.message}">
-                        <div class="message" role="status">${flash.message}</div>
-                    </g:if>
-                    <g:hasErrors bean="${this.point}">
-                        <ul class="errors" role="alert">
-                            <g:eachError bean="${this.point}" var="error">
-                                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                            </g:eachError>
-                        </ul>
-                    </g:hasErrors>
-                    <g:uploadForm resource="${this.point}" method="PUT">
-                        <g:hiddenField name="version" value="${this.point?.version}" />
-                        <script language="JavaScript" type="text/javascript">
+
+                <form action="/point/update/${customPoint.id}" method="post" enctype="multipart/form-data" >
+                    <input type="hidden" name="_method" value="PUT" id="_method" />
+                    <input type="hidden" name="version" value="${customPoint.id}" id="version" />
+
+                    <script language="JavaScript" type="text/javascript">
                             function HandleBrowseClick()
                             {
                                 var fileinput = document.getElementById("browse");
@@ -59,22 +47,44 @@
                             }
                         </script>
 
-                        <div class="col s12 m12 l12">
+                        <div class="form-group">
                             <label>Name</label>
-                            <input value="${this.point.name}" type="text" name="name" value="" required="" id="nom" >
+                            <input class="form-control" value="${customPoint.name}" type="text" name="name" required="" id="nom" >
                         </div>
-                            <div class="col s12 m12 l12">
-                                <label>Description</label>
-                                <input value="${this.point.description}" type="text" name="description" value="" required="" id="desc" >
-                            </div>
+
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input class="form-control" value="${customPoint.description}" type="text" name="description" required="" id="desc" >
                         </div>
-                        <fieldset class="buttons">
-                            <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                        </fieldset>
-                        <fieldset class="buttons">
-                            <input class="save btn btn-primary" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                        </fieldset>
-                    </g:uploadForm>
+
+                        <div class='form-group'>
+                            <label for='point'>Location</label>
+                            <ul>
+                                <g:each in="${customPoint.location}" var="location">
+                                    <li><a href="/location/show/${location.id}">${location.name}</a></li>
+                                </g:each>
+                            </ul>
+                            <g:select name="locationID" class="form-control" required="" id="point" optionKey="id" from="${customLocationList}"  ></g:select>
+                            <a href="/location/create?point.id=${customPoint.id}">Add Location</a>
+
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='image'>Images</label>
+                            <ul>
+                                <g:each in="${customPoint.images}" var="img">
+                                    <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
+                                </g:each>
+                            </ul>
+                            <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" from="${customImageList}"  ></g:select>
+                            <a href="/image/create?point.id=${customPoint.id}">Add Image</a>
+                        </div>
+
+                </div>
+                    <fieldset class="box-footer">
+                        <input class="save btn btn-primary" type="submit" value="Update" />
+                    </fieldset>
+                </form>
                 </div>
             </div>
         </div>

@@ -111,19 +111,19 @@ class GroupeController {
         }
 
         int pointSize = groupe.points.size();
-        System.out.println("pointSize : "+pointSize)
+        //System.out.println("pointSize : "+pointSize)
         (pointSize-1..0).each {
             int i ->
                 System.out.println("groupe.points : "+groupe.points)
-                System.out.println("groupe.points["+i+"] : "+groupe.points[i])
-                groupe.removeFromPoints(groupe.points[i])//.save(flush: true, failOnError: true);
+                //System.out.println("groupe.points["+i+"] : "+groupe.points[i])
+                groupe.removeFromPoints(groupe.points[i])
         }
 
         int imageSize = groupe.images.size();
         (imageSize-1..0).each {
             int l ->
-                System.out.println("groupe.images["+l+"] : "+groupe.images[l])
-                groupe.removeFromImages(groupe.images[l])//.save(flush: true, failOnError: true);
+                //System.out.println("groupe.images["+l+"] : "+groupe.images[l])
+                groupe.removeFromImages(groupe.images[l])
         }
 
         List<GroupePoi> allGroupePoi = GroupePoi.findAll() ;
@@ -131,7 +131,7 @@ class GroupeController {
         (0..allGroupePoiSize-1).each {
             int j ->
                 if (allGroupePoi[j].groupe == groupe) {
-                    System.out.println("allGroupePoi["+j+"].groupe : "+allGroupePoi[j].groupe)
+                    //System.out.println("allGroupePoi["+j+"].groupe : "+allGroupePoi[j].groupe)
                     allGroupePoi[j].delete()
                 }
         }

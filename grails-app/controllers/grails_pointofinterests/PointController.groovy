@@ -65,7 +65,10 @@ class PointController {
 
 
     def edit(Point point) {
-        respond point
+        def locationList = Location.findAll()
+        def imageList = Image.findAll()
+        [customPoint:point,customLocationList:locationList,customImageList:imageList]
+        //respond point
     }
 
     @Transactional
@@ -83,6 +86,11 @@ class PointController {
         }
 
         point.save flush:true
+
+        Location location = Location.findById(params.locationID);
+        point.addToLocation(location).save(flush: true, failOnError: true)
+        Image img = Image.findById(params.imageID);
+        point.addToImages(img).save(flush: true, failOnError: true)
 
         request.withFormat {
             form multipartForm {
@@ -103,10 +111,16 @@ class PointController {
         }
 
         int locationSize = point.location.size();
-        (0..locationSize-1).each {
+        (locationSize-1..0).each {
             int i ->
                 //System.out.println("point.location["+i+"] : "+point.location[i])
-                point.removeFromLocation(point.location[i])//.save(flush: true, failOnError: true);
+                point.removeFromLocation(point.location[i])
+        }
+
+        int imageSize = point.images.size();
+        (imageSize-1..0).each {
+            int l ->
+                point.removeFromImages(point.images[l])
         }
 
         List<Groupe> allGroupe = Groupe.findAll() ;
