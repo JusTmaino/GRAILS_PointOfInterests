@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/interface.js"></script>
     <meta name="layout" content="main" />
     <g:set var="entityName" value="${message(code: 'groupe.label', default: 'Groupe')}" />
     <title><g:message code="default.list.label" args="[entityName]" /></title>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
     <style>
-    #sortable {
-        border: 1px solid #eee;
-        width: 142px;
-        min-height: 20px;
-        list-style-type: none;
-        margin: 0;
-        padding: 5px 0 0 0;
-        float: left;
-        margin-right: 10px;
-    }
-    #sortable li {
-        margin: 0 5px 5px 5px;
-        padding: 5px;
-        font-size: 1.2em;
-        width: 120px;
-    }
-    </style>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        .sortable_list {
+            width: 142px;
+            min-height: 20px;
+            list-style-type: none;
+            margin: 0;
+            padding: 5px 0 0 0;
+            float: left;
+            margin-right: 10px;
+        }
 
+        .sortable_list li {
+            margin: 0 5px 5px 5px;
+            padding: 5px;
+            font-size: 1.2em;
+            width: 120px;
+        }
+    </style>
 
 </head>
 <body>
@@ -40,10 +36,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><a href="/groupe/show/${groupe.id}">${groupe.name}</a></div>
                     <div class="panel-body">
-                        <ul id="sortable1" class="connectedSortable">
+                        <ul id="sortable${groupe.id}" class="sortable_list connectedSortable">
                             <g:each in="${groupe.points}" var="point">
                                 <li class="ui-state-default" >
-                                    <a class="draggable" /point/show/${point.id}" >${point.name}</a>
+                                    <a href="/point/show/${point.id}" >${point.name}</a>
                                 </li>
                             </g:each>
                         </ul>
@@ -104,28 +100,16 @@
         </div>
     </div>
 
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
     <script>
-        $( function() {
-            $( "#sortable, #sortable" ).sortable({
+        $(function() {
+            $( ".sortable_list" ).sortable({
                 connectWith: ".connectedSortable"
             }).disableSelection();
-        } );
-    </script>
-<script type="text/javascript">
-
-    $(document).ready (
-        function() {
-            $( "#sortlist" ).Sortable( {
-                accept : 'sortable_item',
-                axis : 'vertically',
-                opacity : 0.6,
-                onchange : function ( sorted ) {
-                    serial = $.SortSerialize( 'sortlist' );
-                }
-            });
         });
-
-</script>
+    </script>
 
 </body>
 </html>
