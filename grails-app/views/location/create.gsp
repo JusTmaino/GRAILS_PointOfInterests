@@ -47,8 +47,8 @@
                                                         var location = {
                                                             info: '<strong>${this.location.name}</strong><br>\
 					                 ',
-                                                            lat: 12.0,
-                                                            long: 15.0
+                                                            lat: 37.0,
+                                                            long: -4.0
                                                         };
 
                                                         var locations = [
@@ -57,7 +57,7 @@
 
                                                         var map = new google.maps.Map(document.getElementById('map'), {
                                                             zoom: 4,
-                                                            center: new google.maps.LatLng(12.0, 15.0),
+                                                            center: new google.maps.LatLng(37.0, -4.0),
                                                             mapTypeId: google.maps.MapTypeId.ROADMAP
                                                         });
 

@@ -100,6 +100,10 @@ dataSource:
     password: ''
 
 environments:
+    grails:
+    guides:
+        cdnFolder: /Users/sdelamo/Sites/GrailsGuides/UploadFiles
+        cdnRootUrl: http://localhost:8081
     development:
         dataSource:
             dbCreate: create-drop

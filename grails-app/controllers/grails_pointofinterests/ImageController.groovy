@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 class ImageController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    ImagesServicesService imageServ
+   // ImagesSer imageServ
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
