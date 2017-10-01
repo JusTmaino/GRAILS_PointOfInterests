@@ -38,13 +38,13 @@
 
                                 <div class='form-group'>
                                     <label for='point'>Points</label>
-                                    <g:select name="pointID" class="form-control" required="" id="point" optionKey="id" from="${customPointList}"  ></g:select>
+                                    <g:select name="pointID" class="form-control" required="" id="point" optionKey="id" optionValue="name" from="${customPointList}"  ></g:select>
                                     <a href="/point/create?groupe.id=">Add Point</a>
                                 </div>
 
                                 <div class='form-group'>
                                     <label for='image'>Images</label>
-                                    <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" from="${customimageList}"  ></g:select>
+                                    <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${customimageList}"  ></g:select>
                                     <a href="/image/create?groupe.id=">Add Image</a>
                                 </div>
                             </fieldset>

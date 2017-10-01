@@ -48,7 +48,7 @@
                                         <li><a href="/point/show/${pt.id}">${pt.name}</a></li>
                                     </g:each>
                                 </ul>
-                                <g:select name="pointID" class="form-control" required="" id="point" optionKey="id" from="${customPointList}"  ></g:select>
+                                <g:select name="pointID" class="form-control" required="" id="point" optionKey="id"  optionValue="name" from="${customPointList}"  ></g:select>
                                 <a href="/point/create?groupe.id=${customGroupe.id}">Add Point</a>
 
                             </div>
@@ -60,7 +60,7 @@
                                         <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
                                     </g:each>
                                 </ul>
-                                <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" from="${customimageList}"  ></g:select>
+                                <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${customimageList}"  ></g:select>
                                 <a href="/image/create?groupe.id=${customGroupe.id}">Add Image</a>
                             </div>
                         </fieldset>

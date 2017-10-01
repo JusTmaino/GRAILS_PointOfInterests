@@ -104,19 +104,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Location </label>
-                                    <g:select name="LocationID" class="form-control" required="" id="location" optionKey="id" from="${grails_pointofinterests.Location.all}"  ></g:select>
+                                    <g:select name="LocationID" class="form-control" required="" id="location" optionKey="id" optionValue="name" from="${grails_pointofinterests.Location.all}"  ></g:select>
                                     <a href="/location/create?point.id=${this.point.id}">Add Location</a>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Images</label>
-                                    <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" from="${grails_pointofinterests.Image.all}"  ></g:select>
+                                    <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${grails_pointofinterests.Image.all}"  ></g:select>
                                     <a href="/image/create?point.id=${this.point.id}">Add Image</a>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Groupe</label>
-                                    <g:select name="groupeID" class="form-control" required="" id="groupe" optionKey="id" from="${grails_pointofinterests.Groupe.all}"  ></g:select>
+                                    <g:select name="groupeID" class="form-control" required="" id="groupe" optionKey="id" optionValue="name" from="${grails_pointofinterests.Groupe.all}"  ></g:select>
                                     <a href="/groupe/create?point.id=${this.point.id}">Add Groupe</a>
                                 </div>
                             </fieldset>

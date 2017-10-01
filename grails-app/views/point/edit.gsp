@@ -64,7 +64,7 @@
                                     <li><a href="/location/show/${location.id}">${location.name}</a></li>
                                 </g:each>
                             </ul>
-                            <g:select name="locationID" class="form-control" required="" id="point" optionKey="id" from="${customLocationList}"  ></g:select>
+                            <g:select name="locationID" class="form-control" required="" id="point" optionKey="id" optionValue="name" from="${customLocationList}"  ></g:select>
                             <a href="/location/create?point.id=${customPoint.id}">Add Location</a>
 
                         </div>
@@ -76,7 +76,7 @@
                                     <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
                                 </g:each>
                             </ul>
-                            <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" from="${customImageList}"  ></g:select>
+                            <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${customImageList}"  ></g:select>
                             <a href="/image/create?point.id=${customPoint.id}">Add Image</a>
                         </div>
 

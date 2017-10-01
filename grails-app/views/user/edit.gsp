@@ -45,7 +45,7 @@
 
                                 <div class='form-group'>
                                     <label for='role'>Role * </label>
-                                    <g:select name="roleID" class="form-control" required="" id="role" optionKey="id" from="${customRoleList}"  ></g:select>
+                                    <g:select name="roleID" class="form-control" required="" id="role" optionKey="id" optionValue="authority" from="${customRoleList}"  ></g:select>
                                 </div>
 
                                 <div class='form-group'>
