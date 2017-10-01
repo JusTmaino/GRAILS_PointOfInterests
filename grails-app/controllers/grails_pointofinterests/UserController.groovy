@@ -1,5 +1,6 @@
 package grails_pointofinterests
 
+import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
@@ -16,6 +17,17 @@ class UserController {
         params.max = Math.min(max ?: 10, 100)
 
         List<User> usersList = User.findAll()
+
+        String currentUserAuthority = UserRole.findByUser(springSecurityService.getCurrentUser()).role.authority
+        if (currentUserAuthority == "ROLE_MOD") {
+            usersList = []
+            for (user in User.findAll()) {
+                if ( UserRole.findByUser(user).role.authority == 'ROLE_USER' ) {
+                    usersList.add(user)
+                }
+            }
+            usersList.add(springSecurityService.getCurrentUser())
+        }
         [customUserList:usersList]
         //respond User.list(params), model:[userCount: User.count()]
     }
@@ -29,6 +41,13 @@ class UserController {
     def create() {
         //System.out.println(params.role);
         List<Role> roleList = Role.findAll()
+        Role adminRole = Role.findByAuthority("ROLE_ADMIN")
+        Role modRole = Role.findByAuthority("ROLE_MOD")
+        String currentUserAuthority = UserRole.findByUser(springSecurityService.getCurrentUser()).role.authority
+        if (currentUserAuthority == "ROLE_MOD") {
+            roleList.remove(adminRole)
+            roleList.remove(modRole)
+        }
         [customRoleList:roleList]
         //respond new User(params)
     }
