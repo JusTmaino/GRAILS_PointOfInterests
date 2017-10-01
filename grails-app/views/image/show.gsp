@@ -31,7 +31,7 @@
                             <div class="message" role="status">${flash.message}</div>
                         </g:if>
                         <f:display bean="image" />
-                        <asset:image src="apple.png" class="img-circle" alt="User Image"/>
+                        <asset:image src="${this.image.filename}" class="img-circle" width = "100" height = "100" alt="User Image"/>
                     </div>
                 </div>
                 <div class="panel-footer">
