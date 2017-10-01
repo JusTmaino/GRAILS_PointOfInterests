@@ -41,12 +41,17 @@ class PointController {
             respond point.errors, view:'create'
             return
         }
-        def image = new Image(path: params.image)
-        Point.addToImages(image)
-
-        params.fileupload.transferTo(new java.io.File("/Applications/MAMP/htdocs/images/"+params.image))
 
         point.save flush:true
+
+        Location location = Location.findById(params.LocationID);
+        point.addToLocation(location).save(flush: true, failOnError: true)
+        Groupe groupe = Groupe.findById(params.groupeID);
+        groupe.addToPoints(point).save(flush: true, failOnError: true)
+
+        Image image = new Image(path: params.image)
+        point.addToImages(image)
+        //params.fileupload.transferTo(new java.io.File("/Applications/MAMP/htdocs/images/"+params.image))
 
         request.withFormat {
             form multipartForm {
@@ -95,6 +100,26 @@ class PointController {
             transactionStatus.setRollbackOnly()
             notFound()
             return
+        }
+
+        int locationSize = point.location.size();
+        (0..locationSize-1).each {
+            int i ->
+                //System.out.println("point.location["+i+"] : "+point.location[i])
+                point.removeFromLocation(point.location[i])//.save(flush: true, failOnError: true);
+        }
+
+        List<Groupe> allGroupe = Groupe.findAll() ;
+        int allGroupeSize = allGroupe.size();
+        (0..allGroupeSize-1).each {
+            int j ->
+                (0..allGroupe[j].points.size()-1).each {
+                    int k ->
+                        if (allGroupe[j].points[k] == point) {
+                            //System.out.println("allGroupe["+j+"].points["+k+"].id : "+allGroupe[j].points[k].id)
+                            allGroupe[j].removeFromPoints(point)
+                        }
+                }
         }
 
         point.delete flush:true
