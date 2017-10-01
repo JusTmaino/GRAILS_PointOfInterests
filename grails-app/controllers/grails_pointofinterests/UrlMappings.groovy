@@ -21,9 +21,15 @@ class UrlMappings {
         "/login/$action?"(controller: "login")
         "/logout/$action?"(controller: "logout")
 
+        "/groupe"{
+            controller = "groupe"
+            method = 'GET'
+            action = "index"
+        }
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
         "405"(view:'/error')
+
     }
 }

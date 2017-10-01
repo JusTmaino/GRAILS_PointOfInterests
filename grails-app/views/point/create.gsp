@@ -124,7 +124,7 @@
                         <fieldset class="box-footer">
                             <input class="save btn btn-primary" name="create" type="submit" value="Create" id="create" />
                         </fieldset>
-                        
+
                          </form>
                     </div>
                 </div>

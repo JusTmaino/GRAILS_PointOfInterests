@@ -36,10 +36,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><a href="/groupe/show/${groupe.id}">${groupe.name}</a></div>
                     <div class="panel-body">
-                        <ul id="sortable${groupe.id}" class="sortable_list connectedSortable">
+                        <ul id="${groupe.id}" class="sortable_list connectedSortable">
                             <g:each in="${groupe.points}" var="point">
                                 <li class="ui-state-default" >
-                                    <a href="/point/show/${point.id}" >${point.name}</a>
+                                    <a id="${point.id}" href="/point/show/${point.id}" >${point.name}</a>
                                 </li>
                             </g:each>
                         </ul>
@@ -106,7 +106,15 @@
     <script>
         $(function() {
             $( ".sortable_list" ).sortable({
-                connectWith: ".connectedSortable"
+                connectWith: ".connectedSortable",
+                receive: function(event, ui) {
+                    //alert(ui.item[0].innerHTML.substring(44,45)); // Where the item is dropped
+                    //alert("sender = " + ui.sender[0].id);
+                    if(ui.item[0].innerHTML.substring(45,46).includes('"'))
+                        window.location='/groupe/index?oldGroupeID='+ui.sender[0].id+'&newGroupeID='+this.id+'&pointID='+ui.item[0].innerHTML.substring(44,45);
+                    else
+                        window.location='/groupe/index?oldGroupeID='+ui.sender[0].id+'&newGroupeID='+this.id+'&pointID='+ui.item[0].innerHTML.substring(44,46);
+                }
             }).disableSelection();
         });
     </script>

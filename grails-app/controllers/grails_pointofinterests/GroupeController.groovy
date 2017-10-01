@@ -10,6 +10,15 @@ class GroupeController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
+        System.out.println(params.pointID);
+        if( (params.oldGroupeID != null) && (params.newGroupeID!= null) && (params.pointID!= null) )
+        {
+            Point point = Point.findById(params.pointID)
+            Groupe oldGroupe = Groupe.findById(params.oldGroupeID)
+            oldGroupe.removeFromPoints(point)
+            Groupe newGroupe = Groupe.findById(params.newGroupeID)
+            newGroupe.addToPoints(point).save(flush: true, failOnError: true)
+        }
         respond Groupe.list(params), model:[groupeCount: Groupe.count()]
     }
 
