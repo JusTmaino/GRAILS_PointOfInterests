@@ -24,29 +24,51 @@
         </div>
         <div class="col-lg-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">Edit : ${this.groupe.name}</div>
+                <div class="panel-heading">Edit : ${customGroupe.name}</div>
                 <div class="panel-body">
-                    <div id="edit-groupe" class="content scaffold-edit" role="main">
-                        <g:if test="${flash.message}">
-                            <div class="message" role="status">${flash.message}</div>
-                        </g:if>
-                        <g:hasErrors bean="${this.groupe}">
-                            <ul class="errors" role="alert">
-                                <g:eachError bean="${this.groupe}" var="error">
-                                    <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                                </g:eachError>
-                            </ul>
-                        </g:hasErrors>
-                        <g:uploadForm resource="${this.POIGroupImage}" method="PUT">
-                            <g:hiddenField name="version" value="${this.groupe?.version}" />
-                            <fieldset class="form">
-                                <f:all bean="groupe"/>
-                            </fieldset>
-                            <fieldset class="buttons">
-                                <input class="save btn btn-primary" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                            </fieldset>
-                        </g:uploadForm>
-                    </div>
+                    <form action="/groupe/update/${customGroupe.id}" method="post" enctype="multipart/form-data" >
+                        <input type="hidden" name="_method" value="PUT" id="_method" />
+                        <input type="hidden" name="version" value="1" id="version" />
+                        <fieldset class="form">
+
+                            <div class='form-group'>
+                                <label for='name'>Name *</label>
+                                <input type="text" class="form-control" name="name" value="${customGroupe.name}" required="" id="name" />
+                            </div>
+
+                            <div class='form-group'>
+                                <label for='description'>Description *</label>
+                                <input type="text" class="form-control" name="description" value="${customGroupe.description}" required="" id="description" />
+                            </div>
+
+                            <div class='form-group'>
+                                <label for='point'>Points</label>
+                                <ul>
+                                    <g:each in="${customGroupe.points}" var="pt">
+                                        <li><a href="/point/show/${pt.id}">${pt.name}</a></li>
+                                    </g:each>
+                                </ul>
+                                <g:select name="pointID" class="form-control" required="" id="point" optionKey="id" from="${customPointList}"  ></g:select>
+                                <a href="/point/create?groupe.id=${customGroupe.id}">Add Point</a>
+
+                            </div>
+
+                            <div class='form-group'>
+                                <label for='image'>Images</label>
+                                <ul>
+                                    <g:each in="${customGroupe.images}" var="img">
+                                        <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
+                                    </g:each>
+                                </ul>
+                                <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" from="${customimageList}"  ></g:select>
+                                <a href="/image/create?groupe.id=${customGroupe.id}">Add Image</a>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="box-footer">
+                            <input class="save btn btn-primary" type="submit" value="Update" />
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
