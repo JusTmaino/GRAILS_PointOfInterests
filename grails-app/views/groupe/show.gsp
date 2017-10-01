@@ -69,7 +69,7 @@
                             ];
                             <g:each in="${this.groupe.points}" var="point">
                             var map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 4,
+                                zoom: 2,
                                 center: new google.maps.LatLng(${point.location.latitude[0]},
                                     ${point.location.longitude[0]}),
                                 mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -84,7 +84,6 @@
                                     position: new google.maps.LatLng(${point.location.latitude[0]},
                                         ${point.location.longitude[0]}),
                                     map: map,
-                                    draggable:true
                                 });
 
                                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
@@ -93,10 +92,6 @@
                                         infowindow.open(map, marker);
                                     }
                                 })(marker, i));
-                                google.maps.event.addListener(marker, 'dragend', function (event) {
-                                    this.point.location[0].latitude = 22;
-                                    this.point.location[0].longitude = event.latLng.lng();
-                                });
                             }
 
                             </g:each>

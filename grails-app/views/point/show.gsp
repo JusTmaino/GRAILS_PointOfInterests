@@ -103,7 +103,6 @@
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                                         map: map,
-                                        draggable: true
                                     });
 
                                     google.maps.event.addListener(marker, 'click', (function (marker, i) {
@@ -112,10 +111,6 @@
                                             infowindow.open(map, marker);
                                         }
                                     })(marker, i));
-                                    google.maps.event.addListener(marker, 'dragend', function (event) {
-                                        document.getElementById("lat").value = event.latLng.lat();
-                                        document.getElementById("long").value = event.latLng.lng();
-                                    });
                                 }
                                 google.maps.event.addDomListener(window, "load", initialize());
                             }
