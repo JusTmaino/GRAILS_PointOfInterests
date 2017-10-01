@@ -39,10 +39,10 @@ class ImageController {
         String baseImageName = java.util.UUID.randomUUID().toString()
         def downloadedFile = request.getFile( "productPic" )
         //String fileUploaded = imageServ.uploadFile( downloadedFile, "${baseImageName}.jpg", "localhost/projects/images/" )
-        String fileUploaded = imageServ.uploadFile( downloadedFile, "${baseImageName}.jpg", "/Applications/MAMP/htdocs/images/" )
+        //String fileUploaded = imageServ.uploadFile( downloadedFile, "${baseImageName}.jpg", "/Applications/MAMP/htdocs/images/" )
 
-        if( fileUploaded ){
-            image.filename = "${baseImageName}.jpg"
+        /*if( fileUploaded ){
+            image.filename = "${baseImageName}.jpg"*/
             image.save flush:true
 
             request.withFormat {
@@ -52,12 +52,12 @@ class ImageController {
                 }
                 '*' { respond image, [status: CREATED] }
             }
-            '*' { respond image, [status: CREATED] }
+        /*    '*' { respond image, [status: CREATED] }
         }
         else{
             respond view:'create'
             return
-        }
+        }*/
     }
 
 
@@ -97,6 +97,30 @@ class ImageController {
             transactionStatus.setRollbackOnly()
             notFound()
             return
+        }
+
+        List<Groupe> groupe = Groupe.findAll() ;
+        int groupeSize = groupe.size();
+        (0..groupeSize-1).each {
+            int j ->
+                (0..groupe[j].images.size()-1).each {
+                    int k ->
+                        if (groupe[j].images[k] == image) {
+                            groupe[j].removeFromImages(image)
+                        }
+                }
+        }
+
+        List<Point> point = Point.findAll() ;
+        int pointSize = point.size();
+        (0..pointSize-1).each {
+            int j ->
+                (0..point[j].images.size()-1).each {
+                    int k ->
+                        if (point[j].images[k] == image) {
+                            point[j].removeFromImages(image)
+                        }
+                }
         }
 
         image.delete flush:true

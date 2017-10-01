@@ -24,12 +24,22 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">List</div>
                 <div class="panel-body">
-                    <div id="list-image" class="content scaffold-list" role="main">
-                        <g:if test="${flash.message}">
-                            <div class="message" role="status">${flash.message}</div>
-                        </g:if>
-                        <f:table collection="${imageList}" />
-                    </div>
+                    <table id="users" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Filename</th>
+                            <th>Date Created</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <g:each in="${imageList}" var="image">
+                            <tr>
+                                <td><a href="/image/show/${image.id}"><asset:image src="${image.filename}" class="img-rounded" width="70px" height="70px"/></a></td>
+                                <td>${image.date_created}</td>
+                            </tr>
+                        </g:each>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="nav" role="navigation">

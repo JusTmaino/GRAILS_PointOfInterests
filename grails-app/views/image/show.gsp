@@ -26,22 +26,33 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">${this.image.filename} details</div>
                 <div class="panel-body">
-                    <div id="show-image" class="content scaffold-show" role="main">
-                        <g:if test="${flash.message}">
-                            <div class="message" role="status">${flash.message}</div>
-                        </g:if>
-                        <f:display bean="image" />
-                        <asset:image src="${this.image.filename}" class="img-circle" width = "100" height = "100" alt="User Image"/>
-                    </div>
+                    <ol class="property-list image">
+
+                        <div class="form-group">
+                            <asset:image src="${this.image.filename}" class="img-circle" width="100" height="100" alt="Image"/>
+                        </div>
+
+                        <div style="padding-left: 120px ">
+                        <div class="form-group">
+                            <label>Filename : </label> <span>${this.image.filename}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date Created : </label> <span>${this.image.date_created}</span>
+                        </div>
+                        </div>
+
+                    </ol>
+
                 </div>
                 <div class="panel-footer">
                     <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
-                        <g:form resource="${this.image}" method="DELETE">
-                            <fieldset class="buttons">
-                                <input class="delete btn btn-danger" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                                <g:link class="edit btn btn-primary"  action="edit" resource="${this.image}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                        <form action="/image/delete/${this.image.id}" method="post" ><input type="hidden" name="_method" value="DELETE" id="_method" />
+                            <fieldset class="box-footer">
+                                <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Are you sure to delete this image?');" />
+                                <input class="btn btn-primary" type="button" onclick="window.location='/image/edit/${this.image.id}';" value="Edit">
                             </fieldset>
-                        </g:form>
+                        </form>
                     </sec:ifAnyGranted>
                 </div>
             </div>
