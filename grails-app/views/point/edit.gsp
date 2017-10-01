@@ -25,7 +25,7 @@
         </sec:ifAnyGranted>
     </div>
     <div class="col-lg-12">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">Edit ${customPoint.name}</div>
             <div class="panel-body">
 

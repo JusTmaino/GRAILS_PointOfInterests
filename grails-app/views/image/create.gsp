@@ -57,7 +57,7 @@
 
     <script>
         function sendFileToServer(formData,status) {
-            var uploadURL ="http://hayageek.com/examples/jquery/drag-drop-file-upload/upload.php"; //Upload URL
+            var uploadURL ="/Applications/MAMP/htdocs/images/"; //Upload URL
             var extraData ={}; //Extra Data.
             var jqXHR=$.ajax({
                 xhr: function() {

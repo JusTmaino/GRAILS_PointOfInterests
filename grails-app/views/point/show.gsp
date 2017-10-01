@@ -22,7 +22,7 @@
             </sec:ifAnyGranted>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">${this.point.name} details</div>
                 <div class="panel-body">
 
@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     Map location
                 </div>

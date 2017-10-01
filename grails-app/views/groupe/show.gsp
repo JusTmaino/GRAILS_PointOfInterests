@@ -22,16 +22,39 @@
             </sec:ifAnyGranted>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">${this.groupe.name} details</div>
                 <div class="panel-body">
-                    <div id="show-groupe" class="content scaffold-show" role="main">
-                        <h1><g:message code="default.show.label" args="[entityName]" /></h1>
-                        <g:if test="${flash.message}">
-                            <div class="message" role="status">${flash.message}</div>
-                        </g:if>
-                        <f:display bean="groupe" />
-                    </div>
+
+                    <ol class="property-list point">
+
+                        <div class='form-group'>
+                            <label>Name </label> : <span> ${this.groupe.name}</span>
+                        </div>
+
+                        <div class='form-group'>
+                            <label>Description </label> : <span> ${this.groupe.description}</span>
+                        </div>
+
+                        <div class='form-group'>
+                            <label>Points d'intérêts</label>
+                            <ul>
+                                <g:each in="${this.groupe.points}" var="point">
+                                    <li><a href="/point/show/${point.id}">${point.name}</a></li>
+                                </g:each>
+                            </ul>
+                        </div>
+
+                        <div class='form-group'>
+                            <label>Images</label>
+                            <ul>
+                                <g:each in="${this.groupe.images}" var="img">
+                                    <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
+                                </g:each>
+                            </ul>
+                        </div>
+
+                    </ol>
                 </div>
                 <div class="panel-footer">
                     <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
@@ -46,7 +69,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     Map location
                 </div>

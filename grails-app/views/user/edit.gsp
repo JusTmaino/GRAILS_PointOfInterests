@@ -25,7 +25,7 @@
                 </sec:ifAnyGranted>
             </div>
             <div class="col-lg-12">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">Edit : ${customUser.username}</div>
                     <div class="panel-body">
                         <form action="/user/update/${customUser.id}" method="post" ><input type="hidden" name="_method" value="PUT" id="_method" />
