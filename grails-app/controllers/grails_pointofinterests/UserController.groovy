@@ -88,11 +88,13 @@ class UserController {
 
         user.save flush:true
 
-
-        Role removedRole=Role.findById(UserRole.findByUser(user).role.id);
-        UserRole.remove (user, removedRole)
-        Role newRole=Role.findById(params.roleID);
-        UserRole.create (user, newRole, true)
+        System.out.println(params.roleID)
+        if( (params.roleID != null) && (UserRole.findByUser(user).role != null)) {
+            Role removedRole = Role.findById(UserRole.findByUser(user).role.id);
+            UserRole.remove(user, removedRole)
+            Role newRole = Role.findById(params.roleID);
+            UserRole.create(user, newRole, true)
+        }
 
         request.withFormat {
             form multipartForm {
