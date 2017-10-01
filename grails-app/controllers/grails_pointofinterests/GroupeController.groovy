@@ -18,7 +18,10 @@ class GroupeController {
     }
 
     def create() {
-        respond new Groupe(params)
+        List<Point> pointList = Point.findAll()
+        List<Image> imageList = Image.findAll()
+        [customPointList:pointList,customimageList:imageList]
+        //respond new Groupe(params)
     }
 
     @Transactional
@@ -34,12 +37,17 @@ class GroupeController {
             respond groupe.errors, view:'create'
             return
         }
-        def image = new Image(path: params.image)
-        Groupe.addToImages(image)
-
-        params.fileupload.transferTo(new java.io.File("/Applications/MAMP/htdocs/images/"+params.image))
 
         groupe.save flush:true
+
+        Point point = Point.findById(params.pointID);
+        groupe.addToPoints(point).save(flush: true, failOnError: true)
+        Image img = Image.findById(params.imageID);
+        groupe.addToImages(img).save(flush: true, failOnError: true)
+
+        Image image = new Image(path: params.image)
+        groupe.addToImages(image)
+        //params.fileupload.transferTo(new java.io.File("/Applications/MAMP/htdocs/images/"+params.image))
 
         request.withFormat {
             form multipartForm {

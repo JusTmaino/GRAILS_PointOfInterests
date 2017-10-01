@@ -9,7 +9,7 @@
         <!--/.title-->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">GROUPS</h1>
+                <h3 class="page-header">GROUPS</h3>
             </div>
         </div>
         <!--/.title-->
@@ -23,26 +23,36 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Create a group</div>
                     <div class="panel-body">
-                        <div id="create-groupe" class="content scaffold-create" role="main">
-                            <g:if test="${flash.message}">
-                                <div class="message" role="status">${flash.message}</div>
-                            </g:if>
-                            <g:hasErrors bean="${this.groupe}">
-                                <ul class="errors" role="alert">
-                                    <g:eachError bean="${this.groupe}" var="error">
-                                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                                    </g:eachError>
-                                </ul>
-                            </g:hasErrors>
-                            <g:uploadForm resource="${this.image}" method="POST">
-                                <fieldset class="form">
-                                    <f:all bean="groupe"/>
-                                </fieldset>
-                                <fieldset class="buttons">
-                                    <g:submitButton name="create" class="save btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                                </fieldset>
-                            </g:uploadForm>
-                        </div>
+                        <form action="/groupe/save" method="post" enctype="multipart/form-data" >
+                            <fieldset class="form">
+
+                                <div class='form-group'>
+                                    <label for='name'>Name *</label>
+                                    <input type="text" class="form-control" name="name" value="" required="" id="name" />
+                                </div>
+
+                                <div class='form-group'>
+                                    <label for='description'>Description *</label>
+                                    <input type="text" class="form-control" name="description" value="" required="" id="description" />
+                                </div>
+
+                                <div class='form-group'>
+                                    <label for='point'>Points</label>
+                                    <g:select name="pointID" class="form-control" required="" id="point" optionKey="id" from="${customPointList}"  ></g:select>
+                                    <a href="/point/create?groupe.id=">Add Point</a>
+                                </div>
+
+                                <div class='form-group'>
+                                    <label for='image'>Images</label>
+                                    <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" from="${customimageList}"  ></g:select>
+                                    <a href="/image/create?groupe.id=">Add Image</a>
+                                </div>
+                            </fieldset>
+                            <fieldset class="box-footer">
+                                <input type="submit" name="create" class="save btn btn-primary" value="Create" id="create" />
+                            </fieldset>
+                        </form>
+
                     </div>
                 </div>
             </div>
