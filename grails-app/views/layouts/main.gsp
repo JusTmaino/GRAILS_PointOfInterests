@@ -36,7 +36,12 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/"><span>PointsOfInterests</span>Platform</a>
                 <ul class="nav navbar-top-links navbar-right">
+                    <sec:ifLoggedIn>
                     <li><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+                    </sec:ifLoggedIn>
+                    <sec:ifNotLoggedIn>
+                        <li><a href="/login"><em class="fa fa-power-off">&nbsp;</em> Login</a></li>
+                    </sec:ifNotLoggedIn>
                 </ul>
             </div>
         </div>
@@ -44,6 +49,7 @@
 <!-- /.container-fluid -->
 
 <!--/.sidebar-->
+<sec:ifLoggedIn>
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <div class="profile-sidebar">
             <div class="profile-userpic">
@@ -82,11 +88,17 @@
             </li>
         </ul>
     </div>
+</sec:ifLoggedIn>
 <!--/.sidebar-->
 
     <!-- /.CONTENT-->
+<sec:ifLoggedIn>
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <g:layoutBody/>
+</sec:ifLoggedIn>
+<sec:ifNotLoggedIn>
+    <div class="col-sm-12  main">
+</sec:ifNotLoggedIn>
+<g:layoutBody/>
     </div>
 
     <g:if env="development">
