@@ -73,7 +73,8 @@
                             <label for='image'>Images</label>
                             <ul>
                                 <g:each in="${customPoint.images}" var="img">
-                                    <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
+                                    <a href="/image/show/${img.id}">
+                                        <img src="${grailsApplication.config.server.pathServer}/${img.filename}" width="50px" height="50px"/></a>
                                 </g:each>
                             </ul>
                             <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${customImageList}"  ></g:select>

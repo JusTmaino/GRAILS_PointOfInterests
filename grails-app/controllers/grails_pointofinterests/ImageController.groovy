@@ -35,14 +35,6 @@ class ImageController {
             respond image.errors, view:'create'
             return
         }
-
-        String baseImageName = java.util.UUID.randomUUID().toString()
-        def downloadedFile = request.getFile( "productPic" )
-        //String fileUploaded = imageServ.uploadFile( downloadedFile, "${baseImageName}.jpg", "localhost/projects/images/" )
-        //String fileUploaded = imageServ.uploadFile( downloadedFile, "${baseImageName}.jpg", "/Applications/MAMP/htdocs/images/" )
-
-        /*if( fileUploaded ){
-            image.filename = "${baseImageName}.jpg"*/
             image.save flush:true
 
             request.withFormat {
@@ -52,12 +44,6 @@ class ImageController {
                 }
                 '*' { respond image, [status: CREATED] }
             }
-        /*    '*' { respond image, [status: CREATED] }
-        }
-        else{
-            respond view:'create'
-            return
-        }*/
     }
 
 

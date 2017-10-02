@@ -48,8 +48,7 @@
                                         <td>${point.location.name}</td>
                                         <td>
                                             <g:each in="${point.images}" var="img">
-
-                                                <asset:image src="${grailsApplication.config.urlImage}/${img.filename}" height="70px" width="70px"/>
+                                                <img src="${grailsApplication.config.server.pathServer}/${img.filename}" height="70px" width="70px"/>
                                             </g:each>
                                         </td>
                                     </tr>

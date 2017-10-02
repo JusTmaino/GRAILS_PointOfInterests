@@ -57,7 +57,6 @@ class GroupeController {
 
         Image image = new Image(path: params.image)
         groupe.addToImages(image)
-        //params.fileupload.transferTo(new java.io.File("/Applications/MAMP/htdocs/images/"+params.image))
 
         request.withFormat {
             form multipartForm {
@@ -99,7 +98,7 @@ class GroupeController {
 
         Image image = new Image(path: params.image)
         //groupe.addToImages(image)
-        //params.fileupload.transferTo(new java.io.File("/Applications/MAMP/htdocs/images/"+params.image))
+
 
         request.withFormat {
             form multipartForm {

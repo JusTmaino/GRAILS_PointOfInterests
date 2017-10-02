@@ -98,12 +98,10 @@ dataSource:
     driverClassName: org.h2.Driver
     username: sa
     password: ''
-
+server:
+       uploadImage: 'C:/wamp64/www/'
+       pathServer: 'http://localhost:80'
 environments:
-    grails:
-    guides:
-        cdnFolder: /Users/sdelamo/Sites/GrailsGuides/UploadFiles
-        cdnRootUrl: http://localhost:8081
     development:
         dataSource:
             dbCreate: create-drop

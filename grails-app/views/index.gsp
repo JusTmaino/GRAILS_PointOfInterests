@@ -82,7 +82,7 @@
                                     <ul>
                                         <li>//TODO Les images uploadé via les différents formulaires sont enregistrés dans notre serveur web Apache</li>
                                         <li>//TODO Le fichier de configuration permet de reconstruire le path et l’url à la volée
-                                        <br/>updateFolder: "/Applications/MAMP/htdocs/images/"
+                                        <br/>updateFolder: "http://localhost:8081"
                                         <br/>urlImage: "http://localhost:8081/images"
                                         </li>
                                     </ul>

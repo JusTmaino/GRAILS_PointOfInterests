@@ -53,7 +53,6 @@ class PointController {
 
         Image image = new Image(path: params.image)
         point.addToImages(image)
-      //  params.fileupload.transferTo(new java.io.File("/Applications/MAMP/htdocs/images/"+params.image))
 
         request.withFormat {
             form multipartForm {

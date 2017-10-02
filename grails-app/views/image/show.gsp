@@ -29,7 +29,7 @@
                     <ol class="property-list image">
 
                         <div class="form-group">
-                            <asset:image src="${this.image.filename}" class="img-circle" width="100" height="100" alt="Image"/>
+                            <img src="${grailsApplication.config.server.pathServer}/${this.image.filename}" class="img-circle" width = "100" height = "100" alt="User Image"/>
                         </div>
 
                         <div style="padding-left: 120px ">

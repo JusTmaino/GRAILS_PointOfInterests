@@ -49,7 +49,8 @@
                             <label>Images</label>
                                 <ul>
                                     <g:each in="${this.point.images}" var="img">
-                                        <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
+                                        <a href="/image/show/${img.id}">
+                                            <img src="${grailsApplication.config.server.pathServer}/${img.filename}" width="50px" height="50px"/></a>
                                     </g:each>
                                 </ul>
                         </div>
@@ -83,7 +84,7 @@
                                 var localisation = {
                                     info: '<strong style="color:black">${this.point.name}</strong><br>\
                                             <g:each in="${this.point.images}" var="image">\n' +
-                                    '  <img src="${grailsApplication.config.urlImage}/${image.filename}" width="20" height="20"/></li>\n' +
+                                    '  <img src="${grailsApplication.config.server.pathServer}/${image.filename}" width="20" height="20"/></li>\n' +
                                     '   </g:each>',
                                 };
                                     var locations = [
