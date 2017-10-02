@@ -6,8 +6,10 @@
     padding:10px 10px 10px 10px;
     margin-top:10px;
     margin-bottom:10px;
-    font-size:200%;
+    font-size:120%;
+    height: 70px;
 }
+
 .progressBar {
     width: 200px;
     height: 22px;

@@ -32,7 +32,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <g:each in="${imageList}" var="image">
+                        <g:each in="${customImageList}" var="image">
                             <tr>
                                 <td><a href="/image/show/${image.id}"><asset:image src="${image.filename}" class="img-rounded" width="70px" height="70px"/></a></td>
                                 <td>${image.date_created}</td>

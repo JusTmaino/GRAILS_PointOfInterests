@@ -11,7 +11,9 @@ class ImageController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Image.list(params), model:[imageCount: Image.count()]
+        List<Image> image = Image.findAll()
+        [customImageList:image]
+        //respond Image.list(params), model:[imageCount: Image.count()]
     }
 
     def show(Image image) {
