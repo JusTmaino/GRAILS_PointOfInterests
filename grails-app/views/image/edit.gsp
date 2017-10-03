@@ -186,7 +186,7 @@
                                 {
                                     var fileinput = document.getElementById("browse");
                                     var textinput = document.getElementById("filename");
-                                    textinput.value = fileinput.value;
+                                    textinput.value = fileinput.value.substring(12);
                                 }
                                 $(function() {
 
