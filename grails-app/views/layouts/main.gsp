@@ -18,8 +18,13 @@
         <asset:stylesheet src="styles.css"/>
     </g:if>
 
-    <!--Custom Font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
     <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
@@ -48,61 +53,61 @@
     </nav>
 <!-- /.container-fluid -->
 
-<!--/.sidebar-->
-<sec:ifLoggedIn>
-    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-        <div class="profile-sidebar">
-            <div class="profile-userpic">
-                <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+    <!--/.sidebar-->
+    <sec:ifLoggedIn>
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name"><sec:loggedInUserInfo field="username" /></div>
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                </div>
+                <div class="clear"></div>
             </div>
-            <div class="profile-usertitle">
-                <div class="profile-usertitle-name"><sec:loggedInUserInfo field="username" /></div>
-                <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="divider"></div>
-        <ul class="nav menu">
-            <li><a href="/user/profile"><em class="fa fa-id-card">&nbsp;</em> Profile</a></li>
-            <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-                <em class="fa fa-map-marker">&nbsp;</em> POIs Manager<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
-                </a>
-                    <ul class="children collapse" id="sub-item-1">
-                        <li>
-                            <a href="/groupe">
-                                <i class="fa fa-arrow-right"></i>
-                                <span>Groupes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/point">
-                                <i class="fa fa-arrow-right"></i>
-                                <span>Points d'intérêts</span>
-                            </a>
-                        </li>
+            <div class="divider"></div>
+            <ul class="nav menu">
+                <li><a href="/user/profile"><em class="fa fa-id-card">&nbsp;</em> Profile</a></li>
+                <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+                    <em class="fa fa-map-marker">&nbsp;</em> POIs Manager<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                    </a>
+                        <ul class="children collapse" id="sub-item-1">
+                            <li>
+                                <a href="/groupe">
+                                    <i class="fa fa-arrow-right"></i>
+                                    <span>Groupes</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/point">
+                                    <i class="fa fa-arrow-right"></i>
+                                    <span>Points d'intérêts</span>
+                                </a>
+                            </li>
 
-                    </ul>
-                <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
-                <li><a href="/user"><em class="fa fa-users">&nbsp;</em> User Manager</a></li>
-                </sec:ifAnyGranted>
-            </li>
-        </ul>
-    </div>
-</sec:ifLoggedIn>
-<!--/.sidebar-->
+                        </ul>
+                    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                    <li><a href="/user"><em class="fa fa-users">&nbsp;</em> User Manager</a></li>
+                    </sec:ifAnyGranted>
+                </li>
+            </ul>
+        </div>
+    </sec:ifLoggedIn>
+    <!--/.sidebar-->
 
     <!-- /.CONTENT-->
-<sec:ifLoggedIn>
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-</sec:ifLoggedIn>
-<sec:ifNotLoggedIn>
-    <div class="col-sm-12  main">
-</sec:ifNotLoggedIn>
-<g:layoutBody/>
-    </div>
+    <sec:ifLoggedIn>
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    </sec:ifLoggedIn>
+    <sec:ifNotLoggedIn>
+        <div class="col-sm-12  main">
+    </sec:ifNotLoggedIn>
+            <g:layoutBody/>
+        </div>
+        </div>
 
     <g:if env="development">
-        <asset:javascript src="application.js"/>
         <asset:javascript src="jquery-1.11.1.min.js"/>
         <asset:javascript src="bootstrap.min.js"/>
         <asset:javascript src="chart.min.js"/>
@@ -112,6 +117,6 @@
         <asset:javascript src="bootstrap-datepicker.js"/>
         <asset:javascript src="custom.js"/>
     </g:if>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
 </body>
 </html>
