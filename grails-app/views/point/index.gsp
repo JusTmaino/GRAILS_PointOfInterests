@@ -45,10 +45,14 @@
                                     <tr>
                                         <td><a href="/point/show/${point.id}">${point.name}</a></td>
                                         <td>${point.description}</td>
-                                        <td>${point.location.name}</td>
+                                        <td>
+                                            <g:each in="${point.location}" var="loc">
+                                                <li><a href="/location/show/${loc.id}">${loc.name}</a></li>
+                                            </g:each>
+                                        </td>
                                         <td>
                                             <g:each in="${point.images}" var="img">
-                                                <img src="${grailsApplication.config.server.pathServer}/${img.filename}" height="70px" width="70px"/>
+                                                <a href="/image/show/${img.id}"><img src="${grailsApplication.config.server.pathServer}/${img.filename}" height="70px" width="70px"/></a>
                                             </g:each>
                                         </td>
                                     </tr>
