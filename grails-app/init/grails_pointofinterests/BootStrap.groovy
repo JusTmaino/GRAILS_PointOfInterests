@@ -28,7 +28,7 @@ class BootStrap {
                         def img = new Image("stade-de-france.jpg",new Date(System.currentTimeSeconds()))
                         def img2 = new Image("visiter-de-stade.jpg",new Date(System.currentTimeSeconds()))
                         def point = new Point(name: "POI " +i+""+j, description: 'description ' +i+""+j).save(flush: true, failOnError: true)
-                        point.addToLocation(new Location(name:"test",latitude:39 + (j*3 + 10) ,longitude:29 + (j*2 + 20),altitude:12).save(flush: true, failOnError: true))
+                        point.addToLocation(new Location(name:"test",latitude:39 + (j*3 + 10) ,longitude:29 + (j*2 + 20)).save(flush: true, failOnError: true))
 
                         point.addToImages(img).save(flush: true, failOnError: true);
                         point.addToImages(img2).save(flush: true, failOnError: true);

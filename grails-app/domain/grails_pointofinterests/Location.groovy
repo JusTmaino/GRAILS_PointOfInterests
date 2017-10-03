@@ -5,7 +5,6 @@ class Location {
     String name;
     Double latitude;
     Double longitude;
-    Double altitude;
 
     static beLongsTo = [point:Point];
 
@@ -13,7 +12,6 @@ class Location {
         name blank:false
         latitude nullable:false
         longitude nullable:false
-        altitude nullable:false
     }
 
     /*static mapping = {
@@ -22,6 +20,5 @@ class Location {
         id_column:'id_location'
         latitude column : latitude
         longitude column : longitude
-        altitude column : altitude
     }*/
 }

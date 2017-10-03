@@ -86,6 +86,18 @@ class LocationController {
             return
         }
 
+        List<Point> allPoint = Point.findAll() ;
+        int allPointSize = allPoint.size();
+        (0..allPointSize-1).each {
+            int j ->
+                (0..allPoint[j].location.size()-1).each {
+                    int k ->
+                        if (allPoint[j].location[k] == location) {
+                            allPoint[j].removeFromLocation(location)
+                        }
+                }
+        }
+
         location.delete flush:true
 
         request.withFormat {
