@@ -6,24 +6,11 @@
     <title><g:message code="default.list.label" args="[entityName]" /></title>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-    <style>
-        .sortable_list {
-            width: 142px;
-            min-height: 20px;
-            list-style-type: none;
-            margin: 0;
-            padding: 5px 0 0 0;
-            float: left;
-            margin-right: 10px;
-        }
 
-        .sortable_list li {
-            margin: 0 5px 5px 5px;
-            padding: 5px;
-            font-size: 1.2em;
-            width: 120px;
-        }
-    </style>
+    <g:if env="development">
+        <asset:javascript src="ajax_manager/dragndrop_sortable.js"/>
+        <asset:stylesheet src="ajax_manager/dragndrop_sortable.css"/>
+    </g:if>
 
 </head>
 <body>
@@ -99,25 +86,5 @@
             </div>
         </div>
     </div>
-
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-
-    <script>
-        $(function() {
-            $( ".sortable_list" ).sortable({
-                connectWith: ".connectedSortable",
-                receive: function(event, ui) {
-                    //alert(ui.item[0].innerHTML.substring(44,45)); // Where the item is dropped
-                    //alert("sender = " + ui.sender[0].id);
-                    if(ui.item[0].innerHTML.substring(45,46).includes('"'))
-                        window.location='/groupe/index?oldGroupeID='+ui.sender[0].id+'&newGroupeID='+this.id+'&pointID='+ui.item[0].innerHTML.substring(44,45);
-                    else
-                        window.location='/groupe/index?oldGroupeID='+ui.sender[0].id+'&newGroupeID='+this.id+'&pointID='+ui.item[0].innerHTML.substring(44,46);
-                }
-            }).disableSelection();
-        });
-    </script>
-
 </body>
 </html>

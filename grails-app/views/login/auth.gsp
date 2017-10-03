@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <title>Login Form</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <g:if env="development">
         <asset:stylesheet src="admin_login/bootstrap.min.css"/>
         <asset:stylesheet src="admin_login/font-awesome.min.css"/>
         <asset:stylesheet src="admin_login/ionicons.min.css"/>
         <asset:stylesheet src="admin_login/AdminLTE.min.css"/>
         <asset:stylesheet src="admin_login/blue.css"/>
+        <asset:javascript src="jquery.min.js"/>
+        <asset:javascript src="bootstrap.min.js"/>
     </g:if>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
 </head>
 
 <body class="hold-transition login-page">
@@ -55,12 +56,5 @@
 
         <!-- /.login-box-body -->
     </div>
-
-    <g:if env="development">
-        <asset:javascript src="jquery.min.js"/>
-        <asset:javascript src="bootstrap.min.js"/>
-        <asset:javascript src="bootstrap.min.js"/>
-    </g:if>
-
 </body>
 </html>

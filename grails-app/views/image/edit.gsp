@@ -6,8 +6,8 @@
     <g:set var="entityName" value="${message(code: 'image.label', default: 'Image')}" />
     <title><g:message code="default.edit.label" args="[entityName]" /></title>
     <g:if env="development">
-        <asset:stylesheet src="image.css"/>
-        <asset:javascript src="image.js"/>
+        <asset:stylesheet src="dragndrop_upload.css"/>
+        <asset:javascript src="dragndrop_upload.js"/>
     </g:if>
 </head>
 <body>

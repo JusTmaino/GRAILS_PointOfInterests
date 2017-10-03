@@ -5,9 +5,9 @@
     <g:set var="entityName" value="${message(code: 'image.label', default: 'Image')}" />
     <title><g:message code="default.create.label" args="[entityName]" /></title>
     <g:if env="development">
-        <asset:stylesheet src="image.css"/>
-        <asset:javascript src="image.js"/>
-        <asset:javascript src="upload_file.js"/>
+        <asset:stylesheet src="ajax_manager/dragndrop_upload.css"/>
+        <asset:javascript src="ajax_manager/dragndrop_upload.js"/>
+        <asset:javascript src="ajax_manager/upload_file.js"/>
     </g:if>
 </head>
 <body>
@@ -29,7 +29,8 @@
                 <div class="panel-heading">Create an image</div>
                 <div class="panel-body">
                     <form action="/image/save" method="post" enctype="multipart/form-data" >
-                        <g:set name="filename" id="filename" var="today" value="${new Date()}" />
+                        <input type="hidden" name="date_created" id="date_created" var="today" value="${new Date()}" />
+                        <input type="hidden" name="filename" id="filename"/>
 
                         <input type="file" class="form-control" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"/>
 

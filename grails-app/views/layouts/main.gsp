@@ -14,16 +14,17 @@
         <asset:stylesheet src="application.css"/>
         <asset:stylesheet src="bootstrap.min.css"/>
         <asset:stylesheet src="font-awesome.min.css"/>
-        <asset:stylesheet src="datepicker3.css"/>
         <asset:stylesheet src="styles.css"/>
+        <asset:stylesheet src="errors.css"/>
+        <asset:javascript src="bootstrap.min.js"/>
     </g:if>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>
@@ -106,17 +107,5 @@
             <g:layoutBody/>
         </div>
         </div>
-
-    <g:if env="development">
-        <asset:javascript src="jquery-1.11.1.min.js"/>
-        <asset:javascript src="bootstrap.min.js"/>
-        <asset:javascript src="chart.min.js"/>
-        <asset:javascript src="chart-data.js"/>
-        <asset:javascript src="easypiechart.js"/>
-        <asset:javascript src="easypiechart-data.js"/>
-        <asset:javascript src="bootstrap-datepicker.js"/>
-        <asset:javascript src="custom.js"/>
-    </g:if>
-
 </body>
 </html>
