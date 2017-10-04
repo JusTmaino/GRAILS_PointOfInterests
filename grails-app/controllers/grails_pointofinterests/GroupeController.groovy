@@ -10,7 +10,7 @@ class GroupeController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        System.out.println(params.pointID);
+        //System.out.println(params.pointID);
         if( (params.oldGroupeID != null) && (params.newGroupeID!= null) && (params.pointID!= null) )
         {
             Point point = Point.findById(params.pointID)

@@ -16,13 +16,71 @@
 <body>
     <div class="row">
         <div class="col-lg-12">
-            <h2>GROUPS</h2>
+            <h3 class="page-header">GROUPS</h3>
         </div>
+
+        <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
+
+        <script type="text/javascript">
+
+            function initMap() {
+
+                <g:each in="${groupeList}" var="groupe">
+
+                var localisation = {
+                    info: '<strong>${groupe.points.name}</strong><br>\
+                        <g:each in="${groupe.points.images}" var="image">\n' +
+                    '                </g:each>',
+                };
+
+                var locations = [
+                    [localisation.info, ${groupe.points.location[0].latitude[0]} , ${groupe.points.location[0].longitude[0]}],
+                ];
+                var map = new google.maps.Map(document.getElementById('map')
+                <g:each in="${groupe.points}" var="point">
+                , {
+                    zoom: 2,
+                    center: new google.maps.LatLng(${point.location.latitude[0]},
+                        ${point.location.longitude[0]}),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                    </g:each>
+                );
+                console.log(map);
+
+                var infowindow = new google.maps.InfoWindow({});
+
+                var marker, i;
+                <g:each in="${groupe.points}" var="point">
+                for (i = 0; i < locations.length; i++) {
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(${point.location.latitude[0]},
+                            ${point.location.longitude[0]}),
+                        map: map,
+                    });
+
+                    google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                        return function () {
+                            infowindow.setContent(locations[i][0]);
+                            infowindow.open(map, marker);
+                        }
+                    })(marker, i));
+                }
+
+                </g:each>
+
+                </g:each>
+                //google.maps.event.addDomListener(window, "load", initialize());
+
+            }
+        </script>
+
         <g:each in="${groupeList}" var="groupe">
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading"><a href="/groupe/show/${groupe.id}">${groupe.name}</a></div>
                     <div class="panel-body">
+                        <div id="map"></div>
                         <ul id="${groupe.id}" class="sortable_list connectedSortable">
                             <g:each in="${groupe.points}" var="point">
                                 <li class="ui-state-default" >
