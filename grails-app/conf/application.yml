@@ -99,8 +99,8 @@ dataSource:
     username: sa
     password: ''
 server:
-       uploadImage: '/Applications/MAMP/htdocs/images/'
-       pathServer: 'http://localhost:8081'
+       uploadImage: 'C:\wamp64\www\'
+       pathServer: 'http://localhost:81'
 environments:
     development:
         dataSource:

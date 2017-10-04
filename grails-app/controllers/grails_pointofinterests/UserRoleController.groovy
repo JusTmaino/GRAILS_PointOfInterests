@@ -25,7 +25,7 @@ class UserRoleController {
 
     @Transactional
     def save(UserRole userRole) {
-        System.out.println(params);
+        //System.out.println(params);
         if (userRole == null) {
             transactionStatus.setRollbackOnly()
             notFound()

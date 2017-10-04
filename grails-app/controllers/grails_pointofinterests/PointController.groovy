@@ -1,10 +1,8 @@
 package grails_pointofinterests
 
-import static org.springframework.http.HttpStatus.*
+//import static org.springframework.*
 import grails.transaction.Transactional
-import org.springframework.web.multipart.MultipartHttpServletRequest
-import org.springframework.web.multipart.commons.CommonsMultipartFile
-import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest
+
 
 
 @Transactional(readOnly = true)
@@ -46,8 +44,22 @@ class PointController {
 
         Location location = Location.findById(params.LocationID);
         point.addToLocation(location).save(flush: true, failOnError: true)
-        Image img = Image.findById(params.imageID);
-        point.addToImages(img).save(flush: true, failOnError: true)
+
+        if(params.imageID){
+            Image img = Image.findById(params.imageID);
+            point.addToImages(img).save(flush: true, failOnError: true)
+        }
+        def f = request.getFile('file')
+
+        System.out.printf("les parame du point controler sont ==> "+f.getOriginalFilename())
+        if (f.empty) {
+            flash.message = 'file cannot be empty'
+            render(view: 'uploadForm')
+            return
+        }
+         point.addToImages(new Image(f.getOriginalFilename()))
+        f.transferTo(new File('C:/wamp64/www/'+ f.getOriginalFilename()))
+
         Groupe groupe = Groupe.findById(params.groupeID);
         groupe.addToPoints(point).save(flush: true, failOnError: true)
 
@@ -114,7 +126,6 @@ class PointController {
         int locationSize = point.location.size();
         (locationSize-1..0).each {
             int i ->
-                //System.out.println("point.location["+i+"] : "+point.location[i])
                 point.removeFromLocation(point.location[i])
         }
 
@@ -131,7 +142,6 @@ class PointController {
                 (0..allGroupe[j].points.size()-1).each {
                     int k ->
                         if (allGroupe[j].points[k] == point) {
-                            //System.out.println("allGroupe["+j+"].points["+k+"].id : "+allGroupe[j].points[k].id)
                             allGroupe[j].removeFromPoints(point)
                         }
                 }
@@ -142,7 +152,6 @@ class PointController {
         (0..allGroupePoiSize-1).each {
             int j ->
                 if (allGroupePoi[j].point == point) {
-                    //System.out.println("allGroupePoi["+j+"].groupe : "+allGroupePoi[j].groupe)
                     allGroupePoi[j].delete()
                 }
         }

@@ -37,8 +37,18 @@ class ImageController {
             respond image.errors, view:'create'
             return
         }
-        
-        image.save flush:true, failOnError:true
+
+        def f = request.getFile('fileupload')
+
+        System.out.printf("les parame du point controler sont ==> "+f.getOriginalFilename())
+        if (f.empty) {
+            flash.message = 'file cannot be empty'
+            render(view: 'uploadForm')
+            return
+        }
+
+        f.transferTo(new File('C:/wamp64/www/'+ f.getOriginalFilename()))
+        image.save flush:true
 
         request.withFormat {
             form multipartForm {

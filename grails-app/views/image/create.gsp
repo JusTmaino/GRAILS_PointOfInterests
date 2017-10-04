@@ -20,7 +20,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Create an image</div>
                     <div class="panel-body">
-                        <form action="/image/save" method="post" >
+                        <form action="/image/save" method="post" enctype="multipart/form-data" >
                             <div id="dragandrophandler">
                                 <input type="file" class="form-control" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"/>
                                 <input type="button" value="Click to select file" draggable="true" id="fakeBrowse" onclick="HandleBrowseClick();"/> or drag & drop file here</div>

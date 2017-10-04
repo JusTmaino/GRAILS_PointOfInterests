@@ -42,3 +42,6 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**',             filters: 'JOINED_FILTERS']
 ]
 
+// 10 Mo max upload
+grails.controllers.upload.maxFileSize=10000000
+grails.controllers.upload.maxRequestSize=10000000
