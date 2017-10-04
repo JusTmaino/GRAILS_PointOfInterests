@@ -10,9 +10,9 @@ class BootStrap {
         def utilisateurRole = Role.findByAuthority('ROLE_USER') ?: new Role('ROLE_USER').save(flush: true, failOnError: true);
 
         // User
-        def administrateurUser = new User('admin', 'admin').save();
-        def moderateurUser = new User('moderateur', 'moderateur').save();
-        def utilisateurUser = new User('utilisateur', 'utilisateur').save();
+        def administrateurUser = new User('admin', 'admin').save(flush: true, failOnError: true);
+        def moderateurUser = new User('moderateur', 'moderateur').save(flush: true, failOnError: true);
+        def utilisateurUser = new User('utilisateur', 'utilisateur').save(flush: true, failOnError: true);
 
         // UserRole
         UserRole.create(administrateurUser, administrateurRole, true);
@@ -25,8 +25,8 @@ class BootStrap {
 
                 (1..5).each {
                     int j ->
-                        def img = new Image("stade-de-france.jpg",new Date(System.currentTimeSeconds()))
-                        def img2 = new Image("visiter-de-stade.jpg",new Date(System.currentTimeSeconds()))
+                        def img = new Image("stade-de-france.jpg")
+                        def img2 = new Image("visiter-de-stade.jpg")
                         def point = new Point(name: "POI " +i+""+j, description: 'description ' +i+""+j).save(flush: true, failOnError: true)
                         point.addToLocation(new Location(name:"test",latitude:39 + (j*3 + 10) ,longitude:29 + (j*2 + 20)).save(flush: true, failOnError: true))
 

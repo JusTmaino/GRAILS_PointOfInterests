@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 class ImageController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-   // ImagesSer imageServ
+    // ImagesSer imageServ
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -37,15 +37,16 @@ class ImageController {
             respond image.errors, view:'create'
             return
         }
-            image.save flush:true
+        
+        image.save flush:true, failOnError:true
 
-            request.withFormat {
-                form multipartForm {
-                    flash.message = message(code: 'default.created.message', args: [message(code: 'image.label', default: 'Image'), image.id])
-                    redirect image
-                }
-                '*' { respond image, [status: CREATED] }
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'image.label', default: 'Image'), image.id])
+                redirect image
             }
+            '*' { respond image, [status: CREATED] }
+        }
     }
 
 
@@ -67,7 +68,7 @@ class ImageController {
             return
         }
 
-        image.save flush:true
+        image.save flush:true, failOnError:true
 
         request.withFormat {
             form multipartForm {

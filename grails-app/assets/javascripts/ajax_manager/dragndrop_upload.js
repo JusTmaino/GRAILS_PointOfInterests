@@ -57,8 +57,17 @@ function createStatusbar(obj) {
 
         this.filename.html(name);
         this.size.html(sizeStr);
-        $("#filename").value = name;
+        var filenameinput = document.getElementById("filename");
+        filenameinput.value = name;
+        var dateinput = document.getElementById("date_created");
+        var day = new Date().getDate();
+        var month = new Date().getMonth() + 1;
+        var year = new Date().getFullYear();
+        dateinput.value = day + "/" + month + "/" + year ;
+        document.getElementById("fakeBrowse").disabled = true;
+        document.getElementById("browse").disabled = true;
     }
+
     this.setProgress = function(progress) {
         var progressBarWidth =progress*this.progressBar.width()/ 100;
         this.progressBar.find('div').animate({ width: progressBarWidth }, 10).html(progress + "% ");

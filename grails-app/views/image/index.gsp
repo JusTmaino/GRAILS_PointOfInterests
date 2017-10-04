@@ -6,49 +6,49 @@
     <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-    <!--/.title-->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">IMAGES</h1>
-        </div>
+<!--/.title-->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">IMAGES</h1>
     </div>
-        <!--/.title-->
-        <!-- /.form -->
-    <div class="row">
-        <div>
+</div>
+<!--/.title-->
+<!-- /.form -->
+<div class="row">
+    <div>
         <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
             <g:link class="create" action="create"><i class="fa fa-plus-square-o fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
         </sec:ifAnyGranted>
-        </div>
-        <div class="col-lg-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">List</div>
-                <div class="panel-body">
-                    <table id="users" class="table table-bordered table-striped">
-                        <thead>
+    </div>
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">List</div>
+            <div class="panel-body">
+                <table id="users" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Date Created</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <g:each in="${customImageList}" var="image">
                         <tr>
-                            <th>Filename</th>
-                            <th>Date Created</th>
+                            <td><a href="/image/show/${image.id}"><asset:image src="${image.filename}" class="img-rounded" width="70px" height="70px"/></a></td>
+                            <td>${image.dateCreated}</td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        <g:each in="${customImageList}" var="image">
-                            <tr>
-                                <td><a href="/image/show/${image.id}"><asset:image src="${image.filename}" class="img-rounded" width="70px" height="70px"/></a></td>
-                                <td>${image.date_created}</td>
-                            </tr>
-                        </g:each>
-                        </tbody>
-                    </table>
-                </div>
+                    </g:each>
+                    </tbody>
+                </table>
             </div>
-            <div class="nav" role="navigation">
-                <ul>
+        </div>
+        <div class="nav" role="navigation">
+            <ul>
 
-                </ul>
-            </div>
+            </ul>
         </div>
     </div>
-        <!-- /.form-->
+</div>
+<!-- /.form-->
 </body>
 </html>
