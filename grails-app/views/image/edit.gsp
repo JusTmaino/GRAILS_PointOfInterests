@@ -31,21 +31,21 @@
             <div class="panel-heading">Edit : ${this.image.filename}</div>
             <div class="panel-body">
                 <form action="/image/update/${this.image.id}" method="post" enctype="multipart/form-data" ><input type="hidden" name="_method" value="PUT" id="_method" />
-                    <fieldset class="form">
-                        <div class='form-group'>
-                            <label for='filename'>Filename * </label>
-                            <input type="text" disabled class="form-control" name="filename" value="" required="" id="filename" />
-                        </div>
-                    </fieldset>
-
                     <div id="dragandrophandler">
                         <input type="file" class="form-control" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"/>
                         <input type="button" value="Click to select file" draggable="true" id="fakeBrowse" onclick="HandleBrowseClick();"/> or drag & drop file here</div>
                     <br><br>
                     <div id="status1"></div>
 
+                    <fieldset class="form">
+                        <div class='fieldcontain required'>
+                            <label for='filename' style="margin-right: 10px">Filename
+                                <span class='required-indicator'>* </span>
+                            </label><input type="text" name="filename" value="" required="" id="filename" style="margin-bottom: 30px"/>
+                        </div>
+                    </fieldset>
                     <fieldset class="box-footer">
-                        <input class="save btn btn-primary" type="submit" value="Update" />
+                        <input type="submit" name="update" class="edit btn btn-primary" value="Update" id="update" />
                     </fieldset>
                 </form>
             </div>

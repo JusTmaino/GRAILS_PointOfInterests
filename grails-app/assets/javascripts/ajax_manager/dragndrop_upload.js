@@ -59,13 +59,7 @@ function createStatusbar(obj) {
         this.size.html(sizeStr);
         var filenameinput = document.getElementById("filename");
         filenameinput.value = name;
-        var dateinput = document.getElementById("date_created");
-        var day = new Date().getDate();
-        var month = new Date().getMonth() + 1;
-        var year = new Date().getFullYear();
-        dateinput.value = day + "/" + month + "/" + year ;
-        document.getElementById("fakeBrowse").disabled = true;
-        document.getElementById("browse").disabled = true;
+        document.getElementById("dragandrophandler").style.display="none";
     }
 
     this.setProgress = function(progress) {
@@ -98,7 +92,7 @@ $(document).ready(function() {
     obj.on('dragenter', function (e) {
         e.stopPropagation();
         e.preventDefault();
-        $(this).css('border', '2px solid #0B85A1');
+        $(this).css('border', '4px dotted #0B85A1');
     });
     obj.on('dragover', function (e) {
         e.stopPropagation();
@@ -106,7 +100,7 @@ $(document).ready(function() {
     });
     obj.on('drop', function (e) {
 
-        $(this).css('border', '2px dotted #0B85A1');
+        $(this).css('border', '2px solid #0B85A1');
         e.preventDefault();
         var files = e.originalEvent.dataTransfer.files;
 
@@ -120,7 +114,7 @@ $(document).ready(function() {
     $(document).on('dragover', function (e) {
         e.stopPropagation();
         e.preventDefault();
-        obj.css('border', '2px dotted #0B85A1');
+        obj.css('border', '4px dotted #0B85A1');
     });
     $(document).on('drop', function (e) {
         e.stopPropagation();

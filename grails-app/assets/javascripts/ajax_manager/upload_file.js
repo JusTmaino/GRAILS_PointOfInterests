@@ -6,13 +6,8 @@ function Handlechange() {
     var fileinput = document.getElementById("browse");
     var textinput = document.getElementById("filename");
     textinput.value = fileinput.value.substring(12);
-    var dateinput = document.getElementById("date_created");
-    var day = new Date().getDate();
-    var month = new Date().getMonth() + 1;
-    var year = new Date().getFullYear();
-    dateinput.value = day + "/" + month + "/" + year ;
-    document.getElementById("fakeBrowse").disabled = true;
-    document.getElementById("browse").disabled = true;
+    document.getElementById("dragandrophandler").style.display="none";
+    $("#status1").append("File upload Done<br>");
 }
 $(function() {
 
