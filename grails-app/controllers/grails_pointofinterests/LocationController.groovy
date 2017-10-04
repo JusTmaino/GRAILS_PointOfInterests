@@ -8,6 +8,9 @@ class LocationController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    boolean createViaPoint = false
+    String pointID
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         List<Location> LocationsList = Location.findAll()
@@ -20,6 +23,12 @@ class LocationController {
     }
 
     def create() {
+        System.out.println(params.point);
+        if(params.point!= null)
+        {
+            createViaPoint = true
+            pointID = params.point.id
+        }
         respond new Location(params)
     }
 
@@ -38,6 +47,15 @@ class LocationController {
         }
 
         location.save flush:true
+
+        System.out.println(createViaPoint);
+        if(createViaPoint)
+        {
+            Point point = Point.findById(Integer.parseInt(pointID))
+            point.addToLocation(location).save(flush: true, failOnError: true)
+            System.out.println("location Created");
+            //redirect(uri: "point/edit/"+pointID)
+        }
 
         request.withFormat {
             form multipartForm {

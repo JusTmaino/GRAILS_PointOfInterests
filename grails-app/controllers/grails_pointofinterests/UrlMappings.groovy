@@ -2,16 +2,6 @@ package grails_pointofinterests
 
 class UrlMappings {
 
-    def springSecurityService
-
-    def getLoggedUser() {
-        def principal = springSecurityService.principal
-        String username = principal.username
-        String user = springSecurityService.getCurrentUser();
-        //[user:user]
-        //respond user
-    }
-
     static mappings = {
         "/$controller/$action?/$id?(.$format)?"{
             constraints {
@@ -26,6 +16,13 @@ class UrlMappings {
             method = 'GET'
             action = "index"
         }
+
+        "/location"{
+            controller = "location"
+            method = 'GET'
+            action = "create"
+        }
+
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
