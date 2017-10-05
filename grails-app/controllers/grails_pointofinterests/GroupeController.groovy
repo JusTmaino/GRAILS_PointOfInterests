@@ -49,14 +49,19 @@ class GroupeController {
 
         groupe.save flush:true
 
-        Point point = Point.findById(params.pointID);
-        groupe.addToPoints(point).save(flush: true, failOnError: true)
-        Image img = Image.findById(params.imageID);
-        groupe.addToImages(img).save(flush: true, failOnError: true)
-        def groupepoi = new GroupePoi(groupe: groupe, point:point ).save(flush: true, failOnError: true)
+        System.out.println(params.pointID)
+        (0..params.pointID.size()-1).each {
+            int j ->
+            Point point = Point.findById(params.pointID[j]);
+            groupe.addToPoints(point).save(flush: true, failOnError: true)
+            def groupepoi = new GroupePoi(groupe: groupe, point:point ).save(flush: true, failOnError: true)
+        }
 
-        Image image = new Image(path: params.image)
-        groupe.addToImages(image)
+        (0..params.imageID.size()-1).each {
+            int j ->
+            Image img = Image.findById(params.imageID[j]);
+            groupe.addToImages(img).save(flush: true, failOnError: true)
+        }
 
         request.withFormat {
             form multipartForm {
