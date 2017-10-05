@@ -49,16 +49,6 @@ class PointController {
             Image img = Image.findById(params.imageID);
             point.addToImages(img).save(flush: true, failOnError: true)
         }
-        def f = request.getFile('file')
-
-        System.out.printf("les parame du point controler sont ==> "+f.getOriginalFilename())
-        if (f.empty) {
-            flash.message = 'file cannot be empty'
-            render(view: 'uploadForm')
-            return
-        }
-         point.addToImages(new Image(f.getOriginalFilename()))
-        f.transferTo(new File('C:/wamp64/www/'+ f.getOriginalFilename()))
 
         Groupe groupe = Groupe.findById(params.groupeID);
         groupe.addToPoints(point).save(flush: true, failOnError: true)

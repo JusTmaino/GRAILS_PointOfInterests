@@ -47,7 +47,7 @@ class ImageController {
             return
         }
 
-        f.transferTo(new File('C:/wamp64/www/'+ f.getOriginalFilename()))
+        f.transferTo(new File(grailsApplication.config.server.uploadImage+ image.filename))
         image.save flush:true
 
         request.withFormat {
