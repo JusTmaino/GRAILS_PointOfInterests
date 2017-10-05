@@ -23,57 +23,39 @@
         </div>
         <div class="col-md-6">
             <div class="panel panel-primary">
-                <div class="panel-heading">${this.groupe.name} details</div>
-                <div class="panel-body">
+                <div class="panel-heading">Images</div>
+                <div class="panel-body" style="height:390px;">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-                    <ol class="property-list point">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" style="height:300px;">
 
-                        <div class='form-group'>
-                            <label>Name </label> : <span> ${this.groupe.name}</span>
+                            <g:each in="${this.groupe.images}" var="img">
+                                <div class="item">
+                                    <a href="/image/show/${img.id}"><asset:image src="${img.filename}" max-height="100%" max-width="100%" /> </a>
+                                </div>
+                            </g:each>
                         </div>
 
-                        <div class='form-group'>
-                            <label>Description </label> : <span> ${this.groupe.description}</span>
-                        </div>
-
-                        <div class='form-group'>
-                            <label>Points d'intérêts</label>
-                            <ul>
-                                <g:each in="${this.groupe.points}" var="point">
-                                    <li><a href="/point/show/${point.id}">${point.name}</a></li>
-                                </g:each>
-                            </ul>
-                        </div>
-
-                        <div class='form-group'>
-                            <label>Images</label>
-                            <ul>
-                                <g:each in="${this.groupe.images}" var="img">
-                                    <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
-                                </g:each>
-                            </ul>
-                        </div>
-
-                    </ol>
-                </div>
-                <div class="panel-footer">
-                    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
-                        <g:form resource="${this.groupe}" method="DELETE">
-                            <fieldset class="buttons">
-                                <input class="delete btn btn-danger" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                                <g:link class="edit btn btn-primary"  action="edit" resource="${this.groupe}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                            </fieldset>
-                        </g:form>
-                    </sec:ifAnyGranted>
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Map location
+                    POIs map location
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="height:390px;">
                     <div id="map"></div>
                     <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
                     <script async defer
@@ -122,6 +104,37 @@
 
                         }
                     </script>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">${this.groupe.name} details</div>
+                <div class="panel-body">
+                    <div class='form-group'>
+                        <label>Name </label> : <span> ${this.groupe.name}</span>
+                    </div>
+                    <div class='form-group'>
+                        <label>Description </label> : <span> ${this.groupe.description}</span>
+                    </div>
+                    <div class='form-group'>
+                        <label>Points d'intérêts</label>
+                        <ul class="inline">
+                            <g:each in="${this.groupe.points}" var="point">
+                                <li><a href="/point/show/${point.id}">${point.name}</a></li>
+                            </g:each>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                        <g:form resource="${this.groupe}" method="DELETE">
+                            <fieldset class="buttons">
+                                <input class="delete btn btn-danger" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                <g:link class="edit btn btn-primary"  action="edit" resource="${this.groupe}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                            </fieldset>
+                        </g:form>
+                    </sec:ifAnyGranted>
                 </div>
             </div>
         </div>

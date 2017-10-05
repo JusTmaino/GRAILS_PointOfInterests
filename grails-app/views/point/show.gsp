@@ -4,6 +4,7 @@
     <meta name="layout" content="main" />
     <g:set var="entityName" value="${message(code: 'point.label', default: 'Point')}" />
     <title><g:message code="default.show.label" args="[entityName]" /></title>
+
 </head>
 <body>
 <!--/.title-->
@@ -21,60 +22,45 @@
                 <g:link class="create" action="create"><i class="fa fa-plus-square-o fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
             </sec:ifAnyGranted>
         </div>
+
         <div class="col-md-6">
             <div class="panel panel-primary">
-                <div class="panel-heading">${this.point.name} details</div>
-                <div class="panel-body">
+                <div class="panel-heading">Images</div>
+                <div class="panel-body" style="height:390px;">
 
-                    <ol class="property-list point">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" >
 
-                        <div class='form-group'>
-                            <label>Name </label> : <span> ${this.point.name}</span>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" style="height:300px;">
+                        <div class="item active">
                         </div>
-
-                        <div class='form-group'>
-                            <label>Description </label> : <span> ${this.point.description}</span>
+                            <g:each in="${this.point.images}" var="img">
+                                <div class="item">
+                                    <a href="/image/show/${img.id}"><asset:image src="${img.filename}" max-height="100%" max-width="100%" /> </a>
+                                </div>
+                            </g:each>
                         </div>
+                        <!-- Wrapper for slides -->
 
-                        <div class='form-group'>
-                            <label>Location</label>
-                                <ul>
-                                    <g:each in="${this.point.location}" var="location">
-                                        <li><a href="/location/show/${location.id}">${location.name}</a></li>
-                                    </g:each>
-                                </ul>
-                        </div>
-
-                        <div class='form-group'>
-                            <label>Images</label>
-                                <ul>
-                                    <g:each in="${this.point.images}" var="img">
-                                        <a href="/image/show/${img.id}">
-                                            <img src="${grailsApplication.config.server.pathServer}/${img.filename}" width="50px" height="50px"/></a>
-                                    </g:each>
-                                </ul>
-                        </div>
-
-                    </ol>
-                </div>
-                <div class="panel-footer">
-                    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
-                        <form action="/point/delete/${this.point.id}" method="post" ><input type="hidden" name="_method" value="DELETE" id="_method" />
-                            <fieldset class="box-footer">
-                                <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Are you sure to delete this point?');" />
-                                <input class="btn btn-primary" type="button" onclick="window.location='/point/edit/${this.point.id}';" value="Edit">
-                            </fieldset>
-                        </form>
-                    </sec:ifAnyGranted>
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+
+
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Map location
+                   Map location
                 </div>
-                <div class="panel-body">
+                <div class="panel-body"  style="height:390px;" >
                     <div id="map"></div>
                     <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
 
@@ -122,6 +108,31 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">${this.point.name} details</div>
+                <div class="panel-body">
+                    <div class='form-group'>
+                        <label>Name </label> : <span> ${this.point.name}</span>
+                    </div>
+
+                    <div class='form-group'>
+                        <label>Description </label> : <span> ${this.point.description}</span>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                        <form action="/point/delete/${this.point.id}" method="post" ><input type="hidden" name="_method" value="DELETE" id="_method" />
+                            <fieldset class="box-footer">
+                                <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Are you sure to delete this point?');" />
+                                <input class="btn btn-primary" type="button" onclick="window.location='/point/edit/${this.point.id}';" value="Edit">
+                            </fieldset>
+                        </form>
+                    </sec:ifAnyGranted>
+                </div>
+            </div>
     </div><!--/.row-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

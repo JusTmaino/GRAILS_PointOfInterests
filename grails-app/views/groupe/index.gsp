@@ -35,7 +35,7 @@
                 <div id="mainBoxes" class="panel-body">
 
                     <div style="height: 300px;width:100%;" id="map${groupe.id}"></div>
-
+<hr/>
                     <ul id="${groupe.id}" class="sortable_list connectedSortable">
                         <g:each in="${groupe.points}" var="point">
                             <li class="ui-state-default">
