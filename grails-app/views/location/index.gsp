@@ -9,7 +9,7 @@
 <!--/.title-->
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">LOCATIONS</h1>
+        <h3 class="page-header">LOCATIONS</h3>
     </div>
 </div>
 <!--/.title-->
@@ -18,7 +18,7 @@
 <div class="row">
     <div>
         <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
-            <g:link class="create" action="create"><i class="fa fa-plus-square-o fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+            <a href="/location/create"><i class="fa fa-plus-square-o fa-2x" style="padding-left: 20px;padding-bottom: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></a>
         </sec:ifAnyGranted>
     </div>
     <div class="col-lg-12">

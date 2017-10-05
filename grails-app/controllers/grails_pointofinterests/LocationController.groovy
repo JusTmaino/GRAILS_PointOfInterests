@@ -51,18 +51,34 @@ class LocationController {
         System.out.println(createViaPoint);
         if(createViaPoint)
         {
-            Point point = Point.findById(Integer.parseInt(pointID))
-            point.addToLocation(location).save(flush: true, failOnError: true)
-            System.out.println("location Created");
-            //redirect(uri: "point/edit/"+pointID)
-        }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'location.label', default: 'Location'), location.id])
-                redirect location
+            if(pointID!="") {
+                Point point = Point.findById(Integer.parseInt(pointID))
+                point.addToLocation(location).save(flush: true, failOnError: true)
+                System.out.println("location Created");
+                System.out.println("redirection to EDIT point")
+                request.withFormat {
+                    form multipartForm {
+                        flash.message = message(code: 'default.updated.message', args: [message(code: 'point.label', default: 'Point'), point.id])
+                        redirect point
+                    }
+                    '*'{ respond point, [status: OK] }
+                }
             }
-            '*' { respond location, [status: CREATED] }
+            else
+            {
+                System.out.println("redirection to CREATE point")
+                redirect(controller: 'point', action:'index')
+            }
+        }
+        else {
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.created.message', args: [message(code: 'location.label', default: 'Location'), location.id])
+                    redirect location
+                }
+                '*' { respond location, [status: CREATED] }
+            }
         }
     }
 
