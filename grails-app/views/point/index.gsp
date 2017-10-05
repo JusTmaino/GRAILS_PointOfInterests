@@ -31,34 +31,8 @@
                     <div class="box">
                     <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="points" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Location</th>
-                                    <th>Images</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <g:each in="${customPointsList}" var="point">
-                                    <tr>
-                                        <td><a href="/point/show/${point.id}">${point.name}</a></td>
-                                        <td>${point.description}</td>
-                                        <td>
-                                            <g:each in="${point.location}" var="loc">
-                                                <li><a href="/location/show/${loc.id}">${loc.name}</a></li>
-                                            </g:each>
-                                        </td>
-                                        <td>
-                                            <g:each in="${point.images}" var="img">
-                                                <a href="/image/show/${img.id}"><img src="${grailsApplication.config.server.pathServer}/${img.filename}" height="70px" width="70px"/></a>
-                                            </g:each>
-                                        </td>
-                                    </tr>
-                                </g:each>
-                                </tbody>
-                            </table>
+                        <div style="height: 500px;width:100%;" id="map"></div>
+
                         </div>
                         <!-- /.box-body -->
                     </div>
@@ -67,6 +41,61 @@
         </div>
     </div>
     <!-- /.form-->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
+
+<script type="text/javascript">
+
+    function initMap() {
+
+        <g:each in="${customPointsList}" var="point">
+
+        var localisation = {
+            info: '<strong><a href="/point/show/${point.id}">${point.name}</a></strong><br>\
+                        <g:each in="${point.images}" var="image">\n' +
+            '                </g:each>',
+        };
+
+        var locations = [
+            [localisation.info, ${point.location.latitude[0]}, ${point.location.longitude[0]}],
+        ];
+
+        var options;
+
+        options = {
+            zoom: 2,
+            center: new google.maps.LatLng(${point.location.latitude[0]}, ${point.location.longitude[0]}),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var map = new google.maps.Map(document.getElementById('map'),options);
+        console.log(map);
+
+        var infowindow = new google.maps.InfoWindow({});
+
+        var marker, i;
+        <g:each in="${customPointsList}" var="pt">
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(${pt.location.latitude[0]},
+                    ${pt.location.longitude[0]}),
+                map: map,
+            });
+
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+
+        </g:each>
+        </g:each>
+        //google.maps.event.addDomListener(window, "load", initialize());
+
+    }
+</script>
 
 </body>
 </html>

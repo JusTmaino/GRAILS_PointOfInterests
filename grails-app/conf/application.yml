@@ -100,7 +100,7 @@ dataSource:
     password: ''
 server:
        uploadImage: 'C:\wamp64\www\'
-       pathServer: 'http://localhost:81'
+       pathServer: 'http://localhost:80'
 environments:
     development:
         dataSource:

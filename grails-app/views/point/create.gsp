@@ -110,7 +110,7 @@
 
                                 <div class="form-group">
                                     <label>Images</label>
-                                    <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${grails_pointofinterests.Image.all}"  ></g:select>
+                                    <g:select type="file" name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${grails_pointofinterests.Image.all}"  ></g:select>
                                     <a href="/image/create?point.id=${this.point.id}">Add Image</a>
                                 </div>
 
@@ -119,13 +119,16 @@
                                     <g:select name="groupeID" class="form-control" required="" id="groupe" optionKey="id" optionValue="name" from="${grails_pointofinterests.Groupe.all}"  ></g:select>
                                     <a href="/groupe/create?point.id=${this.point.id}">Add Groupe</a>
                                 </div>
+                                <input id="fileSelecte" type="file" name="file" />
                             </fieldset>
 
                         <fieldset class="box-footer">
                             <input class="save btn btn-primary" name="create" type="submit" value="Create" id="create" />
                         </fieldset>
-
                          </form>
+                    <!--g:uploadForm name="upload" action="upload" method="POST">
+                        <input type="file" name="file" /-->
+                    <!--/g:uploadForm-->
                     </div>
                 </div>
             </div>

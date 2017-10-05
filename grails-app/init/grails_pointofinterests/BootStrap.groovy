@@ -21,16 +21,16 @@ class BootStrap {
 
         def img = new Image("stade-de-france.jpg")
         def img2 = new Image("visiter-de-stade.jpg")
-        
+
         (1..3).each {
             int i ->
                 def groupe = new Groupe(name: 'groupe ' + i, description: 'description ' + i).save(flush: true, failOnError: true)
-
+                    
                 (1..5).each {
                     int j ->
 
                         def point = new Point(name: "POI " +i+""+j, description: 'description ' +i+""+j).save(flush: true, failOnError: true)
-                        point.addToLocation(new Location(name:"test",latitude:39 + (j*3 + 10) ,longitude:29 + (j*2 + 20)).save(flush: true, failOnError: true))
+                        point.addToLocation(new Location(name:"test",latitude: (Math.random()*10*(j+i)) ,longitude: (Math.random()*(j+i))).save(flush: true, failOnError: true))
 
                         point.addToImages(img).save(flush: true, failOnError: true);
                         point.addToImages(img2).save(flush: true, failOnError: true);
