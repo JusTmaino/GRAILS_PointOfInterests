@@ -11,7 +11,7 @@
         <!--/.title-->
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header">USERS</h3>
+                <h3 class="page-header">USER MANAGER</h3>
             </div>
         </div>
         <!--/.title-->

@@ -29,21 +29,23 @@
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" style="height:300px;">
-
+                            <div class="item active">
+                            </div>
                             <g:each in="${this.groupe.images}" var="img">
                                 <div class="item">
-                                    <a href="/image/show/${img.id}"><asset:image src="${img.filename}" max-height="100%" max-width="100%" /> </a>
+                                    <a href="/image/show/${img.id}">
+                                        <img src="${grailsApplication.config.server.pathServer}/${image.filename}"/>
+                                    </a>
                                 </div>
                             </g:each>
                         </div>
+                        <!-- Wrapper for slides -->
 
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
                             <span class="sr-only">Next</span>
                         </a>
                     </div>

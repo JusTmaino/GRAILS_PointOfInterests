@@ -32,11 +32,13 @@
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" style="height:300px;">
-                        <div class="item active">
-                        </div>
+                            <div class="item active">
+                            </div>
                             <g:each in="${this.point.images}" var="img">
                                 <div class="item">
-                                    <a href="/image/show/${img.id}"><asset:image src="${img.filename}" max-height="100%" max-width="100%" /> </a>
+                                    <a href="/image/show/${img.id}">
+                                        <img src="${grailsApplication.config.server.pathServer}/${img.filename}"/>
+                                    </a>
                                 </div>
                             </g:each>
                         </div>
@@ -103,8 +105,8 @@
                             }
                         }
                     </script>
-                    <div><label>Latitude</label><input id="lat" value="${this.point.location[0].latitude}" type="text" name="latitude"></div>
-                    <div><label>Longitude</label><input id="long" value="${this.point.location[0].longitude}" type="text" name="longitude"></div>
+                    <div><label>Latitude : </label><span id="lat" type="text" name="latitude"> ${this.point.location[0].latitude}</span></div>
+                    <div><label>Longitude : </label><span id="long" type="text" name="longitude"> ${this.point.location[0].longitude}</span></div>
                 </div>
             </div>
         </div>
@@ -133,6 +135,5 @@
                 </div>
             </div>
     </div><!--/.row-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -35,12 +35,6 @@
                                     <input type="text" class="form-control" name="password" placeholder="Enter your Password" required="" id="password" />
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Image</label>
-                                    <input type="file" id="exampleInputFile">
-
-                                    <p class="help-block">Upload your image here.</p>
-                                </div>
                             </fieldset>
 
                             <fieldset class="box-footer">
