@@ -1,7 +1,11 @@
 package grails_pointofinterests
 
-class BootStrap {
+import grails.util.Environment;
+import org.apache.commons.io.FileUtils;
 
+
+class BootStrap {
+    def grailsApplication
     def init = { servletContext ->
 
         // Role
@@ -21,6 +25,14 @@ class BootStrap {
 
         def img = new Image("stade-de-france.jpg")
         def img2 = new Image("visiter-de-stade.jpg")
+
+        String sourceDir = System.getProperty("user.dir")+"\\grails-app\\assets\\images"
+    //    String destinationDir = "${grailsApplication.config.server.pathServer}"
+
+        def destinationDir = grailsApplication.config.server.uploadImage
+        def f = new File(sourceDir)
+        def f2 = new File(destinationDir)
+        FileUtils.copyDirectory(f,f2)
 
         (1..3).each {
             int i ->
