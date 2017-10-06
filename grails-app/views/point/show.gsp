@@ -31,15 +31,19 @@
                     <div id="myCarousel" class="carousel slide" data-ride="carousel" >
 
                         <!-- Wrapper for slides -->
-                        <div class="carousel-inner" style="height:300px;">
-                            <div class="item active">
-                            </div>
+                        <div class="carousel-inner">
                             <g:each in="${this.point.images}" var="img">
-                                <div class="item">
-                                    <a href="/image/show/${img.id}">
-                                        <img src="${grailsApplication.config.server.pathServer}/${img.filename}"/>
-                                    </a>
-                                </div>
+                                <g:if test="${this.point.images.size() > 0 }">
+                                    <g:if test="${img.id == this.point.images[0].id}">
+                                        <div class="item active">
+                                            <a href="/image/show/${img.id}"><img src="${grailsApplication.config.server.pathServer}/${img.filename}"/></a></div>
+                                    </g:if>
+                                    <g:else>
+                                        <div class="item">
+                                            <a href="/image/show/${img.id}"><img src="${grailsApplication.config.server.pathServer}/${img.filename}"/></a>
+                                        </div>
+                                    </g:else>
+                                </g:if>
                             </g:each>
                         </div>
                         <!-- Wrapper for slides -->

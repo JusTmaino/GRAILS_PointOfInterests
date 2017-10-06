@@ -25,18 +25,22 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Images</div>
                 <div class="panel-body" style="height:390px;">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" >
 
                         <!-- Wrapper for slides -->
-                        <div class="carousel-inner" style="height:300px;">
-                            <div class="item active">
-                            </div>
+                        <div class="carousel-inner">
                             <g:each in="${this.groupe.images}" var="img">
-                                <div class="item">
-                                    <a href="/image/show/${img.id}">
-                                        <img src="${grailsApplication.config.server.pathServer}/${image.filename}"/>
-                                    </a>
-                                </div>
+                                <g:if test="${this.groupe.images.size() > 0 }">
+                                    <g:if test="${img.id == this.groupe.images[0].id}">
+                                        <div class="item active">
+                                            <a href="/image/show/${img.id}"><img src="${grailsApplication.config.server.pathServer}/${img.filename}"/></a></div>
+                                    </g:if>
+                                    <g:else>
+                                        <div class="item">
+                                            <a href="/image/show/${img.id}"><img src="${grailsApplication.config.server.pathServer}/${img.filename}"/></a>
+                                        </div>
+                                    </g:else>
+                                </g:if>
                             </g:each>
                         </div>
                         <!-- Wrapper for slides -->
@@ -111,11 +115,8 @@
         </div>
         <div class="col-lg-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">${this.groupe.name} details</div>
+                <div class="panel-heading">${this.groupe.name}</div>
                 <div class="panel-body">
-                    <div class='form-group'>
-                        <label>Name </label> : <span> ${this.groupe.name}</span>
-                    </div>
                     <div class='form-group'>
                         <label>Description </label> : <span> ${this.groupe.description}</span>
                     </div>

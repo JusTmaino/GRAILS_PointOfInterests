@@ -39,7 +39,7 @@
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/"><span>PointsOfInterests</span>Platform</a>
+                <a class="navbar-brand" href="/"><span>AquaOfInterests</span>Platform</a>
                 <ul class="nav navbar-top-links navbar-right">
                     <sec:ifLoggedIn>
                     <li><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
