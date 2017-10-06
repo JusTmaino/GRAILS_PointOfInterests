@@ -27,7 +27,6 @@ class BootStrap {
         def img2 = new Image("visiter-de-stade.jpg")
 
         String sourceDir = System.getProperty("user.dir")+"\\grails-app\\assets\\images"
-    //    String destinationDir = "${grailsApplication.config.server.pathServer}"
 
         def destinationDir = grailsApplication.config.server.uploadImage
         def f = new File(sourceDir)
