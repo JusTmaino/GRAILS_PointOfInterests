@@ -42,15 +42,11 @@ class ImageController {
         image.getFilename()
         if(f != null) {
             if (f.empty) {
-               // f = new File(System.getProperty("user.dir")+"\\grails-app\\assets\\images\\"+ image.filename)
-                System.out.printf("les parame du point controler sont ==> " +   f.get)
                 flash.message = 'file cannot be empty'
-
-               // render(view: 'create')
-              //  return
             }
             f.transferTo(new File(grailsApplication.config.server.uploadImage + image.filename))
         }
+
         image.save flush:true
 
         request.withFormat {

@@ -34,63 +34,6 @@
                             </ul>
                         </g:hasErrors>
                     <form action="/point/save" method="post" enctype="multipart/form-data" >
-                        <label>Géolocalisation</label>
-                        <div id="map"></div>
-                        <script async defer
-                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
-                        <script type="text/javascript">
-                            function initMap() {
-
-                                var broadway = {
-                                    info: '<strong>${this.point.name}</strong><br>\
-                                                     ',
-                                                        lat: 39.0,
-                                                        long: 30.0
-                            };
-
-                            var locations = [
-                                [broadway.info, broadway.lat, broadway.long, 0],
-                            ];
-
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 4,
-                                center: new google.maps.LatLng(39.0, 30.0),
-                                            mapTypeId: google.maps.MapTypeId.ROADMAP
-                                        });
-
-                                        var infowindow = new google.maps.InfoWindow({});
-
-                                        var marker, i;
-
-                                        for (i = 0; i < locations.length; i++) {
-                                            marker = new google.maps.Marker({
-                                                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                map: map,
-                                                draggable:true
-                                            });
-
-                                            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                                                return function () {
-                                                    infowindow.setContent(locations[i][0]);
-                                                    infowindow.open(map, marker);
-                                                }
-                                            })(marker, i));
-                                        }
-                                        google.maps.event.addListener(marker, 'dragend', function (event) {
-                                            document.getElementById("lat").value = event.latLng.lat();
-                                            document.getElementById("long").value = event.latLng.lng();
-                                        });
-                                    }
-                                    google.maps.event.addDomListener(window, "load", initialize());
-
-                                    function bugfix() {
-                                        document.getElementById("lat").value = document.getElementById("lat").value.replace(".", ",");
-                                        document.getElementById("long").value = document.getElementById("lat").value.replace(".", ",");
-                                    }
-
-
-                            </script>
-
                             <fieldset class="form">
 
                                 <div class="form-group">
@@ -119,7 +62,6 @@
                                     <g:select name="groupeID" class="form-control" required="" id="groupe" optionKey="id" optionValue="name" from="${grails_pointofinterests.Groupe.all}"  ></g:select>
                                     <a href="/groupe/create?point.id=${this.point.id}">Add Groupe</a>
                                 </div>
-                                <input id="fileSelecte" type="file" name="file" />
                             </fieldset>
 
                         <fieldset class="box-footer">

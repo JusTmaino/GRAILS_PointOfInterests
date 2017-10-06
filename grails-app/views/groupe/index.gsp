@@ -57,14 +57,14 @@
 <script type="text/javascript">
 
     function initMap() {
-
         <g:each in="${groupeList}" var="groupe">
-
+        <g:each in="${groupe.points}" var="point">
         var localisation = {
-            info: '<strong>${groupe.points.name}</strong><br>\
+            info: '<strong><a href="/point/show/${point.id}">${point.name}</strong><br>\
                         <g:each in="${groupe.points.images}" var="image">\n' +
             '                </g:each>',
         };
+        </g:each>
 
         var locations = [
             [localisation.info, ${groupe.points.location[0].latitude[0]}, ${groupe.points.location[0].longitude[0]}],
