@@ -76,7 +76,7 @@
                             };
 
                             var locations = [
-                                [localisation.info, ${this.groupe.points.location[0].latitude[0]} , ${this.groupe.points.location[0].longitude[0]}],
+                                [localisation.info, ${this.groupe.points.location.latitude[0]} , ${this.groupe.points.location.longitude[0]}],
                             ];
                             <g:each in="${this.groupe.points}" var="point">
                             var map = new google.maps.Map(document.getElementById('map'), {

@@ -59,6 +59,10 @@ class PointController {
 
         Image image = new Image(path: params.image)
         point.addToImages(image)
+        for (Groupe gr : point.groupes) {
+            point.addToGroupes(gr)
+
+        }
 
         request.withFormat {
             form multipartForm {

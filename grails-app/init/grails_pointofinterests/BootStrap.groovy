@@ -59,6 +59,7 @@ class BootStrap {
             g1point1.addToImages(img1_point1).save(flush: true, failOnError: true)
             g1point1.addToImages(img2_point1).save(flush: true, failOnError: true)
             groupe1.addToPoints(g1point1).save(flush: true, failOnError: true)
+            g1point1.addToGroupes(groupe1)
             def gp11 = new GroupePoi(groupe: groupe1, point:g1point1 ).save(flush: true, failOnError: true)
 
             // POI 2 : Cascade de Gairaut
@@ -71,6 +72,7 @@ class BootStrap {
             g1point2.addToImages(img1_g1point2).save(flush: true, failOnError: true)
             g1point2.addToImages(img2_g1point2).save(flush: true, failOnError: true)
             groupe1.addToPoints(g1point2).save(flush: true, failOnError: true)
+            g1point2.addToGroupes(groupe1)
             def gp12 = new GroupePoi(groupe: groupe1, point:g1point2 ).save(flush: true, failOnError: true)
 
             // POI 3 : Lac d'Annecy
@@ -86,6 +88,7 @@ class BootStrap {
             g1point3.addToImages(img2_g1point3).save(flush: true, failOnError: true)
             g1point3.addToImages(img3_g1point3).save(flush: true, failOnError: true)
             groupe1.addToPoints(g1point3).save(flush: true, failOnError: true)
+            g1point3.addToGroupes(groupe1)
             def gp13 = new GroupePoi(groupe: groupe1, point:g1point3 ).save(flush: true, failOnError: true)
 
             // POI 4 : Bassin d'Arcachon
@@ -100,6 +103,7 @@ class BootStrap {
             g1point4.addToImages(img2_g1point4).save(flush: true, failOnError: true)
             g1point4.addToImages(img3_g1point4).save(flush: true, failOnError: true)
             groupe1.addToPoints(g1point4).save(flush: true, failOnError: true)
+            g1point4.addToGroupes(groupe1)
             def gp14 = new GroupePoi(groupe: groupe1, point:g1point4 ).save(flush: true, failOnError: true)
 
             // POI 5 : Centre thermale Vichy
@@ -114,6 +118,7 @@ class BootStrap {
             g1point5.addToImages(img2_g1point5).save(flush: true, failOnError: true)
             g1point5.addToImages(img3_g1point5).save(flush: true, failOnError: true)
             groupe1.addToPoints(g1point5).save(flush: true, failOnError: true)
+            g1point5.addToGroupes(groupe1)
             def gp15 = new GroupePoi(groupe: groupe1, point:g1point5 ).save(flush: true, failOnError: true)
 
 

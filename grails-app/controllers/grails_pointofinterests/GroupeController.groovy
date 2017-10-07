@@ -10,7 +10,7 @@ class GroupeController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        //System.out.println(params.pointID);
+
         if( (params.oldGroupeID != null) && (params.newGroupeID!= null) && (params.pointID!= null) )
         {
             Point point = Point.findById(params.pointID)
@@ -27,10 +27,11 @@ class GroupeController {
     }
 
     def create() {
+        System.out.println("coucouuuuu===>"+params.pointID)
         List<Point> pointList = Point.findAll()
         List<Image> imageList = Image.findAll()
         [customPointList:pointList,customimageList:imageList]
-        //respond new Groupe(params)
+        // respond new Groupe(params)
     }
 
     @Transactional
@@ -49,18 +50,17 @@ class GroupeController {
 
         groupe.save flush:true
 
-        System.out.println(params.pointID)
         (0..params.pointID.size()-1).each {
             int j ->
-            Point point = Point.findById(params.pointID[j]);
-            groupe.addToPoints(point).save(flush: true, failOnError: true)
-            def groupepoi = new GroupePoi(groupe: groupe, point:point ).save(flush: true, failOnError: true)
+                Point point = Point.findById(params.pointID[j]);
+                groupe.addToPoints(point).save(flush: true, failOnError: true)
+                def groupepoi = new GroupePoi(groupe: groupe, point:point ).save(flush: true, failOnError: true)
         }
 
         (0..params.imageID.size()-1).each {
             int j ->
-            Image img = Image.findById(params.imageID[j]);
-            groupe.addToImages(img).save(flush: true, failOnError: true)
+                Image img = Image.findById(params.imageID[j]);
+                groupe.addToImages(img).save(flush: true, failOnError: true)
         }
 
         request.withFormat {
@@ -76,7 +76,7 @@ class GroupeController {
         List<Point> pointList = Point.findAll()
         List<Image> imageList = Image.findAll()
         [customGroupe:groupe,customPointList:pointList,customimageList:imageList]
-        //respond groupe
+       // respond groupe
     }
 
     @Transactional
@@ -94,7 +94,6 @@ class GroupeController {
         }
 
         groupe.save flush:true
-
         Point point = Point.findById(params.pointID);
         groupe.addToPoints(point).save(flush: true, failOnError: true)
         Image img = Image.findById(params.imageID);
@@ -103,8 +102,6 @@ class GroupeController {
 
         Image image = new Image(path: params.image)
         //groupe.addToImages(image)
-
-
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'groupe.label', default: 'Groupe'), groupe.id])
@@ -122,7 +119,6 @@ class GroupeController {
             notFound()
             return
         }
-
         int pointSize = groupe.points.size();
         //System.out.println("pointSize : "+pointSize)
         (pointSize-1..0).each {

@@ -5,7 +5,7 @@ class Point {
     String description;
     static beLongsTo = [Groupe];
 
-    static hasMany = [images:Image,location:Location]
+    static hasMany = [images:Image,location:Location,groupes:Groupe]
 
     //static hasOne = [location:Location]
 
