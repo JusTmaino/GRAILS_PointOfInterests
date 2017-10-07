@@ -63,7 +63,7 @@
         var options;
 
         options = {
-            zoom: 1,
+            zoom: 2,
             center: new google.maps.LatLng(${point.location.latitude[0]}, ${point.location.longitude[0]}),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
@@ -85,7 +85,7 @@
 
             google.maps.event.addListener(marker, 'click', (function (marker, i) {
                 return function () {
-                    infowindow.setContent(locations[i][0]);
+                    infowindow.setContent('<strong><a href="/point/show/${pt.id}">${pt.name}</strong>');
                     infowindow.open(map, marker);
                 }
             })(marker, i));
