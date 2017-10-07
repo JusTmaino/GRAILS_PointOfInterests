@@ -67,7 +67,7 @@
                 <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
 
                 <script type="text/javascript">
-                    if("${this.point.locations[0]}" != [] ) {
+                    if("${this.point.location[0]}" != [] ) {
                         function initMap() {
                             var localisation = {
                                 info: '<strong style="color:black">${this.point.name}</strong><br>\
@@ -76,27 +76,27 @@
                                 '   </g:each>',
                             };
                             var locations = [
-                                [localisation.info, "${this.point.locations[0].latitude}" , "${this.point.locations[0].longitude}"],
+                                [localisation.info, "${this.point.location[0].latitude}" , "${this.point.location[0].longitude}"],
                             ];
 
                             var map = new google.maps.Map(document.getElementById('map'), {
                                 zoom: 4,
-                                center: new google.maps.LatLng(${this.point.locations[0].latitude},${this.point.locations[0].longitude}),
+                                center: new google.maps.LatLng(${this.point.location[0].latitude},${this.point.location[0].longitude}),
                                 mapTypeId: google.maps.MapTypeId.ROADMAP
                             });
                             var infowindow = new google.maps.InfoWindow({});
 
                             var marker, i;
 
-                            for (i = 0; i < locations.length; i++) {
+                            for (i = 0; i < location.length; i++) {
                                 marker = new google.maps.Marker({
-                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                    position: new google.maps.LatLng(location[i][1], location[i][2]),
                                     map: map,
                                 });
 
                                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                                     return function () {
-                                        infowindow.setContent(locations[i][0]);
+                                        infowindow.setContent(location[i][0]);
                                         infowindow.open(map, marker);
                                     }
                                 })(marker, i));
@@ -105,8 +105,8 @@
                         }
                     }
                 </script>
-                <div><label>Latitude : </label><span id="lat" type="text" name="latitude"> ${this.point.locations[0].latitude}</span></div>
-                <div><label>Longitude : </label><span id="long" type="text" name="longitude"> ${this.point.locations[0].longitude}</span></div>
+                <div><label>Latitude : </label><span id="lat" type="text" name="latitude"> ${this.point.location[0].latitude}</span></div>
+                <div><label>Longitude : </label><span id="long" type="text" name="longitude"> ${this.point.location[0].longitude}</span></div>
             </div>
         </div>
     </div>
