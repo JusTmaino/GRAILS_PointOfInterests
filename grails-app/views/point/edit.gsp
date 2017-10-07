@@ -11,7 +11,7 @@
 <!--/.title-->
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">POINTS OF INTERESTS</h1>
+        <h3 class="page-header">POINTS OF INTERESTS</h3>
     </div>
 </div>
 <!--/.title-->
@@ -34,63 +34,66 @@
                     <input type="hidden" name="version" value="${customPoint.id}" id="version" />
 
                     <script language="JavaScript" type="text/javascript">
-                        function HandleBrowseClick()
-                        {
-                            var fileinput = document.getElementById("browse");
-                            fileinput.click();
-                        }
-                        function Handlechange()
-                        {
-                            var fileinput = document.getElementById("browse");
-                            var textinput = document.getElementById("filename");
-                            textinput.value = fileinput.value;
-                        }
-                    </script>
+                            function HandleBrowseClick()
+                            {
+                                var fileinput = document.getElementById("browse");
+                                fileinput.click();
+                            }
+                            function Handlechange()
+                            {
+                                var fileinput = document.getElementById("browse");
+                                var textinput = document.getElementById("filename");
+                                textinput.value = fileinput.value;
+                            }
+                        </script>
 
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input class="form-control" value="${customPoint.name}" type="text" name="name" required="" id="nom" >
-                    </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input class="form-control" value="${customPoint.name}" type="text" name="name" required="" id="nom" >
+                        </div>
 
-                    <div class="form-group">
-                        <label>Description</label>
-                        <input class="form-control" value="${customPoint.description}" type="text" name="description" required="" id="desc" >
-                    </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input class="form-control" value="${customPoint.description}" type="text" name="description" required="" id="desc" >
+                        </div>
 
-                    <div class='form-group'>
-                        <label for='point'>Location</label>
-                        <ul>
-                            <g:each in="${customPoint.locations}" var="location">
-                                <li><a href="/location/show/${location.id}">${location.name}</a></li>
-                            </g:each>
-                        </ul>
-                        <g:select name="locationID" class="form-control" required="" id="point" optionKey="id" optionValue="name" from="${customLocationList}"  ></g:select>
-                        <a href="/location/create?point.id=${customPoint.id}">Add Location</a>
+                        <div class='form-group'>
+                            <label for='point'>Location</label>
+                            <ul style="list-style-type:none;">
+                                <g:each in="${customPoint.location}" var="location">
+                                    <li>
+                                        <g:link action="removeLocation" controller="point" params='[locationID : "${location.id}",pointID : "${customPoint.id}"]' ><i class="fa fa-times" style="color: red;" aria-hidden="true"></i></g:link>
+                                        <a href="/location/show/${location.id}" style="padding-left: 10px;">${location.name}</a>
+                                    </li>
+                                </g:each>
+                            </ul>
+                            <g:select multiple="multiple" name="locationID" class="form-control" required="" id="point" optionKey="id" optionValue="name" from="${customLocationList}"  ></g:select>
+                            <a href="/location/create?point.id=${customPoint.id}">Add Location</a>
 
-                    </div>
+                        </div>
 
-                    <div class='form-group'>
-                        <label for='image'>Images</label>
-                        <ul>
-                            <g:each in="${customPoint.images}" var="img">
-                                <a href="/image/show/${img.id}">
-                                    <img src="${grailsApplication.config.server.pathServer}/${img.filename}" width="50px" height="50px"/></a>
-                            </g:each>
-                        </ul>
-                        <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${customImageList}"  ></g:select>
-                        <a href="/image/create?point.id=${customPoint.id}">Add Image</a>
-                    </div>
+                        <div class='form-group'>
+                            <label for='image'>Images</label>
+                            <ul style="list-style-type:none;">
+                                <g:each in="${customPoint.images}" var="img">
+                                    <a href="/image/show/${img.id}">
+                                        <img src="${grailsApplication.config.server.pathServer}/${img.filename}" width="50px" height="50px"/></a>
+                                </g:each>
+                            </ul>
+                            <g:select multiple="multiple" name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${customImageList}"  ></g:select>
+                            <a href="/image/create?point.id=${customPoint.id}">Add Image</a>
+                        </div>
 
+                </div>
+                    <fieldset class="box-footer">
+                        <input class="save btn btn-primary" type="submit" value="Update" />
+                    </fieldset>
+                </form>
+                </div>
             </div>
-            <fieldset class="box-footer">
-                <input class="save btn btn-primary" type="submit" value="Update" />
-            </fieldset>
-        </form>
         </div>
-    </div>
-</div>
 
-</div>
+    </div>
 </div>
 <!-- /.form-->
 
