@@ -56,13 +56,7 @@ class LocationController {
                 point.addToLocation(location).save(flush: true, failOnError: true)
                 System.out.println("location Created");
                 System.out.println("redirection to EDIT point")
-                request.withFormat {
-                    form multipartForm {
-                        flash.message = message(code: 'default.updated.message', args: [message(code: 'point.label', default: 'Point'), point.id])
-                        redirect point
-                    }
-                    '*'{ respond point, [status: OK] }
-                }
+                redirect(controller: 'point', action:'edit' , id: point.id)
             }
             else
             {
