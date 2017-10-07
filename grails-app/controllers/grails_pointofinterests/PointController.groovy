@@ -74,6 +74,14 @@ class PointController {
     def edit(Point point) {
         def locationList = Location.findAll()
         def imageList = Image.findAll()
+        (0..point.location.size()-1).each {
+            int i ->
+                locationList.remove(point.location[i])
+        }
+        (0..point.images.size()-1).each {
+            int i ->
+                imageList.remove(point.images[i])
+        }
         [customPoint:point,customLocationList:locationList,customImageList:imageList]
         //respond point
     }
@@ -93,11 +101,18 @@ class PointController {
         }
 
         point.save flush:true
+        
+        (0..params.locationID.size()-1).each {
+            int j ->
+                Location location = Location.findById(params.locationID[j]);
+                point.addToLocation(location).save(flush: true, failOnError: true)
+        }
 
-        Location location = Location.findById(params.locationID);
-        point.addToLocation(location).save(flush: true, failOnError: true)
-        Image img = Image.findById(params.imageID);
-        point.addToImages(img).save(flush: true, failOnError: true)
+        (0..params.imageID.size()-1).each {
+            int j ->
+                Image img = Image.findById(params.imageID[j]);
+                point.addToImages(img).save(flush: true, failOnError: true)
+        }
 
         request.withFormat {
             form multipartForm {
