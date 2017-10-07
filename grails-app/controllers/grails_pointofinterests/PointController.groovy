@@ -176,6 +176,14 @@ class PointController {
         }
     }
 
+    def removeLocation()
+    {
+        System.out.println("locationID : "+params.locationID);
+        Point point = Point.findById(params.pointID)
+        point.removeFromLocation(Location.findById(params.locationID))
+        redirect(controller: 'point', action:'edit' , id: params.pointID)
+    }
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {

@@ -23,7 +23,7 @@ class LocationController {
     }
 
     def create() {
-        System.out.println(params.point);
+        //System.out.println(params.point);
         if(params.point!= null)
         {
             createViaPoint = true
@@ -48,7 +48,7 @@ class LocationController {
 
         location.save flush:true
 
-        System.out.println(createViaPoint);
+        //System.out.println(createViaPoint);
         if(createViaPoint)
         {
             if(pointID!="") {

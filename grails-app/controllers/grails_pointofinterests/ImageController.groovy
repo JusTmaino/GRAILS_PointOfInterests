@@ -8,6 +8,8 @@ class ImageController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     // ImagesSer imageServ
+    boolean createViaPoint = false
+    String pointID
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -21,6 +23,12 @@ class ImageController {
     }
 
     def create() {
+        //System.out.println(params.point);
+        if(params.point!= null)
+        {
+            createViaPoint = true
+            pointID = params.point.id
+        }
         respond new Image(params)
     }
 
@@ -49,12 +57,31 @@ class ImageController {
 
         image.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'image.label', default: 'Image'), image.id])
-                redirect image
+        //System.out.println(createViaPoint);
+        if(createViaPoint)
+        {
+            if(pointID!="") {
+                Point point = Point.findById(Integer.parseInt(pointID))
+                point.addToImages(image).save(flush: true, failOnError: true)
+                //System.out.println("image Created");
+                System.out.println("redirection to EDIT point")
+                redirect(controller: 'point', action:'edit' , id: point.id)
             }
-            '*' { respond image, [status: CREATED] }
+            else
+            {
+                System.out.println("redirection to CREATE point")
+                redirect(controller: 'point', action:'create')
+            }
+        }
+        else {
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.created.message', args: [message(code: 'image.label', default: 'Image'), image.id])
+                    redirect image
+                }
+                '*' { respond image, [status: CREATED] }
+            }
         }
     }
 

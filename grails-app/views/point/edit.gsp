@@ -11,7 +11,7 @@
 <!--/.title-->
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">POINTS OF INTERESTS</h1>
+        <h3 class="page-header">POINTS OF INTERESTS</h3>
     </div>
 </div>
 <!--/.title-->
@@ -59,9 +59,12 @@
 
                         <div class='form-group'>
                             <label for='point'>Location</label>
-                            <ul>
+                            <ul style="list-style-type:none;">
                                 <g:each in="${customPoint.location}" var="location">
-                                    <li><a href="/location/show/${location.id}">${location.name}</a></li>
+                                    <li>
+                                        <g:link action="removeLocation" controller="point" params='[locationID : "${location.id}",pointID : "${customPoint.id}"]' ><i class="fa fa-times" style="color: red;" aria-hidden="true"></i></g:link>
+                                        <a href="/location/show/${location.id}" style="padding-left: 10px;">${location.name}</a>
+                                    </li>
                                 </g:each>
                             </ul>
                             <g:select multiple="multiple" name="locationID" class="form-control" required="" id="point" optionKey="id" optionValue="name" from="${customLocationList}"  ></g:select>
@@ -71,7 +74,7 @@
 
                         <div class='form-group'>
                             <label for='image'>Images</label>
-                            <ul>
+                            <ul style="list-style-type:none;">
                                 <g:each in="${customPoint.images}" var="img">
                                     <a href="/image/show/${img.id}">
                                         <img src="${grailsApplication.config.server.pathServer}/${img.filename}" width="50px" height="50px"/></a>

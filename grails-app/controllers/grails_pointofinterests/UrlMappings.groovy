@@ -23,6 +23,12 @@ class UrlMappings {
             action = "create"
         }
 
+        "/image"{
+            controller = "image"
+            method = 'GET'
+            action = "create"
+        }
+
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
