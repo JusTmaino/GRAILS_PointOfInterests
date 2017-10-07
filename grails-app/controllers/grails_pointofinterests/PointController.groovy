@@ -181,6 +181,7 @@ class PointController {
         System.out.println("locationID : "+params.locationID);
         Point point = Point.findById(params.pointID)
         point.removeFromLocation(Location.findById(params.locationID))
+        point.save flush:true
         redirect(controller: 'point', action:'edit' , id: params.pointID)
     }
 
