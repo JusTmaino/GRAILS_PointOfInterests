@@ -12,7 +12,7 @@
     <!--/.title-->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">POINTS OF INTERESTS</h1>
+            <h3 class="page-header">POINTS OF INTERESTS</h3>
         </div>
     </div>
     <!--/.title-->
@@ -63,7 +63,7 @@
         var options;
 
         options = {
-            zoom: 2,
+            zoom: 1,
             center: new google.maps.LatLng(${point.location.latitude[0]}, ${point.location.longitude[0]}),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }

@@ -18,8 +18,8 @@ class PointController {
     }
 
     def show(Point point) {
-        //Point
-        respond point
+        [point:point,pointLocations:point.getLocation()]
+        //respond point
     }
 
     def create() {
@@ -42,12 +42,16 @@ class PointController {
 
         point.save flush:true
 
-        Location location = Location.findById(params.LocationID);
-        point.addToLocation(location).save(flush: true, failOnError: true)
+        (0..params.LocationID.size()-1).each {
+            int j ->
+                Location location = Location.findById(params.LocationID[j]);
+                point.addToLocation(location).save(flush: true, failOnError: true)
+        }
 
-        if(params.imageID){
-            Image img = Image.findById(params.imageID);
-            point.addToImages(img).save(flush: true, failOnError: true)
+        (0..params.imageID.size()-1).each {
+            int j ->
+                Image img = Image.findById(params.imageID[j]);
+                point.addToImages(img).save(flush: true, failOnError: true)
         }
 
         Groupe groupe = Groupe.findById(params.groupeID);

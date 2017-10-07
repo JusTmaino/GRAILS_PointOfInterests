@@ -67,7 +67,7 @@ class LocationController {
             else
             {
                 System.out.println("redirection to CREATE point")
-                redirect(controller: 'point', action:'index')
+                redirect(controller: 'point', action:'create')
             }
         }
         else {

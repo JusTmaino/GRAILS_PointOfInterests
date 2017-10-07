@@ -73,39 +73,51 @@
                     <script type="text/javascript">
                         if("${this.point.location[0]}" != [] ) {
                             function initMap() {
-                                var localisation = {
-                                    info: '<strong style="color:black">${this.point.name}</strong><br>\
-                                            <g:each in="${this.point.images}" var="image">\n' +
-                                    '  <img src="${grailsApplication.config.server.pathServer}/${image.filename}" width="20" height="20"/></li>\n' +
-                                    '   </g:each>',
-                                };
-                                    var locations = [
-                                        [localisation.info, "${this.point.location[0].latitude}" , "${this.point.location[0].longitude}"],
-                                    ];
 
-                                    var map = new google.maps.Map(document.getElementById('map'), {
-                                        zoom: 4,
-                                        center: new google.maps.LatLng(${this.point.location[0].latitude},${this.point.location[0].longitude}),
-                                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                                    });
                                 var infowindow = new google.maps.InfoWindow({});
+                                var options, marker, i;
 
-                                var marker, i;
+                                <g:each in="${pointLocations}" var="location">
+                                var localisation = {
+                                    info: '<strong><a href="/point/show/${location.id}">${location.name}</strong><br>\
+                        <g:each in="${point.images}" var="image">\n' +
+                                    '                </g:each>',
+                                };
 
+
+                                var locations = [
+                                    [localisation.info, ${location.latitude}, ${location.longitude}],
+                                ];
+
+                                options = {
+                                    zoom: 4,
+                                    center: new google.maps.LatLng(locations[0][1], locations[0][2]),
+                                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                                }
+
+                                var map = new google.maps.Map(document.getElementById('map'),options);
+                                console.log(map);
+                                </g:each>
+
+                                <g:each in="${pointLocations}" var="location">
                                 for (i = 0; i < locations.length; i++) {
                                     marker = new google.maps.Marker({
-                                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                        position: new google.maps.LatLng(${location.latitude},
+                                            ${location.longitude}),
                                         map: map,
                                     });
 
                                     google.maps.event.addListener(marker, 'click', (function (marker, i) {
                                         return function () {
-                                            infowindow.setContent(locations[i][0]);
+                                            infowindow.setContent('<strong><a href="/point/show/${location.id}">${location.name}</strong>');
                                             infowindow.open(map, marker);
                                         }
                                     })(marker, i));
                                 }
-                                google.maps.event.addDomListener(window, "load", initialize());
+
+                                </g:each>
+
+                                //google.maps.event.addDomListener(window, "load", initialize());
                             }
                         }
                     </script>
