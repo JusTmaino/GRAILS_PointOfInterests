@@ -109,7 +109,7 @@
 
                                     google.maps.event.addListener(marker, 'click', (function (marker, i) {
                                         return function () {
-                                            infowindow.setContent('<strong><a href="/point/show/${location.id}">${location.name}</strong>');
+                                            infowindow.setContent('<strong><a href="/location/show/${location.id}">${location.name}</strong>');
                                             infowindow.open(map, marker);
                                         }
                                     })(marker, i));
