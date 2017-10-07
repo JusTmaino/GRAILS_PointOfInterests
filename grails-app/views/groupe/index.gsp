@@ -95,7 +95,7 @@
 
             google.maps.event.addListener(marker, 'click', (function (marker, i) {
                 return function () {
-                    infowindow.setContent('<strong><a href="/point/show/${point.id}">${point.name}</strong>');
+                    infowindow.setContent('<strong><a href="/location/show/${point.location[0].id}">${point.location[0].name}</strong>');
                     infowindow.open(map, marker);
                 }
             })(marker, i));
