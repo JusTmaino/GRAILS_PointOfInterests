@@ -10,7 +10,7 @@
 <!--/.title-->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">POINTS OF INTERESTS</h1>
+            <h3 class="page-header">POINTS OF INTERESTS</h3>
         </div>
     </div>
     <!--/.title-->
@@ -26,7 +26,7 @@
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">Images</div>
-                <div class="panel-body" style="height:390px;">
+                <div class="panel-body" style="height:350px;">
 
                     <div id="myCarousel" class="carousel slide" data-ride="carousel" >
 
@@ -66,7 +66,7 @@
                 <div class="panel-heading">
                    Map location
                 </div>
-                <div class="panel-body"  style="height:390px;" >
+                <div class="panel-body"  style="height:350px;" >
                     <div id="map"></div>
                     <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
 
@@ -121,9 +121,7 @@
                             }
                         }
                     </script>
-                    <div><label>Latitude : </label><span id="lat" type="text" name="latitude"> ${this.point.location[0].latitude}</span></div>
-                    <div><label>Longitude : </label><span id="long" type="text" name="longitude"> ${this.point.location[0].longitude}</span></div>
-                </div>
+                    </div>
             </div>
         </div>
 
