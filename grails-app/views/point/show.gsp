@@ -71,9 +71,9 @@
                     <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoSZ9W5AfxbUyLI1XDC1cWFvVdFD4ytMI&signed_in=true&callback=initMap"></script>
 
                     <script type="text/javascript">
-                        if("${this.point.location[0]}" != [] ) {
                             function initMap() {
 
+                                if("${this.point.location[0]}" != [] ) {
                                 var infowindow = new google.maps.InfoWindow({});
                                 var options, marker, i;
 
@@ -118,8 +118,8 @@
                                 </g:each>
 
                                 //google.maps.event.addDomListener(window, "load", initialize());
+                                }
                             }
-                        }
                     </script>
                     </div>
             </div>
