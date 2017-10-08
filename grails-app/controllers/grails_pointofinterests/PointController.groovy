@@ -48,10 +48,12 @@ class PointController {
                 point.addToLocation(location).save(flush: true, failOnError: true)
         }
 
-        (0..params.imageID.size()-1).each {
-            int j ->
-                Image img = Image.findById(params.imageID[j]);
-                point.addToImages(img).save(flush: true, failOnError: true)
+        if (params.imageID != null) {
+            (0..params.imageID.size() - 1).each {
+                int j ->
+                    Image img = Image.findById(params.imageID[j]);
+                    point.addToImages(img).save(flush: true, failOnError: true)
+            }
         }
 
         Groupe groupe = Groupe.findById(params.groupeID);
@@ -101,17 +103,21 @@ class PointController {
         }
 
         point.save flush:true
-        
-        (0..params.locationID.size()-1).each {
-            int j ->
-                Location location = Location.findById(params.locationID[j]);
-                point.addToLocation(location).save(flush: true, failOnError: true)
+
+        if (params.locationID != null) {
+            (0..params.locationID.size() - 1).each {
+                int j ->
+                    Location location = Location.findById(params.locationID[j]);
+                    point.addToLocation(location).save(flush: true, failOnError: true)
+            }
         }
 
-        (0..params.imageID.size()-1).each {
-            int j ->
-                Image img = Image.findById(params.imageID[j]);
-                point.addToImages(img).save(flush: true, failOnError: true)
+        if (params.imageID != null) {
+            (0..params.imageID.size() - 1).each {
+                int j ->
+                    Image img = Image.findById(params.imageID[j]);
+                    point.addToImages(img).save(flush: true, failOnError: true)
+            }
         }
 
         request.withFormat {

@@ -53,7 +53,7 @@
 
                                 <div class="form-group">
                                     <label>Images</label>
-                                    <g:select multiple="multiple" type="file" name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${grails_pointofinterests.Image.all}"  ></g:select>
+                                    <g:select multiple="multiple" type="file" name="imageID" class="form-control" id="image" optionKey="id" optionValue="filename" from="${grails_pointofinterests.Image.all}"  ></g:select>
                                     <a href="/image/create?point.id=${this.point.id}">Add Image</a>
                                 </div>
 

@@ -73,7 +73,7 @@
         var options;
         <g:each in="${groupe.points}" var="point">
         options = {
-            zoom: 2,
+            zoom: 1,
             center: new google.maps.LatLng(${point.location.latitude[0]}, ${point.location.longitude[0]}),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }

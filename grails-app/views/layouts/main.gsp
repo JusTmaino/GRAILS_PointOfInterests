@@ -39,7 +39,7 @@
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/"><span>AquaOfInterests</span>Platform</a>
+                <a class="navbar-brand" href="/"><span>Aqua Of Interests </span>Platform</a>
                 <ul class="nav navbar-top-links navbar-right">
                     <sec:ifLoggedIn>
                     <li><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
@@ -58,7 +58,7 @@
         <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
             <div class="profile-sidebar">
                 <div class="profile-userpic">
-                    <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+                    <asset:image src="avatar5.png" class="img-responsive"/>
                 </div>
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name"><sec:loggedInUserInfo field="username" /></div>

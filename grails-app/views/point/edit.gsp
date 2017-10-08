@@ -67,7 +67,13 @@
                                     </li>
                                 </g:each>
                             </ul>
-                            <g:select multiple="multiple" name="locationID" class="form-control" required="" id="point" optionKey="id" optionValue="name" from="${customLocationList}"  ></g:select>
+                            <g:if test="${customPoint.location}">
+                                <g:select multiple="multiple" name="locationID" class="form-control" id="point" optionKey="id" optionValue="name" from="${customLocationList}"  ></g:select>
+                            </g:if>
+                            <g:else>
+                                <g:select multiple="multiple" name="locationID" class="form-control" required="" id="point" optionKey="id" optionValue="name" from="${customLocationList}"  ></g:select>
+                            </g:else>
+
                             <a href="/location/create?point.id=${customPoint.id}">Add Location</a>
 
                         </div>
@@ -80,7 +86,7 @@
                                         <img src="${grailsApplication.config.server.pathServer}/${img.filename}" width="50px" height="50px"/></a>
                                 </g:each>
                             </ul>
-                            <g:select multiple="multiple" name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${customImageList}"  ></g:select>
+                            <g:select multiple="multiple" name="imageID" class="form-control" id="image" optionKey="id" optionValue="filename" from="${customImageList}"  ></g:select>
                             <a href="/image/create?point.id=${customPoint.id}">Add Image</a>
                         </div>
 
