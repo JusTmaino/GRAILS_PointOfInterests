@@ -77,4 +77,5 @@ et/ou supprimer des POIs, Emplacements et Images déjà affectés
 - Uploader les fichiers en faisant un simple drag’n’drop en Ajax du fichier sur le champ en question - visible sur "/image/create"
 - Permettre que la liste des POIs au sein d’un Groupe soit modifiable entre Groupes directement en drag’n’drop Ajax - visible sur "/groupe/index"
 - Mettre en place une map au niveau de la gestion des Groupes et POIs 
+
 Pour information : lors de l'affichage, le marqueur est non draggable contrairement à l'étape de modification
