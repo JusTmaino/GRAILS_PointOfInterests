@@ -162,7 +162,7 @@ class UserController {
 
         if (user.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond user.errors, view:'create'
+            redirect(controller: 'login', action:'register' ,params: [error: "User Already Exist !!!"])
             return
         }
 

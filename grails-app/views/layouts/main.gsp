@@ -49,7 +49,7 @@
                     <sec:ifNotLoggedIn>
                         <div style="padding-right: 55px; padding-top: 19px; /*border: solid; border-color: white;*/">
                             <span><a href="/login" style="text-decoration: none;"><em class="fa fa-sign-in">&nbsp;</em> Login</a></span>
-                            <span style="padding-left: 25px;"><g:link action="register" controller="login"><em class="fa fa-registered">&nbsp;</em> Register</g:link></span>
+                            <span style="padding-left: 25px;"><g:link action="register" controller="login" style="text-decoration: none;"><em class="fa fa-registered">&nbsp;</em> Register</g:link></span>
                         </div>
                     </sec:ifNotLoggedIn>
                 </ul>

@@ -25,9 +25,8 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Register a new membership</p>
-
-        <g:if test='${flash.message}'>
-            <div class="login_message">${flash.message}</div>
+        <g:if test='${params.error}'>
+            <div class="login_message" style="color: red;">${params.error}</div>
         </g:if>
         <form id="registerForm" action="/user/register" method="post" >
             <fieldset class="form">
