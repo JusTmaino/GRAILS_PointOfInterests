@@ -11,7 +11,7 @@ $(function() {
                     window.location = '/groupe/index?oldGroupeID=' + ui.sender[0].id + '&newGroupeID=' + this.id + '&pointID=' + ui.item[0].innerHTML.substring(62, 64) + '&#mainBoxes';
             }
             else {
-                alert('Min 1 Point on a Group , le Point sera déplacer visuellement mais pas dans La BD, RFRESH :p')
+                alert('min 1 Point on a Group, le Point sera déplacé visuellement mais pas dans La BD, REFRESH :p')
             }
         }
     }).disableSelection();
