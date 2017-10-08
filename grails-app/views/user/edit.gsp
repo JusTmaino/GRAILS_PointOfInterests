@@ -69,12 +69,6 @@
                                     <input type="hidden" class="form-control" name="_enabled" /><input type="checkbox" name="enabled" checked="checked" id="enabled"  />
                                     <label for='enabled'>Enabled</label>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Image</label>
-                                    <input type="file" id="exampleInputFile">
-
-                                    <p class="help-block">Upload your image here.</p>
-                                </div>
                             </fieldset>
 
                             <fieldset class="box-footer">
