@@ -63,7 +63,7 @@
         <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
             <div class="profile-sidebar">
                 <div class="profile-userpic">
-                    <asset:image src="avatar5.png" class="img-responsive"/>
+                    <asset:image src="avatar.jpg" class="img-responsive"/>
                 </div>
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name"><sec:loggedInUserInfo field="username" /></div>

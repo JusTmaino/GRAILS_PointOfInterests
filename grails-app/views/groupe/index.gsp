@@ -36,7 +36,12 @@
 
                     <div style="height: 300px;width:100%;" id="map${groupe.id}"></div>
 <hr/>
-                    <ul id="${groupe.id}" class="sortable_list connectedSortable">
+                    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MOD'>
+                        <ul id="${groupe.id}" class="sortable_list connectedSortable">
+                    </sec:ifAnyGranted>
+                    <sec:ifAnyGranted roles='ROLE_USER'>
+                        <ul id="${groupe.id}" class="not_sortable">
+                    </sec:ifAnyGranted>
                         <g:each in="${groupe.points}" var="point">
                             <li class="ui-state-default">
                                 <a id="${point.id}" href="/point/show/${point.id}">${point.name}</a>

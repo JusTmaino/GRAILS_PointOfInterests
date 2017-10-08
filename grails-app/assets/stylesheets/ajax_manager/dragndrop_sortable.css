@@ -1,4 +1,4 @@
-.sortable_list {
+.sortable_list, .not_sortable {
     width: 142px;
     min-height: 20px;
     list-style-type: none;
@@ -8,7 +8,7 @@
     margin-right: 10px;
 }
 
-.sortable_list li {
+.sortable_list li, .not_sortable li {
     margin: 0 5px 5px 5px;
     padding: 5px;
     font-size: 1.2em;
