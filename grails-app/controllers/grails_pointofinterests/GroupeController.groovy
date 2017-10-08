@@ -182,6 +182,14 @@ class GroupeController {
         redirect(controller: 'groupe', action:'edit' , id: params.groupeID)
     }
 
+    def removeImage()
+    {
+        Groupe groupe = Groupe.findById(params.groupeID)
+        groupe.removeFromImages(Image.findById(params.imageID))
+        groupe.save flush:true
+        redirect(controller: 'groupe', action:'edit' , id: params.groupeID)
+    }
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {

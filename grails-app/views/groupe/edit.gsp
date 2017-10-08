@@ -66,6 +66,7 @@
                                 <label for='image'>Images</label>
                                 <ul>
                                     <g:each in="${customGroupe.images}" var="img">
+                                        <g:link action="removeImage" controller="groupe" params='[imageID : "${img.id}",groupeID : "${customGroupe.id}"]' ><i class="fa fa-times" style="color: red;" aria-hidden="true"></i></g:link>
                                         <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
                                     </g:each>
                                 </ul>

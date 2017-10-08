@@ -82,8 +82,8 @@
                             <label for='image'>Images</label>
                             <ul style="list-style-type:none;">
                                 <g:each in="${customPoint.images}" var="img">
-                                    <a href="/image/show/${img.id}">
-                                        <img src="${grailsApplication.config.server.pathServer}/${img.filename}" width="50px" height="50px"/></a>
+                                    <g:link action="removeImage" controller="point" params='[imageID : "${img.id}",pointID : "${customPoint.id}"]' ><i class="fa fa-times" style="color: red;" aria-hidden="true"></i></g:link>
+                                    <a href="/image/show/${img.id}"><img src="${grailsApplication.config.server.pathServer}/${img.filename}" width="50px" height="50px"/></a>
                                 </g:each>
                             </ul>
                             <g:select multiple="multiple" name="imageID" class="form-control" id="image" optionKey="id" optionValue="filename" from="${customImageList}"  ></g:select>
