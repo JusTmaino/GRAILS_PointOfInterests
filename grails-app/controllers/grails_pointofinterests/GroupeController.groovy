@@ -176,8 +176,6 @@ class GroupeController {
 
     def removePoint()
     {
-        System.out.println("groupeID : "+params.groupeID);
-        System.out.println("pointID : "+params.pointID);
         Groupe groupe = Groupe.findById(params.groupeID)
         groupe.removeFromPoints(Point.findById(params.pointID))
         groupe.save flush:true

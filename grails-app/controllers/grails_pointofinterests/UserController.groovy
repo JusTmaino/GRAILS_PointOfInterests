@@ -67,9 +67,6 @@ class UserController {
         }
 
         user.save flush:true
-        //System.out.println(params.roleID)
-        //System.out.println(Role.findById(params.roleID))
-        //System.out.println(user)
         Role role=Role.findById(params.roleID);
         UserRole.create (user, role, true)
 
@@ -153,6 +150,30 @@ class UserController {
         //respond user
     }
 
+
+    @Transactional
+    def register(User user) {
+        //System.out.println("Password : "+params.password)
+        //System.out.println("Confirm Password : "+params.confirmpassword)
+        if (user == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (user.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond user.errors, view:'create'
+            return
+        }
+
+        user.save flush:true
+        Role role=Role.findByAuthority('ROLE_USER');
+        UserRole.create (user, role, true)
+
+        redirect(controller: 'login', action:'auth')
+
+    }
     protected void notFound() {
         request.withFormat {
             form multipartForm {

@@ -39,13 +39,18 @@
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/"><span>Aqua Of Interests </span>Platform</a>
+                <a class="navbar-brand" href="/"><span><b>Aqua</b> Of Interests </span>Platform</a>
                 <ul class="nav navbar-top-links navbar-right">
                     <sec:ifLoggedIn>
-                    <li><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+                        <div style="padding-right: 55px; padding-top: 19px;">
+                            <span><a href="/logout" style="text-decoration: none;"><em class="fa fa-power-off">&nbsp;</em> Logout</a></span>
+                        </div>
                     </sec:ifLoggedIn>
                     <sec:ifNotLoggedIn>
-                        <li><a href="/login"><em class="fa fa-power-off">&nbsp;</em> Login</a></li>
+                        <div style="padding-right: 55px; padding-top: 19px; /*border: solid; border-color: white;*/">
+                            <span><a href="/login" style="text-decoration: none;"><em class="fa fa-sign-in">&nbsp;</em> Login</a></span>
+                            <span style="padding-left: 25px;"><g:link action="register" controller="login"><em class="fa fa-registered">&nbsp;</em> Register</g:link></span>
+                        </div>
                     </sec:ifNotLoggedIn>
                 </ul>
             </div>

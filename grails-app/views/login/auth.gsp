@@ -32,7 +32,7 @@
         <form action="${postUrl ?: '/login/authenticate'}" id="loginForm" method="post">
             <div class="form-group has-feedback">
                 <input type="text" name="${usernameParameter ?: 'username'}" id="username" class="form-control" placeholder="Username">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
                 <input type="password" name="${passwordParameter ?: 'password'}" id="password" class="form-control" placeholder="Password">
@@ -52,9 +52,14 @@
                 </div>
                 <!-- /.col -->
             </div>
+
         </form>
 
+        <div style="padding-top: 10px;">
+            <g:link action="register" controller="login" class="text-center">I don't have a membership</g:link>
+        </div>
         <!-- /.login-box-body -->
     </div>
+</div>
 </body>
 </html>
