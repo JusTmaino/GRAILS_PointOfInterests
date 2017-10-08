@@ -12,8 +12,6 @@
         <asset:stylesheet src="admin_login/ionicons.min.css"/>
         <asset:stylesheet src="admin_login/AdminLTE.min.css"/>
         <asset:stylesheet src="admin_login/blue.css"/>
-        <asset:javascript src="jquery.min.js"/>
-        <asset:javascript src="bootstrap.min.js"/>
     </g:if>
 </head>
 
@@ -43,7 +41,7 @@
                 </div>
 
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" name="confirmpassword" placeholder="Retype password" required="" id="confirmPassword" />
+                    <input type="password" class="form-control" name="confirmpassword" placeholder="Retype password" required="" id="confirmpassword" />
                     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                 </div>
 
@@ -73,7 +71,7 @@
                     </div>
                 </div>
                 <fieldset class="col-xs-4">
-                        <g:submitButton id="create" name="create" class="btn btn-primary btn-block btn-flat" value="Register"></g:submitButton>
+                        <input type="submit" id="create" name="create" class="btn btn-primary btn-block btn-flat" value="Register" onclick="return Validate()"/>
                 </fieldset>
             </div>
         </form>
@@ -90,18 +88,20 @@
     </div>
 
 </div>
-<script type="text/javascript">
-    $(this).find('#registerForm').validate({
-        rules: {
-            password: {
-                minlength: 5
-            },
-            confirmPassword: {
-                minlength: 5,
-                equalTo: "#password"
-            }
+<script>
+    function Validate() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmpassword").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
         }
-    });
+        return true;
+    }
 </script>
+<g:if env="development">
+    <asset:javascript src="bootstrap.min.js"/>
+    <asset:javascript src="jquery.min.js"/>
+</g:if>
 </body>
 </html>
