@@ -22,9 +22,9 @@
                     <div class="panel-body">
                         <div>
                             <p>
-                                Nous avons mis en place une plateforme de gestion de points d’intérêts autour du thème : l'eau.
+                                Nous avons mis en place une plateforme de gestion de points d’intérêts autour du thème : <strong>l'eau</strong>.
                           <br/>
-                                Le rendu de projet prend donc la forme de ce site permettant d’administrer ou consulter son contenu selon le rôle de l’utilisateur identifié
+                                Le rendu de projet prend donc la forme de ce site permettant<strong> d’administrer</strong> ou<strong> consulter</strong> son contenu <strong>selon le rôle</strong> de l’utilisateur identifié
                             </p>
                         </div>
                         <hr/>
@@ -32,11 +32,11 @@
                             <h3>INITIALISATION</h3>
                                 <h5>Groupes et points d'intérêts</h5>
                                 <ul>
-                                    <li>Génération de 3 groupes contenant chacun 5 points d'intérêts</li>
+                                    <li>Génération de <strong>3 groupes</strong> contenant chacun <strong>5 points d'intérêts</strong></li>
                                 </ul>
                                 <h5>Les différents rôles</h5>
                                 <ul>
-                                    <li>Génération de 3 types d'utilisateur : 2 Administrateurs / 5 Modérateurs / 30 Utilisateurs</li>
+                                    <li>Génération de 3 types d'utilisateur : 2 <strong>Administrateurs</strong> / 5 <strong>Modérateurs</strong> / 30 <strong>Utilisateurs</strong></li>
                                 </ul>
                         </div>
                         <hr/>
@@ -44,7 +44,7 @@
                             <h3>MISE EN PLACE DES SESSIONS</h3>
                                 <h5>Spring Security</h5>
                                     <ul>
-                                        <li>Génération des classes User/Role/UserRole</li>
+                                        <li>Génération <strong>automatique par Spring Security</strong> des classes User/Role/UserRole</li>
                                     </ul>
                                 <h5>Rôles</h5>
                                     <ul>
@@ -54,58 +54,73 @@
                                     </ul>
                                 <h5>Authentification</h5>
                                 <ul>
-                                    <li>Par défaut, le login et le mot de passe est le même.</li>
-                                    <li>Par défaut, la syntaxe  est le role ("admin", "moderateur", "utilisateur") suivi d'un chiffre comme ce qui suit :
+                                    <li>Par défaut, le login et le mot de passe sont <strong>les mêmes</strong>.</li>
+                                    <li>Par défaut, la syntaxe  est le <strong>rôle</strong> ("admin", "moderateur", "utilisateur") <strong>suivi d'un chiffre</strong> comme ce qui suit :
                                         <br> <i>login : moderateur1 - password: moderateur1</i>
                                     </li>
-                                    <li>Option : possibilité de s'inscrire via le formulaire correspondant et c'est donc le rôle d'utilisateur qui est attribué automatiquement</li>
+                                    <li>Option : possibilité de <strong>s'inscrire</strong> via le formulaire correspondant et c'est donc le <strong>rôle d'utilisateur qui est attribué automatiquement</strong></li>
                                 </ul>
                                 <h5>URLMapping</h5>
                                 <ul>
-                                    <li>Toutes les redirections sont mis en place de la manière la plus cohérente possible</li>
+                                    <li>Toutes les redirections sont mis en place de la manière la plus cohérente possible
+                                    <br>Un <strong>paramètre est envoyé via URL</strong> pour une redirection correcte sur <strong>l'objet en cours de traitement</strong> après chaque ajout/modification/suppression</li>
                                 </ul>
                         </div>
                         <hr/>
                         <div>
                             <h3>GESTION DU MODELE</h3>
-                            <p>Lors de l'initialisation nous avons tenté de montrer que le modèle est en cohérence avec les contraintes exposées</p>
-                                <h5>Groupe</h5>
+                            <p>Lors de l'initialisation nous avons tenté de montrer que <strong>le modèle est en cohérence avec les contraintes exposées</strong></p>
+
+                            <h5>Groupe</h5>
                                     <ul>
-                                        <li>Création et modification d'un groupe</li>
-                                        <li>Affichage des détails d'un groupe et des POIs lui correspondant sur une map</li>
+                                        <li>Création d'un groupe : possibilité de <strong>rattacher plusieurs POIs et Images</strong>
+                                        <li>Modification d'un groupe : possibilité d'<strong>affecter plusieurs POIs et Images</strong> (select à choix multiples ou lien de création)
+                                    <br>et/ou <strong>supprimer des POIs et Images déjà affectés</strong></li>
+                                        <li>Affichage des détails d'un groupe, ses images et des POIs lui correspondant sur une map</li>
                                         <li>Suppression d'un groupe et par conséquent suppression de ses références à d'autres domaines</li>
                                     </ul>
-                                <h5>POIs</h5>
+                                <h5>Point</h5>
                                     <ul>
-                                        <li>Création et modification d'un POI</li>
-                                        <li>Affichage d'un POI et de sa position sur une map </li>
-                                        <li>Suppression d'un POI et et par conséquent suppression de ses références à d'autres domaines</li>
+                                        <li>Création d'un POI : possibilité de  <strong>rattacher plusieurs Groupes et Images</strong> (select à choix multiples ou lien de création)</li>
+                                        <li>Modification d'un POI : possibilité d'<strong>affecter plusieurs Groupes, Emplacements et Images</strong> (select à choix multiples ou lien de création)
+                                        <br>et/ou <strong>supprimer des POIs, Emplacements et Images déjà affectés</strong></li>
+                                        <li>Affichage d'un POI, des images et de sa position sur une map</li>
+                                        <li>Suppression d'un POI et par conséquent suppression de ses références à d'autres domaines</li>
                                     </ul>
+                                <h5>Location</h5>
+                                <ul>
+                                    <li>Création d'un Emplacement : possibilité de  <strong>rattacher plusieurs </strong> Groupes et Images (select à choix multiples ou lien de création)</li>
+                                    <li>Modification d'un Emplacement : possibilité d' <strong>affecter un longitude et latitude directement via la map </strong>, le marqueur est draggable</li>
+                                    <li>Affichage d'un Emplacement  <strong>sur une map </strong> : le marqueur n'est pas draggable</li>
+                                    <li>Suppression d'un Emplacement</li>
+                                </ul>
+                                <h5>Images</h5>
+                                <ul>
+                                    <li>Les images fournis dans l'asset <strong>sont transférés automatiquement</strong> sur le serveur Apache <strong>dès l'initialisation du projet</strong></li>
+                                    <li>Les images uploadé via les différents formulaires <strong>sont enregistrées automatiquement</strong> dans le serveur web Apache</li>
+                                    <li>Le fichier de configuration application.yml permet de <strong>reconstruire le path et l’url à la volée</strong> :
+                                        <br/><i>Exemple</i>
+                                        <br/><i>server :</i>
+                                        <br/><i>uploadImage: '/Applications/MAMP/htdocs/images/':</i>
+                                        <br/><i>pathServer: 'http://localhost:8081/'</i>
+                                    </li>
+                                </ul>
                                 <h5>Users</h5>
                                     <ul>
                                         <li>Création et modification d'un utilisateur (rôle, identifiant et mot de passe)</li>
-                                        <li>Affichage d'une liste d'utilisateur ou d'un profil utilisateur (rôle, identifiant et mot de passe)</li>
+                                        <li>Affichaged'une <strong>liste d'utilisateurs</strong> ou d'un <strong>profil</strong> utilisateur (rôle, identifiant et mot de passe)</li>
                                         <li>Suppression d'un profil utilisateur</li>
                                     </ul>
-                                <h5>Images</h5>
-                                    <ul>
-                                        <li>Les images fournis dans l'asset sont transférés automatiquement sur le serveur Apache dès l'initialisation du projet</li>
-                                        <li>Les images uploadé via les différents formulaires sont également enregistrées automatiquement dans le serveur web Apache</li>
-                                        <li>Le fichier de configuration application.yml permet de reconstruire le path et l’url à la volée :
-                                            <br/><i>Exemple</i>
-                                            <br/><i>server :</i>
-                                            <br/><i>uploadImage: '/Applications/MAMP/htdocs/images/':</i>
-                                            <br/><i>pathServer: 'http://localhost:8081/'</i>
-                                        </li>
-                                    </ul>
+
                         </div>
                         <hr/>
                         <div>
                             <h3>BONUS ACCOMPLIS</h3>
                             <ul>
-                                <li>Uploader les fichiers en Ajax en faisant un simple drag’n’drop du fichier sur le champ en question</li>
-                                <li>Permettre que liste des POIs au sein d’un Groupe soit modifiable entre Groupe directement en drag’n’drop Ajax </li>
-                                <li>Mettre en place une map au niveau de la gestion des Groupes et POIs</li>
+                                <li>Uploader les fichiers en <strong>Ajax</strong> en faisant un simple <strong>drag’n’drop</strong> du fichier sur le champ en question</li>
+                                <li>Permettre que la liste des POIs au sein d’un Groupe soit <strong>modifiable entre Groupes</strong> directement en <strong>drag’n’drop Ajax</strong> </li>
+                                <li>Mettre en place une <strong>map</strong> au niveau de la gestion des Groupes et POIs
+                                <br>Lors de l'affichage, le marqueur est non draggable contrairement à l'étape de modification</li>
                             </ul>
                         </div>
                     </div>
