@@ -1,3 +1,4 @@
+<%@ page import="grails_pointofinterests.ImageController; grails_pointofinterests.Point" %>
 <!doctype html>
 <html>
 <head>
@@ -6,6 +7,7 @@
 </head>
 <body>
 
+<sec:ifNotLoggedIn>
         <!--/.title-->
         <div class="row">
             <div class="col-lg-12">
@@ -13,7 +15,6 @@
             </div>
         </div>
         <!--/.title-->
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-primary">
@@ -101,6 +102,64 @@
                 </div>
             </div>
         </div>
+</sec:ifNotLoggedIn>
+    <sec:ifLoggedIn>
+
+        <!--/.title-->
+        <div class="row" style="margin-top: 15px">
+            <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Aqua Of Interests
+                            <span class="pull-right clickable panel-toggle panel-collapse"><em class="fa fa-toggle-down"></em></span></div>
+                        <div class="panel-body" style="display: none;">
+                            <p>L’eau est à l’origine de la vie sur terre.
+                                <br>Elle est indispensable à notre corps humain et à tout ce qui nous entoure.
+                                <br> Ce besoin vital est "domestiqué" dans les pays développés.
+                                <br>Il est devenu un confort indispensable dans la vie de tous les jours.
+                                <br>Pour s’en rendre compte une coupure d’eau au robinet de quelques heures devient vite un inconvénient majeur !
+                                <br>
+                                <br>Cette plateforme permet donc de répertorier des points d'intérêts autour de l'eau en fonction d'une région ou encore d'un thème.
+                                <br>Laissez place à votre imagination :)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1500" style="height: 500px">
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                          <img style="display:block;
+                          object-fit: cover;
+                          height:500px !important;
+                          line-height: 1;" src="${grailsApplication.config.server.pathServer}/carousel_index/1.jpg"/></a>
+                        </div>
+                        <g:each in="${(2..7)}" var="id">
+                            <div class="item">
+                                <img style="display:block;
+                                object-fit: cover;
+                                height:500px !important;
+                                line-height: 1;" src="${grailsApplication.config.server.pathServer}/carousel_index/${id}.jpg"/>
+                            </div>
+                        </g:each>
+
+                    </div>
+                    <!-- Wrapper for slides -->
+
+                            <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </sec:ifLoggedIn>
 
 </body>
 </html>

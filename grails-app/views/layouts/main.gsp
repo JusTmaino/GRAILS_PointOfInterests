@@ -13,18 +13,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-    <!--[if lt IE 9]>
-        <script src="js/html5shiv.js"></script>
-        <script src="js/respond.min.js"></script>
-        <![endif]-->
-
     <g:if env="development">
         <asset:stylesheet src="application.css"/>
         <asset:stylesheet src="bootstrap.min.css"/>
         <asset:stylesheet src="font-awesome.min.css"/>
         <asset:stylesheet src="styles.css"/>
         <asset:stylesheet src="errors.css"/>
+
+
+        <!--[if lt IE 9]>
+        <asset:javascript src="html5shiv.min.js"/>
+        <asset:javascript src="respond.min.js"/>
+        <![endif]-->
+
         <asset:javascript src="bootstrap.min.js"/>
+        <asset:javascript src="chart.min.js"/>
+        <asset:javascript src="chart-data.js"/>
+        <asset:javascript src="easypiechart.js"/>
+        <asset:javascript src="easypiechart-data.js"/>
+        <asset:javascript src="custom.js"/>
     </g:if>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -109,7 +116,7 @@
         <div class="col-sm-12  main">
     </sec:ifNotLoggedIn>
             <g:layoutBody/>
-        </div>
+
         </div>
 </body>
 </html>
