@@ -28,7 +28,7 @@
                 <div class="panel-heading">Images</div>
                 <div class="panel-body" style="height:350px;">
 
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1500" >
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
