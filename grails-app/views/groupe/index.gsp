@@ -112,6 +112,8 @@
 
                 </g:each>
             }
+            else
+            {alert('groupe vide')}
             </g:each>
             //google.maps.event.addDomListener(window, "load", initialize());
         }
