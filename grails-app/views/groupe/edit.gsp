@@ -43,12 +43,21 @@
 
                             <div class='form-group'>
                                 <label for='point'>Points</label>
-                                <ul>
+                                <ul style="list-style-type:none;">
                                     <g:each in="${customGroupe.points}" var="pt">
-                                        <li><a href="/point/show/${pt.id}">${pt.name}</a></li>
+                                        <li>
+                                            <g:link action="removePoint" controller="groupe" params='[pointID : "${pt.id}",groupeID : "${customGroupe.id}"]' ><i class="fa fa-times" style="color: red;" aria-hidden="true"></i></g:link>
+                                            <a href="/point/show/${pt.id}">${pt.name}</a>
+                                        </li>
                                     </g:each>
                                 </ul>
-                                <g:select name="pointID" class="form-control" required="" id="point" optionKey="id"  optionValue="name" from="${customPointList}"  ></g:select>
+                                <g:if test="${customGroupe.points}">
+                                    <g:select multiple="multiple" name="pointID" class="form-control" id="point" optionKey="id"  optionValue="name" from="${customPointList}"  ></g:select>
+                                </g:if>
+                                <g:else>
+                                    <g:select multiple="multiple" name="pointID" class="form-control" required="" id="point" optionKey="id"  optionValue="name" from="${customPointList}"  ></g:select>
+                                </g:else>
+
                                 <a href="/point/create?groupe.id=${customGroupe.id}">Add Point</a>
 
                             </div>
@@ -60,7 +69,7 @@
                                         <a href="/image/show/${img.id}"><asset:image src="${img.filename}" width="50px" height="50px"/></a>
                                     </g:each>
                                 </ul>
-                                <g:select name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${customimageList}"  ></g:select>
+                                <g:select multiple="multiple" name="imageID" class="form-control" id="image" optionKey="id" optionValue="filename" from="${customimageList}"  ></g:select>
                                 <a href="/image/create?groupe.id=${customGroupe.id}">Add Image</a>
                             </div>
                         </fieldset>

@@ -44,7 +44,7 @@
 
                                 <div class='form-group'>
                                     <label for='image'>Images</label>
-                                    <g:select multiple="multiple" name="imageID" class="form-control" required="" id="image" optionKey="id" optionValue="filename" from="${customimageList}"  ></g:select>
+                                    <g:select multiple="multiple" name="imageID" class="form-control" id="image" optionKey="id" optionValue="filename" from="${customimageList}"  ></g:select>
                                     <a href="/image/create?groupe.id=">Add Image</a>
                                 </div>
                             </fieldset>

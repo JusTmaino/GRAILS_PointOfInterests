@@ -49,18 +49,21 @@ class GroupeController {
 
         groupe.save flush:true
 
-        System.out.println(params.pointID)
-        (0..params.pointID.size()-1).each {
-            int j ->
-            Point point = Point.findById(params.pointID[j]);
-            groupe.addToPoints(point).save(flush: true, failOnError: true)
-            def groupepoi = new GroupePoi(groupe: groupe, point:point ).save(flush: true, failOnError: true)
+        if (params.pointID != null) {
+            (0..params.pointID.size() - 1).each {
+                int j ->
+                    Point point = Point.findById(params.pointID[j]);
+                    groupe.addToPoints(point).save(flush: true, failOnError: true)
+                    def groupepoi = new GroupePoi(groupe: groupe, point: point).save(flush: true, failOnError: true)
+            }
         }
 
-        (0..params.imageID.size()-1).each {
-            int j ->
-            Image img = Image.findById(params.imageID[j]);
-            groupe.addToImages(img).save(flush: true, failOnError: true)
+        if (params.imageID != null) {
+            (0..params.imageID.size() - 1).each {
+                int j ->
+                    Image img = Image.findById(params.imageID[j]);
+                    groupe.addToImages(img).save(flush: true, failOnError: true)
+            }
         }
 
         request.withFormat {
@@ -95,11 +98,22 @@ class GroupeController {
 
         groupe.save flush:true
 
-        Point point = Point.findById(params.pointID);
-        groupe.addToPoints(point).save(flush: true, failOnError: true)
-        Image img = Image.findById(params.imageID);
-        groupe.addToImages(img).save(flush: true, failOnError: true)
-        def groupepoi = new GroupePoi(groupe: groupe, point:point ).save(flush: true, failOnError: true)
+        if (params.pointID != null) {
+            (0..params.pointID.size() - 1).each {
+                int j ->
+                    Point point = Point.findById(params.pointID[j]);
+                    groupe.addToPoints(point).save(flush: true, failOnError: true)
+                    def groupepoi = new GroupePoi(groupe: groupe, point: point).save(flush: true, failOnError: true)
+            }
+        }
+
+        if (params.imageID != null) {
+            (0..params.imageID.size() - 1).each {
+                int j ->
+                    Image img = Image.findById(params.imageID[j]);
+                    groupe.addToImages(img).save(flush: true, failOnError: true)
+            }
+        }
 
         Image image = new Image(path: params.image)
         //groupe.addToImages(image)
@@ -158,6 +172,16 @@ class GroupeController {
             }
             '*'{ render status: NO_CONTENT }
         }
+    }
+
+    def removePoint()
+    {
+        System.out.println("groupeID : "+params.groupeID);
+        System.out.println("pointID : "+params.pointID);
+        Groupe groupe = Groupe.findById(params.groupeID)
+        groupe.removeFromPoints(Point.findById(params.pointID))
+        groupe.save flush:true
+        redirect(controller: 'groupe', action:'edit' , id: params.groupeID)
     }
 
     protected void notFound() {
