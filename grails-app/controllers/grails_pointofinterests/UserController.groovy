@@ -83,7 +83,8 @@ class UserController {
     @Secured(['ROLE_ADMIN','ROLE_MOD'])
     def edit(User user) {
         List<Role> roleList = Role.findAll()
-        [customUser:user,customRoleList:roleList]
+        User cUser = springSecurityService.getCurrentUser()
+        [customUser:user,customRoleList:roleList,currentUser:cUser]
         //respond user
     }
 
@@ -153,8 +154,6 @@ class UserController {
 
     @Transactional
     def register(User user) {
-        //System.out.println("Password : "+params.password)
-        //System.out.println("Confirm Password : "+params.confirmpassword)
         if (user == null) {
             transactionStatus.setRollbackOnly()
             notFound()

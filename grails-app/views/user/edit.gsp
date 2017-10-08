@@ -43,10 +43,12 @@
                                     <input type="text" class="form-control" name="password" placeholder="Retape your Password" value="${customUser.password}" required="" id="password" />
                                 </div>
 
+                                <g:if test="${customUser.id != currentUser.id}">
                                 <div class='form-group'>
                                     <label for='role'>Role * </label>
                                     <g:select name="roleID" class="form-control" required="" id="role" optionKey="id" optionValue="authority" from="${customRoleList}"  ></g:select>
                                 </div>
+                                </g:if>
 
                                 <div class='form-group'>
                                     <input type="hidden" class="form-control" name="_passwordExpired" /><input type="checkbox" name="passwordExpired" id="passwordExpired"  />
