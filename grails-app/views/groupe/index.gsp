@@ -84,27 +84,28 @@
         }
 
         var map = new google.maps.Map(document.getElementById('map${groupe.id}'),options);
-        console.log(map);
         </g:each>
 
         var infowindow = new google.maps.InfoWindow({});
 
         var marker, i;
         <g:each in="${groupe.points}" var="point">
-        for (i = 0; i < locations.length; i++) {
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(${point.location.latitude[0]},
-                    ${point.location.longitude[0]}),
-                map: map,
-            });
+            <g:each in="${point.location}" var="location">
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(${location.latitude},
+                        ${location.longitude}),
+                    map: map,
+                });
 
-            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                return function () {
-                    infowindow.setContent('<strong><a href="/location/show/${point.location[0].id}">${point.location[0].name}</strong>');
-                    infowindow.open(map, marker);
-                }
-            })(marker, i));
-        }
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent('<strong><a href="/location/show/${location.id}">${location.name}</strong>');
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+            </g:each>
 
         </g:each>
 
