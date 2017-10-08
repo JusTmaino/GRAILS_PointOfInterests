@@ -18,27 +18,31 @@ class BootStrap {
 ///////////////
 // USERS
 ///////////////
-        // 1 ADMIN
-        def administrateurRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role('ROLE_ADMIN').save(flush: true, failOnError: true);
-        def administrateurUser = new User('admin', 'admin').save(flush: true, failOnError: true);
-        UserRole.create(administrateurUser, administrateurRole, true);
 
-        // 3 MODERATORS
-        (1 .. 3).each {
+        // 2 ADMINS
+        (1 .. 2).each {
+            int i ->
+                def administrateurRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role('ROLE_ADMIN').save(flush: true, failOnError: true);
+                def administrateurUser = new User('admin'+i, 'admin'+i).save(flush: true, failOnError: true);
+                UserRole.create(administrateurUser, administrateurRole, true);
+        }
+
+        // 5 MODERATORS
+        (1 .. 5).each {
             int i ->
                 def moderateurRole = Role.findByAuthority('ROLE_MOD') ?: new Role('ROLE_MOD').save(flush: true, failOnError: true);
                 def moderateurUser = new User('moderateur'+i, 'moderateur'+i).save(flush: true, failOnError: true);
                 UserRole.create(moderateurUser, moderateurRole, true);
         }
 
-
-        // 10 USERS
-        (1 .. 10).each {
+        // 30 USERS
+        (1 .. 30).each {
             int i ->
                 def utilisateurRole = Role.findByAuthority('ROLE_USER') ?: new Role('ROLE_USER').save(flush: true, failOnError: true);
                 def utilisateurUser = new User('utilisateur'+i, 'utilisateur'+i).save(flush: true, failOnError: true);
                 UserRole.create(utilisateurUser, utilisateurRole, true);
         }
+
 
  ///////////////
 // GROUPS & POIS

@@ -22,7 +22,7 @@
                     <div class="panel-body">
                         <div>
                             <p>
-                                Nous avons mis en place une plateforme de gestion de points d’intérêts au sens large.
+                                Nous avons mis en place une plateforme de gestion de points d’intérêts autour du thème : l'eau.
                           <br/>
                                 Le rendu de projet prend donc la forme de ce site permettant d’administrer ou consulter son contenu selon le rôle de l’utilisateur identifié
                             </p>
@@ -32,11 +32,11 @@
                             <h3>INITIALISATION</h3>
                                 <h5>Groupes et points d'intérêts</h5>
                                 <ul>
-                                    <li>Génération de 3 groupes contenant chacun 5 points d'intérêts
+                                    <li>Génération de 3 groupes contenant chacun 5 points d'intérêts</li>
                                 </ul>
                                 <h5>Les différents rôles</h5>
                                 <ul>
-                                    <li>Génération de 3 types d'utilisateur : 1 Administrateur/ 3 Modérateurs / 10 Utilisateurs</li>
+                                    <li>Génération de 3 types d'utilisateur : 2 Administrateurs / 5 Modérateurs / 30 Utilisateurs</li>
                                 </ul>
                         </div>
                         <hr/>
@@ -52,26 +52,34 @@
                                         <li>Les modérateurs pourront modifier les profils utilisateurs d’un niveau « utilisateur » et créer/modifier/supprimer les groupes et pois</li>
                                         <li>Un utilisateur ayant le rôle « utilisateur » pourra consulter les groupes et les pois et éditer son profil.</li>
                                     </ul>
+                                <h5>Authentification</h5>
+                                <ul>
+                                    <li>Par défaut, le login et le mot de passe est le même.</li>
+                                    <li>Par défaut, la syntaxe  est le role ("admin", "moderateur", "utilisateur") suivi d'un chiffre comme ce qui suit :
+                                        <br> <i>login : moderateur1 - password: moderateur1</i>
+                                    </li>
+                                    <li>Option : possibilité de s'inscrire via le formulaire correspondant et c'est donc le rôle d'utilisateur qui est attribué automatiquement</li>
+                                </ul>
                                 <h5>URLMapping</h5>
-                                    <ul>
-                                        <li>//TODO Redirections</li>
-                                        <li>//TODO Clean URLs</li>
-                                    </ul>
+                                <ul>
+                                    <li>Toutes les redirections sont mis en place de la manière la plus cohérente possible</li>
+                                </ul>
                         </div>
                         <hr/>
                         <div>
                             <h3>GESTION DU MODELE</h3>
+                            <p>Lors de l'initialisation nous avons tenté de montrer que le modèle est en cohérence avec les contraintes exposées</p>
                                 <h5>Groupe</h5>
                                     <ul>
                                         <li>Création et modification d'un groupe</li>
                                         <li>Affichage des détails d'un groupe et des POIs lui correspondant sur une map</li>
-                                        <li>Suppression d'un groupe et de ses références à d'autres domaines</li>
+                                        <li>Suppression d'un groupe et par conséquent suppression de ses références à d'autres domaines</li>
                                     </ul>
                                 <h5>POIs</h5>
                                     <ul>
                                         <li>Création et modification d'un POI</li>
                                         <li>Affichage d'un POI et de sa position sur une map </li>
-                                        <li>Suppression d'un POI et de ses références à d'autres domaines</li>
+                                        <li>Suppression d'un POI et et par conséquent suppression de ses références à d'autres domaines</li>
                                     </ul>
                                 <h5>Users</h5>
                                     <ul>
@@ -81,20 +89,22 @@
                                     </ul>
                                 <h5>Images</h5>
                                     <ul>
-                                        <li>Les images fournis dans l'asset sont transférés sur le serveur dès l'initialisation du projet</li>
-                                        <li>Les images uploadé via les différents formulaires sont enregistrés dans notre serveur web Apache</li>
-                                        <li>Le fichier de configuration permet de reconstruire le path et l’url à la volée
-                                        <br/>updateFolder:
-                                        <br/>urlImage:
+                                        <li>Les images fournis dans l'asset sont transférés automatiquement sur le serveur Apache dès l'initialisation du projet</li>
+                                        <li>Les images uploadé via les différents formulaires sont également enregistrées automatiquement dans le serveur web Apache</li>
+                                        <li>Le fichier de configuration application.yml permet de reconstruire le path et l’url à la volée :
+                                            <br/><i>Exemple</i>
+                                            <br/><i>server :</i>
+                                            <br/><i>uploadImage: '/Applications/MAMP/htdocs/images/':</i>
+                                            <br/><i>pathServer: 'http://localhost:8081/'</i>
                                         </li>
                                     </ul>
                         </div>
                         <hr/>
                         <div>
-                            <h3>BONUS</h3>
+                            <h3>BONUS ACCOMPLIS</h3>
                             <ul>
                                 <li>Uploader les fichiers en Ajax en faisant un simple drag’n’drop du fichier sur le champ en question</li>
-                                <li>Permettre que liste des POIs au sein d’un Groupe soit modifiable directement en drag’n’drop Ajax </li>
+                                <li>Permettre que liste des POIs au sein d’un Groupe soit modifiable entre Groupe directement en drag’n’drop Ajax </li>
                                 <li>Mettre en place une map au niveau de la gestion des Groupes et POIs</li>
                             </ul>
                         </div>
@@ -102,7 +112,7 @@
                 </div>
             </div>
         </div>
-</sec:ifNotLoggedIn>
+    </sec:ifNotLoggedIn>
     <sec:ifLoggedIn>
 
         <!--/.title-->
